@@ -1,0 +1,9 @@
+/* 
+  This file is imported by main.tsx. 
+  We are using the Tailwind CDN in index.html, so we don't strictly need styles here,
+  but the file must exist to prevent build errors.
+*/
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
