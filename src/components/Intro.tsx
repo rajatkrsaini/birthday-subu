@@ -15,9 +15,7 @@ const Balloon = ({ color, delay, left, size = 60 }: { color: string; delay: numb
     style={{ width: size, height: size * 1.2 }}
   >
     <div className={`w-full h-full rounded-[50%] ${color} relative opacity-80 shadow-sm backdrop-blur-sm`}>
-        {/* Shine */}
         <div className="absolute top-[15%] left-[20%] w-[15%] h-[25%] bg-white opacity-40 rounded-[50%] transform -rotate-45" />
-        {/* String */}
         <div className="absolute bottom-[-40%] left-1/2 w-[1px] h-[50%] bg-gray-300 origin-top transform -translate-x-1/2" />
     </div>
   </motion.div>
@@ -26,8 +24,6 @@ const Balloon = ({ color, delay, left, size = 60 }: { color: string; delay: numb
 const Intro: React.FC<IntroProps> = ({ onStart }) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-dvh text-center p-6 relative overflow-hidden">
-      
-      {/* Aesthetic Balloons - Softer colors */}
       <Balloon color="bg-pink-200" delay={0} left="left-[10%]" size={90} />
       <Balloon color="bg-green-100" delay={4} left="left-[25%]" size={60} />
       <Balloon color="bg-rose-100" delay={7} left="left-[80%]" size={75} />
@@ -41,7 +37,6 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
         transition={{ duration: 1, ease: "easeOut" }}
         className="z-10 relative bg-white/30 backdrop-blur-sm p-8 md:p-12 rounded-[3rem] border border-white/60 shadow-xl shadow-pink-100/20 max-w-xl w-full mx-4"
       >
-        {/* Decorative Stars */}
         <motion.div 
             animate={{ rotate: 360, scale: [1, 1.2, 1] }} 
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
@@ -58,7 +53,6 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
             <Heart size={40} fill="#f9a8d4" className="text-pink-300" />
         </motion.div>
 
-        {/* Main Title Group */}
         <div className="relative mb-10">
             <h2 className="font-sans-body text-gray-500 tracking-[0.4em] text-xs md:text-sm uppercase mb-6 font-medium">
                 It's your special day
@@ -71,8 +65,6 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                 <h1 className="font-serif-title italic text-6xl md:text-8xl text-pink-400 leading-[0.9] pr-4 relative z-10 drop-shadow-sm">
                     Birthday
                 </h1>
-                
-                {/* Background wash behind text */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[80%] bg-gradient-to-r from-pink-100/50 to-green-100/50 blur-2xl -z-0 rounded-full"></div>
             </div>
             
