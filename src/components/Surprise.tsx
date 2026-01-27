@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, Heart, Star, Smile, CloudRain, Coffee, Zap, Moon, 
   Gift, Frown, Sun, Umbrella, ThumbsUp, Anchor, 
-  Compass, Camera, BookOpen, Crown, Mail, ShoppingBag, Tv, Utensils
+  Compass, Camera, BookOpen, Mail, ShoppingBag, Tv, Utensils
 } from 'lucide-react';
 
 interface EnvelopeData {
@@ -374,7 +374,6 @@ const Surprise: React.FC = () => {
         </div>
       </div>
 
-      {/* Reading Overlay */}
       <AnimatePresence>
         {selectedId && selectedEnvelope && (
           <motion.div
@@ -392,7 +391,6 @@ const Surprise: React.FC = () => {
               className="bg-white w-full max-w-xl h-[80vh] rounded-[2rem] shadow-2xl overflow-hidden relative flex flex-col border border-gray-100"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Minimal Header */}
               <div className="flex items-center justify-between p-8 border-b border-gray-50 bg-gray-50/50">
                  <div className="flex items-center gap-3">
                     <div className="p-2 bg-white rounded-full shadow-sm text-gray-600">
@@ -410,7 +408,6 @@ const Surprise: React.FC = () => {
                  </button>
               </div>
 
-              {/* Content */}
               <div className="p-8 md:p-12 overflow-y-auto bg-white flex-grow">
                 <div className="space-y-6 text-gray-600 font-serif-title leading-loose text-lg italic">
                   {selectedEnvelope.content.map((paragraph, i) => (
