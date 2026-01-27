@@ -22,12 +22,12 @@ const envelopes: EnvelopeData[] = [
     color: "bg-pink-100",
     content: [
       "Dearest Subu,",
-      "Happy 21st Birthday! 🥂 Can you believe it? You've officially leveled up to one of the most significant milestones in life. Twenty-one isn't just a number; it's a bridge between the chaotic wonder of your teenage years and the incredible potential of your adulthood.",
-      "I know you sometimes say you aren't excited about birthdays, or that it's just another day. But to me, this day is monumental because it marks 21 years of the world having you in it.",
-      "Thinking back on the last three years of our friendship, I feel so privileged to have watched you grow. I've seen you navigate challenges with a quiet strength that I admire more than I say.",
-      "My wish for you this year is simple but deep: I hope you find clarity. I hope you find the courage to chase the things that scare you a little bit, because that's where the magic happens.",
+      "Happy 21st Birthday! Can you believe it? You are officially an adult and just one year younger to me. well age is just a number; what matters is the journey of your teenage years and the incredible potential of your adulthood.",
+      "I know you sometimes say you aren't excited about birthdays, or that it's just another day. But to me, this day is kinda important as I rarely get the chance to tell you how much I appreciate you. Also, the world is better for people who love you, who are proud of you. so another reason this day is important is that it marks 21 years of the world having you in it.",
+      "Thinking back on the last 4 years of our friendship, I feel so privileged to have watched you grow. I've seen you navigate challenges with a quiet strength that I admire more than I say.",
+      "My wish for you this year is simple but pure as always: I hope you find peace, which you crave most. I lowkey also hope you find the courage to chase the things that put you out of your lazy zone, because that's where the magic happens.",
       "You are capable of so much more than you give yourself credit for. 21 is the year of YOU. Take up space. Be loud. Be happy. You deserve every ounce of goodness the universe has to offer.",
-      "Happy Birthday, bestie. Here's to the next chapter. 💖"
+      "Happy Birthday 💖"
     ]
   },
   {
