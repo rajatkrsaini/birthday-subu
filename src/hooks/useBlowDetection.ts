@@ -32,10 +32,7 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 20) => {
 
   useEffect(() => {
     if (isActive && !audioContext) {
-        // We delay init until user interaction usually, but here we assume permission request handles it
-        // Or component triggers it manually. 
-        // For simplicity, we expose the start function to be called on a button click if needed,
-        // but here we try to call it if permissions are already good.
+        // Init logic handled by startListening
     }
     
     return () => {
@@ -50,11 +47,10 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 20) => {
     if (!isActive || !analyserRef.current || !dataArrayRef.current) return;
 
     const checkVolume = () => {
-      analyserRef.current!.getByteFrequencyData(dataArrayRef.current!);
+      // Cast to any to avoid TS2345 mismatch between Uint8Array<ArrayBufferLike> and Uint8Array<ArrayBuffer>
+      analyserRef.current!.getByteFrequencyData(dataArrayRef.current! as any);
       
-      // Simple algorithm: Get average volume
       let sum = 0;
-      // Focus on lower frequencies which blowing usually occupies more
       const length = dataArrayRef.current!.length;
       for (let i = 0; i < length; i++) {
         sum += dataArrayRef.current![i];
