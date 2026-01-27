@@ -8,14 +8,11 @@ interface CakeProps {
   onComplete: () => void;
 }
 
-// Simple strawberry component
 const Strawberry = ({ className }: { className?: string }) => (
   <div className={`relative w-6 h-7 bg-red-400 rounded-b-full rounded-t-lg shadow-inner ${className}`}>
-    {/* Seeds */}
     <div className="absolute top-2 left-1 w-0.5 h-0.5 bg-yellow-100 rounded-full opacity-60" />
     <div className="absolute top-4 left-3 w-0.5 h-0.5 bg-yellow-100 rounded-full opacity-60" />
     <div className="absolute top-3 right-1.5 w-0.5 h-0.5 bg-yellow-100 rounded-full opacity-60" />
-    {/* Leaf */}
     <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 flex">
         <div className="w-2 h-2 bg-green-400 rounded-full -ml-1" />
         <div className="w-2 h-2 bg-green-400 rounded-full" />
@@ -50,10 +47,7 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
       setShowConfetti(true);
       setShowMessage(true);
       
-      // Hide message after a few seconds
       setTimeout(() => setShowMessage(false), 3000);
-      
-      // Move to next stage
       setTimeout(() => {
         onComplete();
       }, 5000);
@@ -62,7 +56,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-dvh bg-aesthetic overflow-hidden relative touch-none select-none">
-      {/* Floating Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(10)].map((_, i) => (
            <motion.div
@@ -105,7 +98,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
       </motion.div>
 
       <div className="relative cursor-pointer mt-8" onClick={handleCut}>
-        {/* Floating Message Effect */}
         <AnimatePresence>
             {showMessage && (
                 <motion.div
@@ -122,14 +114,10 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
             )}
         </AnimatePresence>
 
-        {/* Strawberry Cream Cake Design */}
         <div className="relative transform scale-110 md:scale-125">
-            
-            {/* Candles */}
             <div className="flex gap-8 absolute -top-24 left-1/2 transform -translate-x-1/2 z-20">
             {[1, 2, 3].map((i) => (
                 <div key={i} className="flex flex-col items-center relative">
-                    {/* Flame */}
                     {candlesLit && (
                         <motion.div
                         animate={{ scale: [1, 1.15, 1], rotate: [-2, 2, -2], opacity: [0.9, 1, 0.8] }}
@@ -137,45 +125,37 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
                         className="w-4 h-6 bg-gradient-to-t from-orange-400 to-yellow-200 rounded-full mb-1 shadow-[0_0_20px_rgba(255,200,100,0.6)] mix-blend-screen origin-bottom absolute -top-6"
                         />
                     )}
-                    {/* Candle Body */}
                     <div className="w-2 h-16 bg-gradient-to-b from-pink-100 to-pink-200 border-x border-white/50 rounded-sm shadow-sm" />
                 </div>
             ))}
             </div>
 
-            {/* Cake Toppings - Strawberries */}
             <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 w-48 flex justify-between px-2 z-10">
                 <Strawberry className="transform -rotate-12" />
                 <Strawberry className="transform translate-y-1" />
                 <Strawberry className="transform rotate-12" />
             </div>
             
-            {/* Cake Layers */}
             <div className="relative drop-shadow-xl">
-                {/* Top Layer (Cream) */}
                 <motion.div 
                     animate={isCut ? { x: -20, rotate: -3 } : {}}
                     transition={{ type: "spring", stiffness: 80, damping: 15 }}
                     className="w-56 h-24 bg-white rounded-t-3xl relative z-20 overflow-hidden"
                 >
-                    {/* Frosting Drips */}
                     <div className="absolute top-0 w-full h-full bg-pink-50/30"></div>
                 </motion.div>
                 
-                {/* Filling Layer (Strawberry Jam/Pink Sponge) */}
                 <motion.div
                     animate={isCut ? { x: -20, rotate: -3 } : {}}
                     transition={{ type: "spring", stiffness: 80, damping: 15 }}
                     className="w-56 h-4 bg-pink-300 relative z-20"
                 />
 
-                {/* Bottom Layer (Sponge) */}
                 <motion.div 
                      animate={isCut ? { x: 20, rotate: 3 } : {}}
                      transition={{ type: "spring", stiffness: 80, damping: 15 }}
                      className="w-64 h-28 bg-[#fff0f5] rounded-b-2xl relative z-10 -mt-2 mx-auto flex items-center justify-center border-t border-pink-100"
                 >
-                   {/* Decorative piping dots */}
                    <div className="absolute bottom-4 w-full flex justify-around px-4">
                       {[...Array(6)].map((_, i) => (
                           <div key={i} className="w-3 h-3 bg-white rounded-full shadow-sm" />
@@ -184,7 +164,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
                 </motion.div>
             </div>
 
-            {/* Cake Stand */}
             <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-0">
                 <div className="w-72 h-4 bg-gray-100 rounded-full shadow-md border border-gray-200" />
                 <div className="w-4 h-12 bg-gray-100 border-x border-gray-300" />
@@ -193,7 +172,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
         </div>
       </div>
 
-      {/* Controls */}
       {candlesLit && (
         <motion.div 
             initial={{ opacity: 0 }} 
