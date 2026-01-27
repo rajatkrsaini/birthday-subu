@@ -55,7 +55,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
 
         <div className="relative mb-10">
             <h2 className="font-sans-body text-gray-500 tracking-[0.4em] text-xs md:text-sm uppercase mb-6 font-medium">
-                It's your special day
+                I wanted you to open this on your special day, but I couldn't complete it. I know the moment is gone, but still wanted do for you.
             </h2>
             
             <div className="relative flex flex-col items-center">
@@ -80,7 +80,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
         </div>
 
         <p className="text-gray-600 font-sans-body text-base md:text-lg font-light mb-10 tracking-wide max-w-sm mx-auto leading-relaxed">
-           May your day be filled with as much joy as you bring to everyone around you.
+           May your life be filled with as much joy and happiness as you bring to everyone around you.
         </p>
         
         <motion.button
