@@ -197,7 +197,7 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
              onClick={() => setBlowCount(30)}
              className="text-gray-400 text-xs mt-2 p-2 hover:text-pink-400 transition-colors font-sans-body underline decoration-dotted"
           >
-            (Tap if mic doesn't work)
+            (LOL STOP BLOWING, JUST TAP HERE)
           </button>
         </motion.div>
       )}
