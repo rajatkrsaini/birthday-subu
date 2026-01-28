@@ -103,7 +103,7 @@ const envelopes: EnvelopeData[] = [
     content: [
       "There is literally no one else like you.",
       "I love your specific quirks and behaviour. I love the way you even when you are lazy about things.",
-      "Never change the weird, wonderful parts of yourself to fit in. They are what make you a rare."
+      "Never change the weird, wonderful parts of yourself to fit in. They are what make you rare."
     ]
   },
   {
