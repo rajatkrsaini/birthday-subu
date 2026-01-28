@@ -32,30 +32,13 @@ const envelopes: EnvelopeData[] = [
   },
   {
     id: 2,
-    label: "Miss you",
+    label: "Thank YOU",
     icon: <Anchor className="text-gray-600" size={20} />,
     color: "bg-blue-50",
     content: [
-      "Hey you,",
-      "If you're opening this, the distance must be feeling a little heavier than usual today. I get it. There are days where text messages and calls just don't cut it.",
+      "Hi qt,",
       "I want you to close your eyes for a second and take a deep breath. Imagine I'm sitting right there next to you. Not saying anything profound, just being there.",
-      "Distance is just a geography test, and frankly, we are acing it. The bond we have isn't measured in miles or kilometers; it's measured in the shared jokes and the trust we've built over years.",
-      "I am always with you in spirit. When something funny happens, I'm the first person you want to tell—that means I'm there.",
-      "So until the day we can finally hug for real (and I promise it will happen), hold onto this virtual one.",
-      "Text me. I'm waiting."
-    ]
-  },
-  {
-    id: 21,
-    label: "Craving Boba 🧋",
-    icon: <Coffee className="text-gray-600" size={20} />,
-    color: "bg-amber-100",
-    content: [
-      "Boba Emergency!",
-      "Okay, listen. You work hard. You deal with people. You survive daily life. You deserve the boba.",
-      "Get the brown sugar milk tea. Or the matcha. Add the tapioca pearls. Maybe even the pudding.",
-      "Sugar is brain fuel (don't fact check that). Go treat yourself. Life is too short to drink water all the time.",
-      "Consider this a coupon valid for one guilt-free boba run. Go! 🏃‍♀️"
+      "I know I am just an online friend to you, but you always tell me everything, the way you put your trust in me makes me want to do so many great things for you. When something funny/sad, whatever happens, please continue to share.",
     ]
   },
   {
