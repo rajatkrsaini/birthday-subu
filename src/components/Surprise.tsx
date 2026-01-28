@@ -322,7 +322,7 @@ const Surprise: React.FC = () => {
           </h2>
           <div className="w-20 h-1 bg-pink-200 mx-auto rounded-full mt-5 mb-5"></div>
           <p className="text-gray-500 font-sans-body font-light tracking-wide text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-            I wanted to write 21 things for you on your 21th B'day (I KNOW IT'S KINDA WEIRD), so here's a collection of random thoughts if you wanna read.
+            I wanted to write 21 things for you on your 21th b'day (I KNOW I'M WEIRD), so here's a collection of random notes if you wanna read.
           </p>
         </div>
 
