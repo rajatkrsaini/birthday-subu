@@ -55,7 +55,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
 
         <div className="relative mb-10">
             <h2 className="font-sans-body text-gray-500 tracking-[0.4em] text-xs md:text-sm uppercase mb-6 font-medium">
-                I wanted you to open this on your special day, but I couldn't complete it. I know the moment is gone, but still wanted do for you.
+                I wanted you to open this on your special day, but I couldn't complete it. I know the moment is gone, so it will never feel the same.
             </h2>
             
             <div className="relative flex flex-col items-center">
