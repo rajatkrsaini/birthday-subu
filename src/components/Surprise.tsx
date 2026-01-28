@@ -37,22 +37,19 @@ const envelopes: EnvelopeData[] = [
     color: "bg-blue-50",
     content: [
       "Hi qt,",
-      "I want you to close your eyes for a second and take a deep breath. Imagine I'm sitting right there next to you. Not saying anything profound, just being there.",
+      "Sometimes I wish I was your irl friend but I think it's better this way cause the bond wouldn't have been the same. And Maybe for me the excitement of meeting you for the first time is greater than me wanting to be your irl friend.",
       "I know I am just an online friend to you, but you always tell me everything, the way you put your trust in me makes me want to do so many great things for you. When something funny/sad, whatever happens, please continue to share.",
     ]
   },
   {
     id: 4,
-    label: "Stressed out",
+    label: "Don't be Stressed out",
     icon: <CloudRain className="text-gray-600" size={20} />,
     color: "bg-gray-100",
     content: [
-      "Okay, deep breath in... hold it... and let it out.",
-      "Listen to me: The world is not ending. I know it feels like everything is crashing down, or that you have a mountain of tasks. I know that chest-tightening feeling.",
-      "But look at your track record. You have survived 100% of your bad days. You have handled exams, family drama, and life chaos. You are a survivor.",
-      "Whatever is stressing you out right now is temporary. In a month, this will just be a blip.",
-      "You need to unplug. Seriously. Close the tabs. Drink a glass of water. Do something that serves zero purpose other than making you feel calm.",
-      "You are not a machine. You are a human being who needs rest."
+      "Okay. Stop for a second.",
+      "Sometimes bad stuff happens and we have a lot of pressure to perform well, be it in exams, from family, relationships, and life in general. it feels like everything is just going bad, or that you have a mountain of tasks.",
+      "But lets look at your track record. You have survived 100% of your bad days. You have handled exams, family drama, and other life chaos. So don't stress yourself over the bad phase, cause it all pass every single time.",
     ]
   },
   {
@@ -62,100 +59,26 @@ const envelopes: EnvelopeData[] = [
     color: "bg-indigo-50",
     content: [
       "Hello, night owl.",
-      "If you're reading this, the world is quiet but your mind is loud. It's frustrating, isn't it?",
-      "I want you to try something. Visualize a place where we are just hanging out. Maybe it's a rooftop at night, watching the city lights. The air is cool, and there's no pressure to talk.",
-      "Sleep is a shy friend; it doesn't come when you chase it. So stop trying to sleep. Just rest.",
-      "The worries you have right now? They are night-worries. When the sun comes up, they will shrink back down to manageable sizes.",
-      "I'm sending you sleepy dust and peaceful vibes. Goodnight, qt."
+      "lately you have told me you have a bad sleeping schedule or trouble sleeping",
+      "i just want to say that it is completely fine to be awake for a few hours if you can get some extra sleeping in the morning",
+      "Sleep doesn't come when you chase it. So stop trying to sleep. Just rest by laying down thats all that matters. If sleep comes, good. If it doesn’t, resting still helps.",
     ]
   },
-  {
-    id: 22,
-    label: "Outfit Crisis 👗",
-    icon: <ShoppingBag className="text-gray-600" size={20} />,
-    color: "bg-rose-50",
-    content: [
-      "I have nothing to wear!",
-      "I can hear you screaming this at your closet. But let's be real—you could wear a potato sack and make it look aesthetic.",
-      "If you hate everything you own right now, go back to basics. Jeans and a cute top. Or that one dress that makes you feel like a fairy.",
-      "You define the clothes, the clothes don't define you. You look great. Stop overthinking it.",
-      "Now go slay."
-    ]
-  },
-  {
-    id: 6,
-    label: "Need a laugh",
-    icon: <Smile className="text-gray-600" size={20} />,
-    color: "bg-yellow-50",
-    content: [
-      "Emergency Laugh Protocol Initiated.",
-      "Why did the scarecrow win an award? Because he was outstanding in his field! ...Okay, I know, that was terrible.",
-      "Remember that time we were talking and autocorrect completely ruined the sentence? Or that time you started laughing in a voice note?",
-      "Life is too short to be serious all the time. If you're having a bad day, go watch a video of a cat falling off a table.",
-      "You have the most beautiful laugh, and the world deserves to hear it. Smile, Subu. It looks good on you."
-    ]
-  },
-  {
-    id: 7,
-    label: "Lonely",
-    icon: <Frown className="text-gray-600" size={20} />,
-    color: "bg-teal-50",
-    content: [
-      "I'm sorry you're feeling this way.",
-      "Loneliness is a tricky thing. You can be in a room full of people and feel lonely. Right now, I'm guessing you feel a bit disconnected.",
-      "I wish I could teleport there and just sit with you. We wouldn't even have to talk.",
-      "But remember that being alone does not mean you are unloved. You have people—me included—who care about you deeply.",
-      "Reach out. Send me a text. Call someone. Sometimes breaking the silence is the hardest part, but it's the only way to let the light back in.",
-      "You are not an island. You are loved."
-    ]
-  },
-  {
-    id: 23,
-    label: "K-Drama Mood 📺",
-    icon: <Tv className="text-gray-600" size={20} />,
-    color: "bg-purple-50",
-    content: [
-      "Annyeong!",
-      "Is it time to escape reality and fall in love with a fictional CEO who has childhood trauma but a heart of gold?",
-      "Yes. Yes it is.",
-      "Go get your snacks (ramen is mandatory). Get your blanket. Prepare your tissues.",
-      "I fully support this binge-watching session. Reality can wait. Go enjoy the romance/drama/thriller.",
-      "Fighting! ✊"
-    ]
-  },
+
   {
     id: 8,
     label: "Meeting you",
     icon: <Coffee className="text-gray-600" size={20} />,
     color: "bg-orange-50",
     content: [
-      "Oh my god, this day is going to be LEGENDARY.",
-      "I have played this scenario in my head a thousand times. I'll probably be standing there awkwardly at the airport.",
-      "The first hug? It's going to be one of those bone-crushing ones. The kind that lasts for a solid minute.",
-      "Here is the plan (draft version):",
-      "1. Food. Immediately.",
-      "2. A walk. Just walking and talking without a screen buffering.",
-      "3. Photos. We need to take a million photos.",
-      "Hold on to this vision. It's coming. I promise."
-    ]
-  },
-  {
-    id: 9,
-    label: "Giving up",
-    icon: <X className="text-gray-600" size={20} />,
-    color: "bg-red-50",
-    content: [
-      "Don't you dare.",
-      "I mean it. I know you're tired. I know you feel like you've been fighting for so long. But you are not a quitter.",
-      "Think about the version of you from 5 years ago. She would be amazed at where you are today. You owe it to her to keep going.",
-      "Rest if you must. Cry if you need to. But do not stop. Progress is not a straight line.",
-      "You are stronger than this obstacle. You have a fire in you that cannot be extinguished.",
-      "I am in your corner, cheering the loudest. Get up. You can do this."
+      "If we ever meet someday, I already know this thing.",
+      "It won’t be like whatever we imagine. It’ll probably be awkward, and I could be nervous at first, because meeting someone from the internet in real life is weird cause i never did it.",
+      "and yeah, the responsibility is on me so you don't have to think about anything",
     ]
   },
   {
     id: 10,
-    label: "Happy",
+    label: "Be Happy cause why not",
     icon: <Sun className="text-gray-600" size={20} />,
     color: "bg-amber-50",
     content: [
