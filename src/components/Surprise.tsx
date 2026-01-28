@@ -50,10 +50,8 @@ const envelopes: EnvelopeData[] = [
     icon: <Crown className="text-gray-700" size={20} />,
     color: "bg-yellow-100",
     content: [
-      "Official Announcement:",
-      "You have been awarded the title of 'Best Girl'.",
-      "Why? Because you are simply unmatched.",
-      "It's the way you care about people. The way you listen. The way you just *are*.",
+      "You are literally the 'Best Girl' ever.",
+      "The way you care about people and even animals. The way you are kind to everyone.",
       "You work hard everyday, you care deeply, and you are just genuinely a good person.",
       "The world is lucky to have you, but I'm the luckiest to have you as my bestie.",
       "Keep wearing that invisible crown cause you are a queen 👑"
@@ -76,15 +74,15 @@ const envelopes: EnvelopeData[] = [
     icon: <Moon className="text-gray-700" size={20} />,
     color: "bg-indigo-50",
     content: [
-      "Hello, night owl.",
-      "lately you have told me you have a bad sleeping schedule or trouble sleeping",
+      "we are all night owls.",
+      "No one has a perfect sleep schedule",
       "i just want to say that it is completely fine to be awake for a few hours if you can get some extra sleeping in the morning",
-      "Sleep doesn't come when you chase it. So stop trying to sleep. Just rest by laying down thats all that matters. If sleep comes, good. If it doesn’t, resting still helps.",
+      "Sleep doesn't come when you chase it. So stop trying to sleep. Just rest by laying down thats all. If sleep comes, good. If it doesn’t, resting still helps.",
     ]
   },
   {
     id: 6,
-    label: "You're so Pretty",
+    label: "So Pretty",
     icon: <Sparkles className="text-gray-700" size={20} />,
     color: "bg-rose-100",
     content: [
@@ -92,7 +90,7 @@ const envelopes: EnvelopeData[] = [
       "Because honestly... HOW CAN SOMEONE BE SO PERFECT ALWAYS WITHOUT EVEN TRYING.",
       "And I'm not just saying that because it's your birthday.",
       "Aside from that, you are have a pretty soul too.",
-      "You are a total work of art, inside and out."
+      "You are beautiful both inside and out."
     ]
   },
   {
@@ -103,7 +101,7 @@ const envelopes: EnvelopeData[] = [
     content: [
       "There is literally no one else like you.",
       "I love your specific quirks and behaviour. I love the way you even when you are lazy about things.",
-      "Never change the weird, wonderful parts of yourself to fit in. They are what make you rare."
+      "Never change the weird, wonderful parts of yourself."
     ]
   },
   {
