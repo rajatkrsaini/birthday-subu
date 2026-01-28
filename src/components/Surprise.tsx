@@ -193,10 +193,10 @@ const envelopes: EnvelopeData[] = [
     color: "bg-orange-100",
     content: [
       "Get up.",
-      "You have dreams. They aren't going to chase themselves.",
-      "Motivation is temporary. Discipline is what stays. Do the thing even if you don't feel like it. Just five minutes.",
+      "You have dreams, so achieve them.",
+      "Do the thing even if you don't feel like it. Just five minutes.",
       "Future You is begging you to put in the work today. Don't let her down.",
-      "Once you begin, your brain calms down because it stops imagining the whole disaster and starts dealing with reality. That's what happened with me."
+      "Once you begin, your brain calms down because it stops imagining the whole disaster and starts dealing with reality."
     ]
   },
   {
