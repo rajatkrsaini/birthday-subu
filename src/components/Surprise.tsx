@@ -332,7 +332,7 @@ const Surprise: React.FC = () => {
       <div className="max-w-6xl mx-auto pt-10 pb-20 relative">
         <div className="text-center mb-14">
           <h2 className="font-serif-title text-4xl md:text-6xl text-gray-800 tracking-tight">
-            FOR THE CUTEST AND PRETTIEST HUMAN
+            FOR THE CUTEST GIRL
           </h2>
           <div className="w-20 h-1 bg-pink-200 mx-auto rounded-full mt-5 mb-5"></div>
           <p className="text-gray-500 font-sans-body font-light tracking-wide text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
