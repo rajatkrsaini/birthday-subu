@@ -82,53 +82,22 @@ const envelopes: EnvelopeData[] = [
     icon: <Sun className="text-gray-600" size={20} />,
     color: "bg-amber-50",
     content: [
-      "YAY!!!",
-      "I love this for you! Whatever caused this happiness—whether it's a big achievement or just a really good cup of coffee—I want you to soak it in.",
-      "We spend so much time analyzing our sadness, but we rarely analyze our happiness. Take a mental snapshot of this moment.",
-      "Bottle this feeling up. Store it in your memory bank for a rainy day.",
-      "I hope you're dancing around your room. Celebrate yourself today. You deserve this joy."
-    ]
-  },
-  {
-    id: 24,
-    label: "Spicy Food 🌶️",
-    icon: <Utensils className="text-gray-600" size={20} />,
-    color: "bg-red-100",
-    content: [
-      "Caution: Hot!",
-      "Craving that spice? That mala? That tteokbokki that makes you cry?",
-      "Do it. Your stomach might hate you later, but your soul needs the fire.",
-      "There is nothing quite like the endorphin rush of really spicy food. It solves 90% of life's problems.",
-      "Bon appétit, you brave soul."
+      "!!!",
+      "I’m glad you’re happy this year.",
+      "We spend so much time analyzing our sadness, but we rarely analyze our happiness. Enjoy the happiness because your brain loves remembering bad days and forgetting good ones.",
+      "Don’t let anyone steal your happiness."
     ]
   },
   {
     id: 11,
-    label: "Failure",
+    label: "Sometimes we mess up",
     icon: <ThumbsUp className="text-gray-600" size={20} />,
     color: "bg-slate-100",
     content: [
-      "Let's redefine failure, shall we?",
-      "You didn't fail. You learned a way that didn't work. You gathered data.",
+      "Okay, you messed up. Welcome to being human",
+      "Being failed or messing up at something is not a personality trait. It’s just an event. Something happened, you didn’t get the result you wanted, and now your brain is trying to make it mean you’re not capable. That’s nonsense.",
       "Everyone you admire has failed spectacularly at some point. They just didn't stop there.",
-      "So you messed up? Okay. Welcome to the human race. We have snacks. It’s okay to be imperfect.",
-      "Don't define your self-worth by your productivity or your success rate. You are worthy because you exist.",
-      "Pick up the pieces, look at them, learn from them, and build something new."
-    ]
-  },
-  {
-    id: 12,
-    label: "Bored",
-    icon: <Compass className="text-gray-600" size={20} />,
-    color: "bg-emerald-50",
-    content: [
-      "Boredom is just creativity waiting to happen.",
-      "Since you have nothing to do, here are some challenges for you:",
-      "1. Go to Wikipedia and click 'Random Article'.",
-      "2. Create a playlist for a movie that doesn't exist.",
-      "3. Plan our dream vacation. Cost is no object.",
-      "4. Text me a random emoji and I have to guess what it means.",
-      "Being bored is a luxury. Enjoy the stillness."
+      "It’s okay to be imperfect, but you stay perfect in your eyes.",
     ]
   },
   {
@@ -138,11 +107,10 @@ const envelopes: EnvelopeData[] = [
     color: "bg-rose-50",
     content: [
       "I don't say this enough, but I appreciate you so much.",
-      "I appreciate how you listen. You don't just hear words; you hear the feelings behind them.",
-      "I appreciate your humor. You have this way of making a dull conversation sparkle.",
-      "I appreciate your loyalty. In a world where people are flaky, you have been a constant.",
-      "I appreciate your vulnerability. It takes courage to be open.",
-      "You add value to my life just by being you. Thank you for being my friend."
+      "I appreciate how you share and listen. its not just about words but the feelings behind them.",
+      "I like your humor sm. The way you tease and your sarcasm has a way of making a dull conversation sparkle.",
+      "keep saying bsdk bc cause the day i do not hear it i feel like i haven't talked with subu today.",
+      "Thank you for being my friend."
     ]
   },
   {
@@ -153,50 +121,30 @@ const envelopes: EnvelopeData[] = [
     content: [
       "Hello Future Subu,",
       "I hope you're reading this a year from now, or maybe five. Where are you? What are you doing?",
-      "I hope you are happy. I hope you have found a job that fulfills you, or a hobby that lights you up.",
-      "I hope you're still friends with me (you better be!).",
-      "Remember who you were when you were 21. Remember her hopes and her fears. She worked hard to get you here.",
-      "Keep growing. Keep shining. The future looks bright on you."
-    ]
-  },
-  {
-    id: 15,
-    label: "Raining",
-    icon: <Umbrella className="text-gray-600" size={20} />,
-    color: "bg-cyan-50",
-    content: [
-      "I love rainy days.",
-      "There's something so cozy about the world being washed clean. I hope you're safe inside with a warm drink.",
-      "Listen to the sound of the rain. It's nature's lullaby. It's permission to do nothing.",
-      "Put on some lo-fi music. Read a book. Wear your most oversized hoodie.",
-      "Imagine I'm there with you, watching the raindrops race down the window pane."
+      "I hope you are happy. I hope you are doing what you love, or a hobby that lights you up.",
+      "I hope you're still friends with me (you better be bsdk!).",
+      "Keep growing. Keep shining. My wishes are always with you"
     ]
   },
   {
     id: 16,
-    label: "Angry",
+    label: "Angry?",
     icon: <Zap className="text-gray-600" size={20} />,
     color: "bg-red-50",
     content: [
-      "Vent it out!",
+      "Vent out to me!",
       "Who did it? Who annoyed you? Let me at 'em.",
-      "It is okay to be angry. Anger is an emotion that tells us a boundary has been crossed. Don't suppress it. Feel it.",
-      "Write it down. Scream into a pillow. Punch a mattress.",
-      "But then... let it go. Don't let the anger poison you.",
-      "You are too precious to carry around a heavy heart. Release the rage, protect your peace."
+      "You are too precious to carry around a heavy heart. Protect your peace."
     ]
   },
   {
     id: 17,
-    label: "Confidence",
+    label: "Stay Confident",
     icon: <Star className="text-gray-600" size={20} />,
     color: "bg-yellow-100",
     content: [
-      "Chin up, princess. Or your crown slips.",
-      "Do you have any idea how capable you are? You have navigated life for 21 years. You have learned skills, solved problems, and charmed people.",
-      "You are smart. You are funny. You are interesting. You have a unique perspective on the world.",
-      "Walk into the room like you own the place. Fake it 'til you make it if you have to.",
-      "I believe in you. Now you need to believe in you."
+      "Do you have any idea how capable you are? You have lived life for 21 years. You have learned skills, gained knowledge, solved your problems, and charmed people.",
+      "You are smart. You are funny. You are interesting. You have your own unique perspective on the world.",
     ]
   },
   {
@@ -205,10 +153,9 @@ const envelopes: EnvelopeData[] = [
     icon: <BookOpen className="text-gray-600" size={20} />,
     color: "bg-stone-50",
     content: [
-      "Remember when we first met?",
-      "It feels like ages ago, yet just like yesterday. Three years is a long time in internet years.",
-      "Think about our funniest conversations. The typos. The misunderstandings.",
-      "Nostalgia is sweet, but don't live in the past. We are building the 'good old days' right now.",
+      "I dont know why we first talked?",
+      "Its been years ago, yet just like yesterday.",
+      "You and I have shared a lot of random, funny, and unexpectedly deep conversations including misunderstandings.",
       "I'm glad our timelines crossed. Of all the billions of people on earth, I'm glad I found you."
     ]
   },
@@ -222,7 +169,7 @@ const envelopes: EnvelopeData[] = [
       "You have dreams. They aren't going to chase themselves. You want that success? You have to build it.",
       "Motivation is fickle. Discipline is what stays. Do the thing even if you don't feel like it. Just five minutes.",
       "Future You is begging you to put in the work today. Don't let her down.",
-      "You are a force of nature. Go show the world what you're made of."
+      "Once you begin, your brain calms down because it stops imagining the whole disaster and starts dealing with reality."
     ]
   },
   {
@@ -231,11 +178,8 @@ const envelopes: EnvelopeData[] = [
     icon: <Mail className="text-gray-600" size={20} />,
     color: "bg-white",
     content: [
-      "I don't need a reason to write to you.",
-      "I just wanted to remind you that you are loved. In the busyness of life, we forget to tell people that they matter. You matter.",
-      "You matter to me. You matter to your family.",
-      "Take care of yourself today. Drink water. Eat something good. Be happy.",
-      "Love always,\nRajat"
+      "I don't need a reason to write to you. I just wanted to do something unique for you (not for the sake of being your friend or anything. also not because of your birthday) It's just for 'YOU'",
+      "I want to remind you that you are cared. In the busyness of life, we forget to tell people that they matter and what could be the best possible day than this lol",
     ]
   }
 ];
