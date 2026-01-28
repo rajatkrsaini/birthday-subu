@@ -69,18 +69,6 @@ const envelopes: EnvelopeData[] = [
     ]
   },
   {
-    id: 5,
-    label: "Can't sleep",
-    icon: <Moon className="text-gray-700" size={20} />,
-    color: "bg-indigo-50",
-    content: [
-      "we are all night owls.",
-      "No one has a perfect sleep schedule",
-      "i just want to say that it is completely fine to be awake for a few hours if you can get some extra sleeping in the morning",
-      "Sleep doesn't come when you chase it. So stop trying to sleep. Just rest by laying down thats all. If sleep comes, good. If it doesn’t, resting still helps.",
-    ]
-  },
-  {
     id: 6,
     label: "So Pretty",
     icon: <Sparkles className="text-gray-700" size={20} />,
@@ -106,7 +94,7 @@ const envelopes: EnvelopeData[] = [
   },
   {
     id: 8,
-    label: "Meeting you",
+    label: "To meet you",
     icon: <Coffee className="text-gray-700" size={20} />,
     color: "bg-orange-50",
     content: [
@@ -133,10 +121,10 @@ const envelopes: EnvelopeData[] = [
     icon: <ThumbsUp className="text-gray-700" size={20} />,
     color: "bg-slate-100",
     content: [
-      "Okay, you messed up somewhere. Welcome to being human",
+      "if you ever mess up somewhere thats fine. Welcome to being human",
       "Being failed or messing up at something is not a personality trait. It’s just an event. Something happened, you didn’t get the result you wanted, and now your brain is trying to make it mean you’re not capable. That’s nonsense.",
       "Everyone you admire has failed spectacularly at some point. They just didn't stop there.",
-      "It’s okay to be imperfect, but you stay perfect in your eyes.",
+      "It’s okay to be imperfect for others, but you stay perfect in your eyes.",
     ]
   },
   {
@@ -161,7 +149,7 @@ const envelopes: EnvelopeData[] = [
       "Hello Future Subu,",
       "I hope you're reading this a year from now, or maybe five. Where are you? What are you doing?",
       "I hope you are happy. I hope you are doing what you love, or a hobby that lights you up.",
-      "I hope you're still friends with me (you better be bsdk!).",
+      "I hope you're still friends with me (you better be!).",
       "Keep growing. Keep shining. My wishes are always with you"
     ]
   },
@@ -200,15 +188,15 @@ const envelopes: EnvelopeData[] = [
   },
   {
     id: 19,
-    label: "Stay Consistent",
+    label: "Chase dreams",
     icon: <Zap className="text-gray-700" size={20} />,
     color: "bg-orange-100",
     content: [
       "Get up.",
-      "You have dreams. They aren't going to chase themselves. You want that success? You have to build it.",
-      "Motivation is fickle. Discipline is what stays. Do the thing even if you don't feel like it. Just five minutes.",
+      "You have dreams. They aren't going to chase themselves.",
+      "Motivation is temporary. Discipline is what stays. Do the thing even if you don't feel like it. Just five minutes.",
       "Future You is begging you to put in the work today. Don't let her down.",
-      "Once you begin, your brain calms down because it stops imagining the whole disaster and starts dealing with reality."
+      "Once you begin, your brain calms down because it stops imagining the whole disaster and starts dealing with reality. That's what happened with me."
     ]
   },
   {
