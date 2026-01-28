@@ -4,7 +4,8 @@ import {
   X, Heart, Star, CloudRain, Coffee, Zap, Moon,
   Gift, Sun, ThumbsUp, Anchor,
   Camera, BookOpen, Mail,
-  Crown, Sparkles, Gem
+  Crown, Sparkles, Gem,
+  PenLine, Feather, Paperclip, Bookmark
 } from 'lucide-react';
 
 interface EnvelopeData {
@@ -12,7 +13,7 @@ interface EnvelopeData {
   label: string;
   icon: React.ReactNode;
   content: string[];
-  color: string; // card color
+  color: string;
 }
 
 const envelopes: EnvelopeData[] = [
@@ -42,8 +43,6 @@ const envelopes: EnvelopeData[] = [
       "I know I am just an online friend to you, but you always tell me everything, the way you put your trust in me makes me want to do so many great things for you. When something funny/sad, whatever happens, please continue to share.",
     ]
   },
-
-  // NEW: Best Girl
   {
     id: 3,
     label: "Best Girl 🏆",
@@ -60,7 +59,6 @@ const envelopes: EnvelopeData[] = [
       "Keep wearing that invisible crown. 👑"
     ]
   },
-
   {
     id: 4,
     label: "Don't be Stressed out",
@@ -84,8 +82,6 @@ const envelopes: EnvelopeData[] = [
       "Sleep doesn't come when you chase it. So stop trying to sleep. Just rest by laying down thats all that matters. If sleep comes, good. If it doesn’t, resting still helps.",
     ]
   },
-
-  // NEW: You're Beautiful
   {
     id: 6,
     label: "You're Beautiful ✨",
@@ -100,8 +96,6 @@ const envelopes: EnvelopeData[] = [
       "You are a total work of art, inside and out. Don't ever forget that."
     ]
   },
-
-  // NEW: Unique You
   {
     id: 7,
     label: "Unique You 🦄",
@@ -115,7 +109,6 @@ const envelopes: EnvelopeData[] = [
       "Never change the weird, wonderful parts of yourself to fit in. They are what make you a rare gem."
     ]
   },
-
   {
     id: 8,
     label: "Meeting you",
@@ -235,33 +228,33 @@ const envelopes: EnvelopeData[] = [
   }
 ];
 
-// Unique pastel "paper" themes per letter (bg + decorative blobs)
 function getLetterTheme(id: number) {
   const themes = {
-    1: { paper: "from-rose-50 via-white to-pink-50", blobA: "bg-pink-200/35", blobB: "bg-rose-200/30" },
-    2: { paper: "from-sky-50 via-white to-blue-50", blobA: "bg-sky-200/35", blobB: "bg-blue-200/30" },
-    3: { paper: "from-amber-50 via-white to-yellow-50", blobA: "bg-amber-200/35", blobB: "bg-yellow-200/30" },
-    4: { paper: "from-slate-50 via-white to-stone-50", blobA: "bg-slate-200/35", blobB: "bg-stone-200/30" },
-    5: { paper: "from-indigo-50 via-white to-violet-50", blobA: "bg-indigo-200/35", blobB: "bg-violet-200/30" },
-    6: { paper: "from-rose-50 via-white to-fuchsia-50", blobA: "bg-rose-200/35", blobB: "bg-fuchsia-200/30" },
-    7: { paper: "from-purple-50 via-white to-violet-50", blobA: "bg-purple-200/35", blobB: "bg-violet-200/30" },
-    8: { paper: "from-orange-50 via-white to-amber-50", blobA: "bg-orange-200/35", blobB: "bg-amber-200/30" },
-    10:{ paper: "from-amber-50 via-white to-yellow-50", blobA: "bg-amber-200/35", blobB: "bg-yellow-200/30" },
-    11:{ paper: "from-slate-50 via-white to-gray-50", blobA: "bg-slate-200/35", blobB: "bg-gray-200/30" },
-    13:{ paper: "from-rose-50 via-white to-pink-50", blobA: "bg-rose-200/35", blobB: "bg-pink-200/30" },
-    14:{ paper: "from-violet-50 via-white to-purple-50", blobA: "bg-violet-200/35", blobB: "bg-purple-200/30" },
-    16:{ paper: "from-red-50 via-white to-rose-50", blobA: "bg-red-200/35", blobB: "bg-rose-200/30" },
-    17:{ paper: "from-yellow-50 via-white to-amber-50", blobA: "bg-yellow-200/35", blobB: "bg-amber-200/30" },
-    18:{ paper: "from-stone-50 via-white to-neutral-50", blobA: "bg-stone-200/35", blobB: "bg-neutral-200/30" },
-    19:{ paper: "from-orange-50 via-white to-yellow-50", blobA: "bg-orange-200/35", blobB: "bg-yellow-200/30" },
-    20:{ paper: "from-neutral-50 via-white to-rose-50", blobA: "bg-neutral-200/35", blobB: "bg-rose-200/30" },
-  } as Record<number, { paper: string; blobA: string; blobB: string }>;
+    1: { paper: "from-rose-50 via-white to-pink-50", blobA: "bg-pink-200/35", blobB: "bg-rose-200/30", accent: "text-rose-500/70" },
+    2: { paper: "from-sky-50 via-white to-blue-50", blobA: "bg-sky-200/35", blobB: "bg-blue-200/30", accent: "text-sky-500/70" },
+    3: { paper: "from-amber-50 via-white to-yellow-50", blobA: "bg-amber-200/35", blobB: "bg-yellow-200/30", accent: "text-amber-500/70" },
+    4: { paper: "from-slate-50 via-white to-stone-50", blobA: "bg-slate-200/35", blobB: "bg-stone-200/30", accent: "text-slate-500/70" },
+    5: { paper: "from-indigo-50 via-white to-violet-50", blobA: "bg-indigo-200/35", blobB: "bg-violet-200/30", accent: "text-indigo-500/70" },
+    6: { paper: "from-rose-50 via-white to-fuchsia-50", blobA: "bg-rose-200/35", blobB: "bg-fuchsia-200/30", accent: "text-fuchsia-500/70" },
+    7: { paper: "from-purple-50 via-white to-violet-50", blobA: "bg-purple-200/35", blobB: "bg-violet-200/30", accent: "text-purple-500/70" },
+    8: { paper: "from-orange-50 via-white to-amber-50", blobA: "bg-orange-200/35", blobB: "bg-amber-200/30", accent: "text-orange-500/70" },
+    10:{ paper: "from-amber-50 via-white to-yellow-50", blobA: "bg-amber-200/35", blobB: "bg-yellow-200/30", accent: "text-amber-500/70" },
+    11:{ paper: "from-slate-50 via-white to-gray-50", blobA: "bg-slate-200/35", blobB: "bg-gray-200/30", accent: "text-slate-500/70" },
+    13:{ paper: "from-rose-50 via-white to-pink-50", blobA: "bg-rose-200/35", blobB: "bg-pink-200/30", accent: "text-rose-500/70" },
+    14:{ paper: "from-violet-50 via-white to-purple-50", blobA: "bg-violet-200/35", blobB: "bg-purple-200/30", accent: "text-violet-500/70" },
+    16:{ paper: "from-red-50 via-white to-rose-50", blobA: "bg-red-200/35", blobB: "bg-rose-200/30", accent: "text-red-500/70" },
+    17:{ paper: "from-yellow-50 via-white to-amber-50", blobA: "bg-yellow-200/35", blobB: "bg-amber-200/30", accent: "text-yellow-600/70" },
+    18:{ paper: "from-stone-50 via-white to-neutral-50", blobA: "bg-stone-200/35", blobB: "bg-neutral-200/30", accent: "text-stone-500/70" },
+    19:{ paper: "from-orange-50 via-white to-yellow-50", blobA: "bg-orange-200/35", blobB: "bg-yellow-200/30", accent: "text-orange-500/70" },
+    20:{ paper: "from-neutral-50 via-white to-rose-50", blobA: "bg-neutral-200/35", blobB: "bg-rose-200/30", accent: "text-rose-500/70" },
+  } as Record<number, { paper: string; blobA: string; blobB: string; accent: string }>;
 
-  return themes[id] ?? { paper: "from-neutral-50 via-white to-neutral-50", blobA: "bg-neutral-200/30", blobB: "bg-neutral-200/20" };
+  return themes[id] ?? { paper: "from-neutral-50 via-white to-neutral-50", blobA: "bg-neutral-200/30", blobB: "bg-neutral-200/20", accent: "text-gray-500/70" };
 }
 
 const Surprise: React.FC = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
+
   const selectedEnvelope = useMemo(
     () => envelopes.find(e => e.id === selectedId),
     [selectedId]
@@ -271,11 +264,36 @@ const Surprise: React.FC = () => {
 
   return (
     <div className="min-h-dvh bg-aesthetic p-6 relative overflow-hidden">
-      {/* soft ambient background */}
-      <div className="pointer-events-none absolute inset-0 opacity-60">
-        <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-pink-200/25 blur-3xl" />
-        <div className="absolute top-28 -right-28 w-96 h-96 rounded-full bg-blue-200/20 blur-3xl" />
-        <div className="absolute -bottom-24 left-1/3 w-96 h-96 rounded-full bg-amber-200/15 blur-3xl" />
+      {/* Overall page aesthetic: paper texture + pastel clouds + floating doodles */}
+      <div className="pointer-events-none absolute inset-0">
+        {/* pastel clouds */}
+        <div className="absolute -top-28 -left-28 w-[28rem] h-[28rem] rounded-full bg-pink-200/20 blur-3xl" />
+        <div className="absolute top-20 -right-32 w-[34rem] h-[34rem] rounded-full bg-blue-200/18 blur-3xl" />
+        <div className="absolute -bottom-32 left-1/4 w-[36rem] h-[36rem] rounded-full bg-amber-200/14 blur-3xl" />
+
+        {/* subtle paper grain */}
+        <div
+          className="absolute inset-0 opacity-[0.25]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)",
+            backgroundSize: "18px 18px",
+          }}
+        />
+
+        {/* floating writing doodles */}
+        <div className="absolute top-16 left-10 opacity-[0.18] rotate-12">
+          <Feather size={38} className="text-gray-700" />
+        </div>
+        <div className="absolute top-44 right-14 opacity-[0.16] -rotate-12">
+          <PenLine size={34} className="text-gray-700" />
+        </div>
+        <div className="absolute bottom-16 left-14 opacity-[0.14] rotate-6">
+          <Paperclip size={34} className="text-gray-700" />
+        </div>
+        <div className="absolute bottom-24 right-20 opacity-[0.12] -rotate-6">
+          <Bookmark size={34} className="text-gray-700" />
+        </div>
       </div>
 
       <div className="max-w-6xl mx-auto pt-10 pb-20 relative">
@@ -303,19 +321,39 @@ const Surprise: React.FC = () => {
               className={[
                 "group relative text-left",
                 "cursor-pointer aspect-square rounded-3xl",
-                "border border-white/60 shadow-sm hover:shadow-md",
+                "border border-white/70 shadow-sm hover:shadow-md",
                 "transition-all duration-300",
                 "overflow-hidden",
                 env.color
               ].join(" ")}
             >
-              {/* subtle shine */}
+              {/* glossy shine */}
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-white/35 blur-2xl" />
+                <div className="absolute -top-10 -left-10 w-44 h-44 rounded-full bg-white/35 blur-2xl" />
+              </div>
+
+              {/* cute bow + tiny sparkles (pretty-girl vibe) */}
+              <div className="pointer-events-none absolute inset-0">
+                <div className="absolute top-4 left-4 w-10 h-6 opacity-40">
+                  <svg viewBox="0 0 120 70" className="w-full h-full">
+                    <path
+                      d="M35 35c-15 0-30-10-30-20S20 0 35 10c10 7 17 17 25 25-8 8-15 18-25 25C20 70 5 60 5 50s15-15 30-15zm50 0c15 0 30-10 30-20S100 0 85 10c-10 7-17 17-25 25 8 8 15 18 25 25 15 10 30 0 30-10S100 35 85 35z"
+                      fill="rgba(255,255,255,0.7)"
+                    />
+                    <circle cx="60" cy="35" r="10" fill="rgba(255,255,255,0.75)" />
+                  </svg>
+                </div>
+
+                <div className="absolute top-5 right-5 opacity-25">
+                  <Sparkles size={18} className="text-gray-700" />
+                </div>
+                <div className="absolute bottom-6 left-6 opacity-18">
+                  <Star size={16} className="text-gray-700" />
+                </div>
               </div>
 
               <div className="relative h-full w-full flex flex-col items-center justify-center gap-3 p-4">
-                <div className="bg-white/70 p-3 rounded-full text-gray-700 shadow-sm ring-1 ring-white/50 transition-transform duration-300 group-hover:scale-110">
+                <div className="relative bg-white/75 p-3 rounded-full text-gray-700 shadow-sm ring-1 ring-white/60 transition-transform duration-300 group-hover:scale-110">
                   {env.icon}
                 </div>
 
@@ -345,15 +383,44 @@ const Surprise: React.FC = () => {
               className="w-full max-w-2xl h-[82vh] rounded-[2.25rem] shadow-2xl overflow-hidden relative flex flex-col border border-white/70 bg-white"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Letter "paper" */}
+              {/* Letter paper */}
               <div className={`relative flex-1 bg-gradient-to-b ${letterTheme.paper}`}>
-                {/* decorative elements in the background */}
+                {/* letter background decor: blobs + notebook lines + tape + paperclip */}
                 <div className="pointer-events-none absolute inset-0">
+                  {/* blobs */}
                   <div className={`absolute -top-20 -left-20 w-72 h-72 rounded-full blur-3xl ${letterTheme.blobA}`} />
                   <div className={`absolute -bottom-24 -right-24 w-80 h-80 rounded-full blur-3xl ${letterTheme.blobB}`} />
-                  <div className="absolute inset-0 opacity-[0.12]">
-                    <div className="absolute top-10 left-10 w-24 h-24 rounded-3xl border border-gray-400/40 rotate-12" />
-                    <div className="absolute bottom-14 right-14 w-28 h-28 rounded-3xl border border-gray-400/40 -rotate-12" />
+
+                  {/* faint notebook lines */}
+                  <div className="absolute inset-0 opacity-[0.08]"
+                    style={{
+                      backgroundImage:
+                        "repeating-linear-gradient(to bottom, rgba(0,0,0,0.5) 0px, rgba(0,0,0,0.5) 1px, transparent 1px, transparent 22px)",
+                    }}
+                  />
+
+                  {/* cute tape strips */}
+                  <div className="absolute top-10 left-10 w-28 h-10 bg-white/55 rotate-[-10deg] rounded-xl shadow-sm ring-1 ring-white/60" />
+                  <div className="absolute bottom-16 right-10 w-32 h-10 bg-white/45 rotate-[12deg] rounded-xl shadow-sm ring-1 ring-white/60" />
+
+                  {/* writing doodles inside letter */}
+                  <div className="absolute top-10 right-10 opacity-[0.16] rotate-12">
+                    <Feather size={36} className="text-gray-700" />
+                  </div>
+                  <div className="absolute bottom-20 left-10 opacity-[0.14] -rotate-12">
+                    <PenLine size={32} className="text-gray-700" />
+                  </div>
+                  <div className="absolute top-44 left-8 opacity-[0.10] rotate-6">
+                    <Bookmark size={30} className="text-gray-700" />
+                  </div>
+                  <div className="absolute bottom-44 right-8 opacity-[0.10] -rotate-6">
+                    <Paperclip size={30} className="text-gray-700" />
+                  </div>
+
+                  {/* subtle border frames */}
+                  <div className="absolute inset-0 opacity-[0.10]">
+                    <div className="absolute top-24 left-16 w-24 h-24 rounded-3xl border border-gray-500/40 rotate-12" />
+                    <div className="absolute bottom-28 right-16 w-28 h-28 rounded-3xl border border-gray-500/40 -rotate-12" />
                   </div>
                 </div>
 
@@ -392,13 +459,28 @@ const Surprise: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* logo at the bottom, matches the letter */}
+                  {/* footer: icon-only seal + extra writing elements */}
                   <div className="mt-12 flex items-center justify-center">
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 ring-1 ring-white/70 shadow-sm text-gray-700">
-                      <span className="scale-110">{selectedEnvelope.icon}</span>
-                      <span className="font-sans-body text-xs tracking-wide text-gray-600">
-                        with love
-                      </span>
+                    <div className="relative">
+                      <div className="absolute -top-3 -left-6 opacity-[0.18] rotate-[-12deg]">
+                        <PenLine size={18} className="text-gray-700" />
+                      </div>
+                      <div className="absolute -bottom-3 -right-6 opacity-[0.16] rotate-[10deg]">
+                        <Feather size={18} className="text-gray-700" />
+                      </div>
+
+                      <div className="flex items-center justify-center w-14 h-14 rounded-full bg-white/65 ring-1 ring-white/70 shadow-sm text-gray-700">
+                        <div className="scale-110">
+                          {selectedEnvelope.icon}
+                        </div>
+                      </div>
+
+                      <div className="absolute -right-10 top-1 opacity-[0.14]">
+                        <Paperclip size={18} className="text-gray-700" />
+                      </div>
+                      <div className={`absolute -left-10 top-1 opacity-[0.14] ${letterTheme.accent}`}>
+                        <Sparkles size={18} className="text-current" />
+                      </div>
                     </div>
                   </div>
 
