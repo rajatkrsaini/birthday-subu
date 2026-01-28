@@ -220,7 +220,7 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
                     transition={{ delay: 0.2, type: 'spring', stiffness: 100 }}
                 >
                      <p className="font-serif-title text-3xl text-pink-500 italic">Happy Birthday</p>
-                     <p className="font-sans-body text-sm text-gray-400 tracking-widest uppercase mt-1">My HG</p>
+                     <p className="font-sans-body text-sm text-gray-400 tracking-widest uppercase mt-1">BSDK</p>
                 </motion.div>
             </div>
 
