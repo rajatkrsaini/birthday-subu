@@ -54,7 +54,7 @@ const Letter: React.FC<LetterProps> = ({ onComplete }) => {
         >
           <div className="mb-6">
              <Heart size={24} className="text-pink-300 mx-auto mb-4" fill="currentColor" />
-             <h3 className="font-serif-title text-3xl md:text-4xl text-gray-800 mb-2">My Dearest Bestie</h3>
+             <h3 className="font-serif-title text-3xl md:text-4xl text-gray-800 mb-2">My Dearest Best Friend</h3>
              <div className="w-12 h-1 bg-green-100 mx-auto rounded-full"></div>
           </div>
           
@@ -63,10 +63,10 @@ const Letter: React.FC<LetterProps> = ({ onComplete }) => {
               "Happy Birthday Subu! 🎉"
             </p>
             <p className="mb-4">
-              To the person who knows me better than I know myself—thank you for being my constant, my cheerleader, and my partner in crime. 
+              To the person who is closest to me -- thank you for being YOU with me. 
             </p>
             <p>
-              I hope this year brings you everything you've been working for and more. You deserve the world. Now, get ready for a little surprise..."
+              I hope this year brings you everything you've been working for and more. You deserve the world."
             </p>
           </div>
           
@@ -74,7 +74,7 @@ const Letter: React.FC<LetterProps> = ({ onComplete }) => {
             onClick={onComplete}
             className="bg-gray-800 text-white py-4 px-10 rounded-full shadow-lg flex items-center gap-3 mx-auto hover:bg-gray-700 transition-colors font-sans-body text-sm tracking-widest uppercase"
           >
-            See Surprise <ArrowRight size={16} />
+            See Something <ArrowRight size={16} />
           </button>
         </motion.div>
       )}
