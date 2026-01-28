@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, Heart, Star, Smile, CloudRain, Coffee, Zap, Moon, 
   Gift, Frown, Sun, Umbrella, ThumbsUp, Anchor, 
-  Compass, Camera, BookOpen, Mail, ShoppingBag, Tv, Utensils
+  Compass, Camera, BookOpen, Mail, ShoppingBag, Tv, Utensils,
+  Crown, Sparkles, Gem
 } from 'lucide-react';
 
 interface EnvelopeData {
@@ -172,6 +173,51 @@ const envelopes: EnvelopeData[] = [
       "Once you begin, your brain calms down because it stops imagining the whole disaster and starts dealing with reality."
     ]
   },
+    {
+    id: 3,
+    label: "Best Girl 🏆",
+    icon: <Crown className="text-gray-600" size={20} />,
+    color: "bg-yellow-100",
+    content: [
+      "Official Announcement:",
+      "You have been awarded the title of 'Best Girl'.",
+      "Why? Because you are simply unmatched.",
+      "It's the way you care about people. The way you listen. The way you just *are*.",
+      "You have this incredible ability to make everyone around you feel comfortable and loved.",
+      "You work hard, you care deeply, and you are just genuinely a good person.",
+      "The world is lucky to have you, but I'm the luckiest to have you as my bestie.",
+      "Keep wearing that invisible crown. 👑"
+    ]
+  },
+
+  {
+    id: 6,
+    label: "You're Beautiful ✨",
+    icon: <Sparkles className="text-gray-600" size={20} />,
+    color: "bg-rose-100",
+    content: [
+      "Can we take a moment to appreciate how stunning you are?",
+      "Because honestly... wow.",
+      "And I'm not just saying that because it's your birthday. You have this natural radiance that lights up a room.",
+      "Whether you're dressed up for a night out or just chilling in your comfy clothes, you look effortless.",
+      "It's your eyes, your smile, your vibe—it all just works perfectly.",
+      "You are a total work of art, inside and out. Don't ever forget that."
+    ]
+  },
+
+  {
+    id: 7,
+    label: "Unique You 🦄",
+    icon: <Gem className="text-gray-600" size={20} />,
+    color: "bg-purple-100",
+    content: [
+      "There is literally no one else like you.",
+      "I love your specific quirks. I love the way you get excited about the small things.",
+      "I love how you can be so mature one minute and a total goofball the next.",
+      "Your perspective on the world is so uniquely 'Subu'.",
+      "Never change the weird, wonderful parts of yourself to fit in. They are what make you a rare gem."
+    ]
+  },
   {
     id: 20,
     label: "Just because",
@@ -194,11 +240,11 @@ const Surprise: React.FC = () => {
       <div className="max-w-6xl mx-auto pt-10 pb-20">
         <div className="text-center mb-16">
             <h2 className="font-serif-title text-4xl md:text-5xl text-gray-800 mb-4">
-            Open When...
+            FOR THE CUTEST AND PRETTIEST HUMAN
             </h2>
             <div className="w-16 h-1 bg-pink-200 mx-auto rounded-full mb-4"></div>
             <p className="text-gray-500 font-sans-body font-light tracking-wide text-lg">
-            A collection of reminders, for whenever you need them.
+            I wanted to write 21 things for you on your 21th B'day (I KNOW IT'S KINDA WEIRD), so here's a collection of random thoughts if you wanna read.
             </p>
         </div>
 
@@ -268,8 +314,11 @@ const Surprise: React.FC = () => {
                 </div>
                 
                 <div className="mt-16 flex justify-center opacity-30">
-                   <Heart size={20} fill="black" />
-                </div>
+  <div className="scale-125">
+    {selectedEnvelope.icon}
+  </div>
+</div>
+
               </div>
             </motion.div>
           </motion.div>
