@@ -29,7 +29,7 @@ const envelopes: EnvelopeData[] = [
       "I know you sometimes say you aren't excited about birthdays, or that it's just another day. But to me, this day is kinda important as I rarely get the chance to tell you how much I appreciate you. Also, the world is better for people who love you, who are proud of you. so another reason this day is important is that it marks 21 years of the world having you in it.",
       "Thinking back on the last 4 years of our friendship, I feel so privileged to have watched you grow. I've seen you navigate challenges with a quiet strength that I admire more than I say.",
       "My wish for you this year is simple but pure as always: I hope you find peace, which you crave most. I lowkey also hope you find the courage to chase the things that put you out of your lazy zone, because that's where the magic happens.",
-      "You are capable of so much more than you give yourself credit for. 21 is the year of YOU. Take up space. Be loud. Be happy. You deserve every ounce of goodness the universe has to offer.",
+      "You are capable of so much more than you believe yourself. Maybe 21 is the year of YOU. Chase dreams. Be happy. You deserve every ounce of goodness the universe has to offer.",
       "Happy Birthday 💖"
     ]
   },
@@ -46,7 +46,7 @@ const envelopes: EnvelopeData[] = [
   },
   {
     id: 3,
-    label: "Best Girl 🏆",
+    label: "Best Girl",
     icon: <Crown className="text-gray-700" size={20} />,
     color: "bg-yellow-100",
     content: [
@@ -54,19 +54,18 @@ const envelopes: EnvelopeData[] = [
       "You have been awarded the title of 'Best Girl'.",
       "Why? Because you are simply unmatched.",
       "It's the way you care about people. The way you listen. The way you just *are*.",
-      "You have this incredible ability to make everyone around you feel comfortable and loved.",
-      "You work hard, you care deeply, and you are just genuinely a good person.",
+      "You work hard everyday, you care deeply, and you are just genuinely a good person.",
       "The world is lucky to have you, but I'm the luckiest to have you as my bestie.",
-      "Keep wearing that invisible crown. 👑"
+      "Keep wearing that invisible crown cause you are a queen 👑"
     ]
   },
   {
     id: 4,
-    label: "Don't be Stressed out",
+    label: "Never Stress out",
     icon: <CloudRain className="text-gray-700" size={20} />,
     color: "bg-gray-100",
     content: [
-      "Okay. Stop for a second.",
+      "Okay. Stop.",
       "Sometimes bad stuff happens and we have a lot of pressure to perform well, be it in exams, from family, relationships, and life in general. it feels like everything is just going bad, or that you have a mountain of tasks.",
       "But lets look at your track record. You have survived 100% of your bad days. You have handled exams, family drama, and other life chaos. So don't stress yourself over the bad phase, cause it all pass every single time.",
     ]
@@ -85,29 +84,26 @@ const envelopes: EnvelopeData[] = [
   },
   {
     id: 6,
-    label: "You're Beautiful ✨",
+    label: "You're so Pretty",
     icon: <Sparkles className="text-gray-700" size={20} />,
     color: "bg-rose-100",
     content: [
-      "Can we take a moment to appreciate how stunning you are?",
-      "Because honestly... wow.",
-      "And I'm not just saying that because it's your birthday. You have this natural radiance that lights up a room.",
-      "Whether you're dressed up for a night out or just chilling in your comfy clothes, you look effortless.",
-      "It's your eyes, your smile, your vibe—it all just works perfectly.",
-      "You are a total work of art, inside and out. Don't ever forget that."
+      "Can I take a moment to appreciate how stunning you are?",
+      "Because honestly... HOW CAN SOMEONE BE SO PERFECT ALWAYS WITHOUT EVEN TRYING.",
+      "And I'm not just saying that because it's your birthday.",
+      "Aside from that, you are have a pretty soul too.",
+      "You are a total work of art, inside and out."
     ]
   },
   {
     id: 7,
-    label: "Unique You 🦄",
+    label: "Unique You",
     icon: <Gem className="text-gray-700" size={20} />,
     color: "bg-purple-100",
     content: [
       "There is literally no one else like you.",
-      "I love your specific quirks. I love the way you get excited about the small things.",
-      "I love how you can be so mature one minute and a total goofball the next.",
-      "Your perspective on the world is so uniquely 'Subu'.",
-      "Never change the weird, wonderful parts of yourself to fit in. They are what make you a rare gem."
+      "I love your specific quirks and behaviour. I love the way you even when you are lazy about things.",
+      "Never change the weird, wonderful parts of yourself to fit in. They are what make you a rare."
     ]
   },
   {
@@ -135,11 +131,11 @@ const envelopes: EnvelopeData[] = [
   },
   {
     id: 11,
-    label: "Sometimes we mess up",
+    label: "You can Mess up",
     icon: <ThumbsUp className="text-gray-700" size={20} />,
     color: "bg-slate-100",
     content: [
-      "Okay, you messed up. Welcome to being human",
+      "Okay, you messed up somewhere. Welcome to being human",
       "Being failed or messing up at something is not a personality trait. It’s just an event. Something happened, you didn’t get the result you wanted, and now your brain is trying to make it mean you’re not capable. That’s nonsense.",
       "Everyone you admire has failed spectacularly at some point. They just didn't stop there.",
       "It’s okay to be imperfect, but you stay perfect in your eyes.",
@@ -173,7 +169,7 @@ const envelopes: EnvelopeData[] = [
   },
   {
     id: 16,
-    label: "Angry?",
+    label: "Don't stay Upset",
     icon: <Zap className="text-gray-700" size={20} />,
     color: "bg-red-50",
     content: [
@@ -194,7 +190,7 @@ const envelopes: EnvelopeData[] = [
   },
   {
     id: 18,
-    label: "Nostalgic",
+    label: "Lucky Me",
     icon: <BookOpen className="text-gray-700" size={20} />,
     color: "bg-stone-50",
     content: [
@@ -206,7 +202,7 @@ const envelopes: EnvelopeData[] = [
   },
   {
     id: 19,
-    label: "Motivation",
+    label: "Stay Consistent",
     icon: <Zap className="text-gray-700" size={20} />,
     color: "bg-orange-100",
     content: [
