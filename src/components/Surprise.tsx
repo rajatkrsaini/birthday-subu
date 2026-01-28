@@ -110,7 +110,6 @@ const envelopes: EnvelopeData[] = [
     color: "bg-amber-50",
     content: [
       "!!!",
-      "I’m glad you’re happy this year.",
       "We spend so much time analyzing our sadness, but we rarely analyze our happiness. Enjoy the happiness because your brain loves remembering bad days and forgetting good ones.",
       "Don’t let anyone steal your happiness."
     ]
@@ -150,7 +149,7 @@ const envelopes: EnvelopeData[] = [
       "I hope you're reading this a year from now, or maybe five. Where are you? What are you doing?",
       "I hope you are happy. I hope you are doing what you love, or a hobby that lights you up.",
       "I hope you're still friends with me (you better be!).",
-      "Keep growing. Keep shining. My wishes are always with you"
+      "Keep growing. Keep shining. My wishes and blessings are always with you"
     ]
   },
   {
@@ -183,7 +182,7 @@ const envelopes: EnvelopeData[] = [
       "I dont know why we first talked?",
       "Its been years ago, yet just like yesterday.",
       "You and I have shared a lot of random, funny, and unexpectedly deep conversations including misunderstandings.",
-      "I'm glad our timelines crossed. Of all the billions of people on earth, I'm glad I found you."
+      "I'm glad our timelines crossed. Of all the billions of people on earth, I'm glad I found you as my best friend."
     ]
   },
   {
