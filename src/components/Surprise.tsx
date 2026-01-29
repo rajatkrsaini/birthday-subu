@@ -267,127 +267,14 @@ const FloatingSparkles: React.FC = () => {
 };
 
 const Surprise: React.FC = () => {
-  const PASSWORD = "oksubu";
-  const UNLOCK_KEY = "surprise_unlocked_v1";
-
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  // Password gate state
-  const [isUnlocked, setIsUnlocked] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    return sessionStorage.getItem(UNLOCK_KEY) === "true";
-  });
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
   const selectedEnvelope = useMemo(
-    () => envelopes.find((e) => e.id === selectedId),
+    () => envelopes.find(e => e.id === selectedId),
     [selectedId]
   );
 
   const letterTheme = selectedEnvelope ? getLetterTheme(selectedEnvelope.id) : null;
-
-  const handleUnlock = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
-    if (password.trim() !== PASSWORD) {
-      setError("Wrong password.");
-      return;
-    }
-
-    sessionStorage.setItem(UNLOCK_KEY, "true");
-    setIsUnlocked(true);
-  };
-
-  // Optional: if you ever want a manual lock button for testing
-  // const lockAgain = () => {
-  //   sessionStorage.removeItem(UNLOCK_KEY);
-  //   setIsUnlocked(false);
-  //   setPassword("");
-  //   setError("");
-  // };
-
-  if (!isUnlocked) {
-    return (
-      <div className="min-h-dvh bg-aesthetic p-6 relative overflow-hidden flex items-center justify-center">
-        {/* Same overall page aesthetic */}
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-28 -left-28 w-[30rem] h-[30rem] rounded-full bg-pink-200/22 blur-3xl" />
-          <div className="absolute top-10 -right-32 w-[36rem] h-[36rem] rounded-full bg-purple-200/16 blur-3xl" />
-          <div className="absolute -bottom-36 left-1/4 w-[38rem] h-[38rem] rounded-full bg-amber-200/14 blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-[28rem] h-[28rem] rounded-full bg-rose-200/12 blur-3xl" />
-
-          <div
-            className="absolute inset-0 opacity-[0.22]"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)",
-              backgroundSize: "18px 18px",
-            }}
-          />
-
-          <FloatingSparkles />
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.25 }}
-          className="relative w-full max-w-md rounded-[2.5rem] bg-white/70 backdrop-blur-md border border-white/80 shadow-2xl overflow-hidden"
-        >
-          <div className="p-8 md:p-10">
-            <h2 className="font-serif-title text-3xl text-gray-800 text-center">
-              Enter Password
-            </h2>
-            <p className="mt-3 text-center text-gray-500 font-sans-body text-sm leading-relaxed">
-              This page is locked. Type the password to open the letters.
-            </p>
-
-            <form onSubmit={handleUnlock} className="mt-7 space-y-4">
-              <div className="space-y-2">
-                <label className="block text-sm text-gray-600 font-sans-body">
-                  Password
-                </label>
-                <input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password"
-                  autoFocus
-                  className={[
-                    "w-full rounded-2xl px-4 py-3",
-                    "bg-white/90 border border-white/80 shadow-sm",
-                    "outline-none focus:ring-2 focus:ring-pink-200/70",
-                    "text-gray-700 font-sans-body",
-                  ].join(" ")}
-                  placeholder="Enter password"
-                />
-                {error ? (
-                  <p className="text-sm text-red-600 font-sans-body">{error}</p>
-                ) : null}
-              </div>
-
-              <button
-                type="submit"
-                className={[
-                  "w-full rounded-2xl py-3",
-                  "bg-pink-200/70 hover:bg-pink-200",
-                  "text-gray-800 font-sans-body font-medium",
-                  "transition-colors shadow-sm border border-white/70",
-                ].join(" ")}
-              >
-                Unlock
-              </button>
-
-              <p className="text-xs text-gray-500 font-sans-body text-center leading-relaxed">
-                Tip: Ask me.
-              </p>
-            </form>
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-dvh bg-aesthetic p-6 relative overflow-hidden">
@@ -455,13 +342,15 @@ const Surprise: React.FC = () => {
                 "border border-white/80 shadow-sm hover:shadow-md",
                 "transition-all duration-300",
                 "overflow-hidden",
-                env.color,
+                env.color
               ].join(" ")}
             >
+              {/* glossy shine */}
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute -top-10 -left-10 w-48 h-48 rounded-full bg-white/40 blur-2xl" />
               </div>
 
+              {/* pretty-girl doodle: bow + heart confetti */}
               <div className="pointer-events-none absolute inset-0">
                 <div className="absolute top-4 left-4 w-11 h-7 opacity-45">
                   <svg viewBox="0 0 120 70" className="w-full h-full">
@@ -515,20 +404,29 @@ const Surprise: React.FC = () => {
               className="w-full max-w-2xl h-[82vh] rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col border border-white/80 bg-white"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* pink ribbon border */}
               <div className="pointer-events-none absolute inset-0">
                 <div className="absolute inset-0 rounded-[2.5rem] ring-2 ring-pink-200/55" />
                 <div className="absolute inset-[10px] rounded-[2.1rem] ring-1 ring-white/70" />
               </div>
 
+              {/* Letter paper */}
               <div className={`relative flex-1 bg-gradient-to-b ${letterTheme.paper}`}>
+                {/* background decor */}
                 <div className="pointer-events-none absolute inset-0">
+                  {/* blobs */}
                   <div className={`absolute -top-20 -left-20 w-72 h-72 rounded-full blur-3xl ${letterTheme.blobA}`} />
                   <div className={`absolute -bottom-24 -right-24 w-80 h-80 rounded-full blur-3xl ${letterTheme.blobB}`} />
+
+                  {/* floating sparkles inside letter */}
                   <div className="absolute inset-0 opacity-[0.75]">
                     <FloatingSparkles />
                   </div>
+
+                  {/* ribbon strip across the top */}
                   <div className={`absolute top-0 left-0 right-0 h-10 ${letterTheme.ribbon} opacity-55`} />
 
+                  {/* cute birthday corners */}
                   <div className="absolute top-14 left-10 opacity-[0.16] rotate-[-10deg]">
                     <PartyPopper size={28} className="text-gray-700" />
                   </div>
@@ -536,6 +434,7 @@ const Surprise: React.FC = () => {
                     <Cake size={26} className="text-gray-700" />
                   </div>
 
+                  {/* girly stationery doodles */}
                   <div className="absolute bottom-24 left-10 opacity-[0.14] -rotate-12">
                     <PenLine size={26} className="text-gray-700" />
                   </div>
@@ -546,12 +445,14 @@ const Surprise: React.FC = () => {
                     <Paperclip size={26} className="text-gray-700" />
                   </div>
 
+                  {/* subtle frames */}
                   <div className="absolute inset-0 opacity-[0.09]">
                     <div className="absolute top-28 left-16 w-24 h-24 rounded-3xl border border-gray-500/40 rotate-12" />
                     <div className="absolute bottom-28 right-16 w-28 h-28 rounded-3xl border border-gray-500/40 -rotate-12" />
                   </div>
                 </div>
 
+                {/* header */}
                 <div className="relative flex items-center justify-between px-7 md:px-10 py-7 border-b border-white/60 bg-white/50 backdrop-blur-sm">
                   <div className="flex items-center gap-3">
                     <div className="p-2.5 bg-white/85 rounded-full shadow-sm ring-1 ring-white/70 text-gray-700">
@@ -576,6 +477,7 @@ const Surprise: React.FC = () => {
                   </button>
                 </div>
 
+                {/* body */}
                 <div className="relative px-7 md:px-10 py-8 overflow-y-auto h-[calc(82vh-92px)]">
                   <div className="space-y-5 text-gray-700 font-sans-body leading-relaxed text-[15px] md:text-[16px]">
                     {selectedEnvelope.content.map((paragraph, i) => (
@@ -585,17 +487,24 @@ const Surprise: React.FC = () => {
                     ))}
                   </div>
 
+                  {/* footer seal: wax + icon-only */}
                   <div className="mt-12 flex items-center justify-center">
                     <div className="relative">
+                      {/* wax seal base */}
                       <div className={`absolute inset-0 rounded-full blur-xl ${letterTheme.wax}`} />
                       <div className={`absolute -top-2 -left-2 w-20 h-20 rounded-full ${letterTheme.wax} opacity-55`} />
 
+                      {/* stamp ring */}
                       <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-white/70 ring-1 ring-white/80 shadow-md text-gray-700">
-                        <div className="scale-110">{selectedEnvelope.icon}</div>
+                        <div className="scale-110">
+                          {selectedEnvelope.icon}
+                        </div>
                       </div>
 
+                      {/* ribbon tails */}
                       <div className={`absolute -bottom-5 left-1/2 -translate-x-1/2 w-14 h-6 ${letterTheme.ribbon} opacity-45 rounded-b-2xl`} />
 
+                      {/* tiny accents */}
                       <div className="absolute -right-10 top-2 opacity-[0.14]">
                         <Sparkles size={18} className="text-gray-700" />
                       </div>
@@ -615,6 +524,5 @@ const Surprise: React.FC = () => {
     </div>
   );
 };
-
 
 export default Surprise;
