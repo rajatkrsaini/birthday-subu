@@ -380,7 +380,7 @@ const Surprise: React.FC = () => {
               </button>
 
               <p className="text-xs text-gray-500 font-sans-body text-center leading-relaxed">
-                Tip: Ask me bsdk.
+                Tip: Ask me.
               </p>
             </form>
           </div>
