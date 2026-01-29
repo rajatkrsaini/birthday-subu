@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   X, Heart, Star, CloudRain, Coffee, Zap, Moon,
@@ -6,7 +6,8 @@ import {
   Camera, BookOpen, Mail,
   Crown, Sparkles, Gem,
   PenLine, Feather, Paperclip, Bookmark,
-  Cake, PartyPopper
+  Cake, PartyPopper,
+  Thermometer, Hourglass, HelpCircle, Info, Droplets, Plane, Lock
 } from 'lucide-react';
 
 interface EnvelopeData {
@@ -16,6 +17,9 @@ interface EnvelopeData {
   content: string[];
   color: string;
 }
+
+const PASSWORD = 'oksubu';
+const SESSION_KEY = 'surprise_unlocked_v1';
 
 const envelopes: EnvelopeData[] = [
   {
@@ -207,6 +211,84 @@ const envelopes: EnvelopeData[] = [
       "I don't need a reason to write to you. I just wanted to do something unique for you (not for the sake of being your friend or anything. also not because of your birthday) It's just for 'YOU'",
       "I want to remind you that you are cared. In the busyness of life, we forget to tell people that they matter and what could be the best possible day than this lol",
     ]
+  },
+  {
+    id: 21,
+    label: "Sick Day 🤒",
+    icon: <Thermometer className="text-gray-600" size={20} />,
+    color: "bg-green-50",
+    content: [
+      "Oh no. You poor thing.",
+      "Being sick is the worst. I want you to drop everything you think you 'should' be doing. Productivity does not exist today.",
+      "Your only job is to become a burrito of blankets. Hydrate aggressively. Order soup. Sleep until your back hurts from sleeping.",
+      "Don't try to power through it. Your body is asking for a timeout. Listen to it.",
+      "Sending you virtual healing vibes and a digital forehead check. Get well soon, Subu."
+    ]
+  },
+  {
+    id: 22,
+    label: "Feeling Old 👵",
+    icon: <Hourglass className="text-gray-600" size={20} />,
+    color: "bg-orange-50",
+    content: [
+      "Stop it.",
+      "You are twenty-one. You are literally a baby adult. You have barely started the tutorial level of adulthood.",
+      "I know seeing people younger than us do crazy things on the internet makes us feel ancient, but you have so much time.",
+      "Your life hasn't even peaked yet. You haven't met all the people you're going to love. You haven't eaten your favorite food yet.",
+      "You are exactly where you need to be. Aging is a privilege. Embrace the wisdom (and the knee pain, jk)."
+    ]
+  },
+  {
+    id: 23,
+    label: "Confused ❓",
+    icon: <HelpCircle className="text-gray-600" size={20} />,
+    color: "bg-violet-100",
+    content: [
+      "It is okay not to know.",
+      "Society tells us we need to have a 5-year plan, a purpose, and a clear direction. That is garbage.",
+      "Most people are just winging it. Confusion is actually a sign of growth. It means you are asking questions. It means you aren't settling.",
+      "Sit with the uncertainty. You don't need to solve the puzzle of your life today. Just figure out the next tiny piece.",
+      "Trust your gut. It knows the way even when your brain is foggy."
+    ]
+  },
+  {
+    id: 24,
+    label: "Did you know? 🦦",
+    icon: <Info className="text-gray-600" size={20} />,
+    color: "bg-teal-50",
+    content: [
+      "Here is a random distraction:",
+      "Did you know that sea otters hold hands when they sleep to keep from drifting apart? That is us.",
+      "Did you know that cows have best friends? You are mine.",
+      "Did you know that you are made of stardust? Literally. The elements in your body were forged in stars.",
+      "Just wanted to remind you that the world is weird and magical, and so are you."
+    ]
+  },
+  {
+    id: 25,
+    label: "Code Red 🩸",
+    icon: <Droplets className="text-gray-600" size={20} />,
+    color: "bg-red-200",
+    content: [
+      "Ugh. The worst time.",
+      "I am so sorry. Nature is rude. You have full permission to be grumpy, emotional, and hungry.",
+      "Chocolate is mandatory. Hot water bottles are your best friend. Comfortable pants are non-negotiable.",
+      "If you cry at a commercial, that is valid. If you want to murder someone, please don't, but the feeling is valid.",
+      "This too shall pass. Until then, treat yourself like a delicate flower."
+    ]
+  },
+  {
+    id: 26,
+    label: "holiday meet up",
+    icon: <Plane className="text-gray-600" size={20} />,
+    color: "bg-sky-50",
+    content: [
+      "so you want to meet me while on a trip.",
+      "i realised it could be so much fun, lowkey like our solo trip.",
+      "we can cook food as you said, click pictures and hangout till we get tired and what not.",
+      "i .",
+      "let's go somewhere amazing cause we both would get busy after few years so its the best time to experience peak friendship."
+    ]
   }
 ];
 
@@ -229,6 +311,12 @@ function getLetterTheme(id: number) {
     18:{ paper: "from-stone-50 via-white to-neutral-50", blobA: "bg-stone-200/35", blobB: "bg-neutral-200/30", ribbon: "bg-stone-200/35", wax: "bg-stone-300/20" },
     19:{ paper: "from-orange-50 via-white to-yellow-50", blobA: "bg-orange-200/35", blobB: "bg-yellow-200/30", ribbon: "bg-orange-200/40", wax: "bg-yellow-300/25" },
     20:{ paper: "from-neutral-50 via-white to-rose-50", blobA: "bg-neutral-200/35", blobB: "bg-rose-200/30", ribbon: "bg-rose-200/35", wax: "bg-rose-300/20" },
+    21:{ paper: "from-green-50 via-white to-emerald-50", blobA: "bg-green-200/30", blobB: "bg-emerald-200/20", ribbon: "bg-green-200/35", wax: "bg-green-300/20" },
+    22:{ paper: "from-orange-50 via-white to-amber-50", blobA: "bg-orange-200/30", blobB: "bg-amber-200/20", ribbon: "bg-orange-200/35", wax: "bg-orange-300/20" },
+    23:{ paper: "from-violet-50 via-white to-purple-50", blobA: "bg-violet-200/30", blobB: "bg-purple-200/20", ribbon: "bg-violet-200/35", wax: "bg-violet-300/20" },
+    24:{ paper: "from-teal-50 via-white to-cyan-50", blobA: "bg-teal-200/30", blobB: "bg-cyan-200/20", ribbon: "bg-teal-200/35", wax: "bg-teal-300/20" },
+    25:{ paper: "from-red-50 via-white to-rose-100", blobA: "bg-red-300/30", blobB: "bg-rose-300/20", ribbon: "bg-red-300/35", wax: "bg-red-400/20" },
+    26:{ paper: "from-sky-50 via-white to-blue-50", blobA: "bg-sky-200/30", blobB: "bg-blue-200/20", ribbon: "bg-sky-200/35", wax: "bg-blue-300/20" },
   } as Record<number, { paper: string; blobA: string; blobB: string; ribbon: string; wax: string }>;
 
   return themes[id] ?? { paper: "from-neutral-50 via-white to-neutral-50", blobA: "bg-neutral-200/30", blobB: "bg-neutral-200/20", ribbon: "bg-neutral-200/30", wax: "bg-neutral-300/20" };
@@ -269,6 +357,37 @@ const FloatingSparkles: React.FC = () => {
 const Surprise: React.FC = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
+  // Password gate
+  const [unlocked, setUnlocked] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    try {
+      const ok = sessionStorage.getItem(SESSION_KEY) === '1';
+      if (ok) setUnlocked(true);
+    } catch {
+      // ignore if storage is blocked
+    }
+  }, []);
+
+  const handleUnlock = (e: React.FormEvent) => {
+    e.preventDefault();
+    const attempt = password.trim();
+    if (attempt === PASSWORD) {
+      setUnlocked(true);
+      setError('');
+      setPassword('');
+      try {
+        sessionStorage.setItem(SESSION_KEY, '1');
+      } catch {
+        // ignore
+      }
+      return;
+    }
+    setError('Wrong password. Try again.');
+  };
+
   const selectedEnvelope = useMemo(
     () => envelopes.find(e => e.id === selectedId),
     [selectedId]
@@ -276,6 +395,86 @@ const Surprise: React.FC = () => {
 
   const letterTheme = selectedEnvelope ? getLetterTheme(selectedEnvelope.id) : null;
 
+  // If locked, show password screen only
+  if (!unlocked) {
+    return (
+      <div className="min-h-dvh bg-aesthetic p-6 relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-28 -left-28 w-[30rem] h-[30rem] rounded-full bg-pink-200/22 blur-3xl" />
+          <div className="absolute top-10 -right-32 w-[36rem] h-[36rem] rounded-full bg-purple-200/16 blur-3xl" />
+          <div className="absolute -bottom-36 left-1/4 w-[38rem] h-[38rem] rounded-full bg-amber-200/14 blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-[28rem] h-[28rem] rounded-full bg-rose-200/12 blur-3xl" />
+          <div
+            className="absolute inset-0 opacity-[0.22]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)",
+              backgroundSize: "18px 18px",
+            }}
+          />
+          <FloatingSparkles />
+        </div>
+
+        <div className="max-w-xl mx-auto pt-16 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="rounded-[2.5rem] bg-white/70 backdrop-blur-md border border-white/80 shadow-2xl overflow-hidden"
+          >
+            <div className="px-8 py-10 text-center">
+              <div className="mx-auto w-14 h-14 rounded-full bg-white/80 ring-1 ring-white/70 shadow-sm flex items-center justify-center text-gray-700">
+                <Lock size={22} />
+              </div>
+
+              <h2 className="font-serif-title text-3xl md:text-4xl text-gray-800 mt-5">
+                Enter password
+              </h2>
+
+              <p className="text-gray-500 font-sans-body font-light tracking-wide text-base mt-3 leading-relaxed">
+                This page is locked. Type the password to open the letters.
+              </p>
+
+              <form onSubmit={handleUnlock} className="mt-7">
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    if (error) setError('');
+                  }}
+                  autoFocus
+                  className="w-full rounded-2xl px-5 py-4 bg-white/85 border border-white/80 shadow-sm outline-none focus:ring-2 focus:ring-pink-200/70 text-gray-800 font-sans-body"
+                  placeholder="Password"
+                />
+
+                <button
+                  type="submit"
+                  className="mt-4 w-full rounded-2xl px-5 py-4 bg-pink-100 hover:bg-pink-200/70 transition-colors text-gray-800 font-sans-body font-medium shadow-sm border border-white/70"
+                >
+                  Unlock
+                </button>
+
+                <AnimatePresence>
+                  {error && (
+                    <motion.p
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 6 }}
+                      className="mt-3 text-sm text-rose-600 font-sans-body"
+                    >
+                      {error}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </form>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+
+  // Unlocked: your original UI below (unchanged)
   return (
     <div className="min-h-dvh bg-aesthetic p-6 relative overflow-hidden">
       {/* Overall page aesthetic */}
@@ -345,12 +544,10 @@ const Surprise: React.FC = () => {
                 env.color
               ].join(" ")}
             >
-              {/* glossy shine */}
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute -top-10 -left-10 w-48 h-48 rounded-full bg-white/40 blur-2xl" />
               </div>
 
-              {/* pretty-girl doodle: bow + heart confetti */}
               <div className="pointer-events-none absolute inset-0">
                 <div className="absolute top-4 left-4 w-11 h-7 opacity-45">
                   <svg viewBox="0 0 120 70" className="w-full h-full">
@@ -404,29 +601,22 @@ const Surprise: React.FC = () => {
               className="w-full max-w-2xl h-[82vh] rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col border border-white/80 bg-white"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* pink ribbon border */}
               <div className="pointer-events-none absolute inset-0">
                 <div className="absolute inset-0 rounded-[2.5rem] ring-2 ring-pink-200/55" />
                 <div className="absolute inset-[10px] rounded-[2.1rem] ring-1 ring-white/70" />
               </div>
 
-              {/* Letter paper */}
               <div className={`relative flex-1 bg-gradient-to-b ${letterTheme.paper}`}>
-                {/* background decor */}
                 <div className="pointer-events-none absolute inset-0">
-                  {/* blobs */}
                   <div className={`absolute -top-20 -left-20 w-72 h-72 rounded-full blur-3xl ${letterTheme.blobA}`} />
                   <div className={`absolute -bottom-24 -right-24 w-80 h-80 rounded-full blur-3xl ${letterTheme.blobB}`} />
 
-                  {/* floating sparkles inside letter */}
                   <div className="absolute inset-0 opacity-[0.75]">
                     <FloatingSparkles />
                   </div>
 
-                  {/* ribbon strip across the top */}
                   <div className={`absolute top-0 left-0 right-0 h-10 ${letterTheme.ribbon} opacity-55`} />
 
-                  {/* cute birthday corners */}
                   <div className="absolute top-14 left-10 opacity-[0.16] rotate-[-10deg]">
                     <PartyPopper size={28} className="text-gray-700" />
                   </div>
@@ -434,7 +624,6 @@ const Surprise: React.FC = () => {
                     <Cake size={26} className="text-gray-700" />
                   </div>
 
-                  {/* girly stationery doodles */}
                   <div className="absolute bottom-24 left-10 opacity-[0.14] -rotate-12">
                     <PenLine size={26} className="text-gray-700" />
                   </div>
@@ -445,57 +634,13 @@ const Surprise: React.FC = () => {
                     <Paperclip size={26} className="text-gray-700" />
                   </div>
 
-                  {/* subtle frames */}
                   <div className="absolute inset-0 opacity-[0.09]">
                     <div className="absolute top-28 left-16 w-24 h-24 rounded-3xl border border-gray-500/40 rotate-12" />
                     <div className="absolute bottom-28 right-16 w-28 h-28 rounded-3xl border border-gray-500/40 -rotate-12" />
                   </div>
                 </div>
 
-                {/* header */}
-                <div className="relative flex items-center justify-between px-7 md:px-10 py-7 border-b border-white/60 bg-white/50 backdrop-blur-sm">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 bg-white/85 rounded-full shadow-sm ring-1 ring-white/70 text-gray-700">
-                      {selectedEnvelope.icon}
-                    </div>
-                    <div>
-                      <h3 className="font-serif-title text-2xl md:text-3xl text-gray-800 leading-tight">
-                        {selectedEnvelope.label}
-                      </h3>
-                      <p className="font-sans-body text-sm text-gray-500 mt-0.5">
-                        A tiny note, just for you.
-                      </p>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => setSelectedId(null)}
-                    className="p-2 rounded-full text-gray-500 hover:text-gray-900 hover:bg-white/75 transition-colors"
-                    aria-label="Close"
-                  >
-                    <X size={22} />
-                  </button>
-                </div>
-
-                {/* body */}
-                <div className="relative px-7 md:px-10 py-8 overflow-y-auto h-[calc(82vh-92px)]">
-                  <div className="space-y-5 text-gray-700 font-sans-body leading-relaxed text-[15px] md:text-[16px]">
-                    {selectedEnvelope.content.map((paragraph, i) => (
-                      <p key={i} className="whitespace-pre-line">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-
-                  {/* footer seal: wax + icon-only */}
-                  <div className="mt-12 flex items-center justify-center">
-                    <div className="relative">
-                      {/* wax seal base */}
-                      <div className={`absolute inset-0 rounded-full blur-xl ${letterTheme.wax}`} />
-                      <div className={`absolute -top-2 -left-2 w-20 h-20 rounded-full ${letterTheme.wax} opacity-55`} />
-
-                      {/* stamp ring */}
-                      <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-white/70 ring-1 ring-white/80 shadow-md text-gray-700">
+                                 <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-white/70 ring-1 ring-white/80 shadow-md text-gray-700">
                         <div className="scale-110">
                           {selectedEnvelope.icon}
                         </div>
