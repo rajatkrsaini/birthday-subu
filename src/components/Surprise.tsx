@@ -355,55 +355,57 @@ const FloatingSparkles: React.FC = () => {
 };
 
 const Surprise: React.FC = () => {
+  const PASSWORD = "oksubu";
+  const UNLOCK_KEY = "surprise_unlocked_v1";
+
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  // Password gate
-  const [unlocked, setUnlocked] = useState(false);
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    try {
-      const ok = sessionStorage.getItem(SESSION_KEY) === '1';
-      if (ok) setUnlocked(true);
-    } catch {
-      // ignore if storage is blocked
-    }
-  }, []);
-
-  const handleUnlock = (e: React.FormEvent) => {
-    e.preventDefault();
-    const attempt = password.trim();
-    if (attempt === PASSWORD) {
-      setUnlocked(true);
-      setError('');
-      setPassword('');
-      try {
-        sessionStorage.setItem(SESSION_KEY, '1');
-      } catch {
-        // ignore
-      }
-      return;
-    }
-    setError('Wrong password. Try again.');
-  };
+  // Password gate state
+  const [isUnlocked, setIsUnlocked] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return sessionStorage.getItem(UNLOCK_KEY) === "true";
+  });
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const selectedEnvelope = useMemo(
-    () => envelopes.find(e => e.id === selectedId),
+    () => envelopes.find((e) => e.id === selectedId),
     [selectedId]
   );
 
   const letterTheme = selectedEnvelope ? getLetterTheme(selectedEnvelope.id) : null;
 
-  // If locked, show password screen only
-  if (!unlocked) {
+  const handleUnlock = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    if (password.trim() !== PASSWORD) {
+      setError("Wrong password.");
+      return;
+    }
+
+    sessionStorage.setItem(UNLOCK_KEY, "true");
+    setIsUnlocked(true);
+  };
+
+  // Optional: if you ever want a manual lock button for testing
+  // const lockAgain = () => {
+  //   sessionStorage.removeItem(UNLOCK_KEY);
+  //   setIsUnlocked(false);
+  //   setPassword("");
+  //   setError("");
+  // };
+
+  if (!isUnlocked) {
     return (
-      <div className="min-h-dvh bg-aesthetic p-6 relative overflow-hidden">
+      <div className="min-h-dvh bg-aesthetic p-6 relative overflow-hidden flex items-center justify-center">
+        {/* Same overall page aesthetic */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-28 -left-28 w-[30rem] h-[30rem] rounded-full bg-pink-200/22 blur-3xl" />
           <div className="absolute top-10 -right-32 w-[36rem] h-[36rem] rounded-full bg-purple-200/16 blur-3xl" />
           <div className="absolute -bottom-36 left-1/4 w-[38rem] h-[38rem] rounded-full bg-amber-200/14 blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-[28rem] h-[28rem] rounded-full bg-rose-200/12 blur-3xl" />
+
           <div
             className="absolute inset-0 opacity-[0.22]"
             style={{
@@ -412,69 +414,69 @@ const Surprise: React.FC = () => {
               backgroundSize: "18px 18px",
             }}
           />
+
           <FloatingSparkles />
         </div>
 
-        <div className="max-w-xl mx-auto pt-16 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="rounded-[2.5rem] bg-white/70 backdrop-blur-md border border-white/80 shadow-2xl overflow-hidden"
-          >
-            <div className="px-8 py-10 text-center">
-              <div className="mx-auto w-14 h-14 rounded-full bg-white/80 ring-1 ring-white/70 shadow-sm flex items-center justify-center text-gray-700">
-                <Lock size={22} />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className="relative w-full max-w-md rounded-[2.5rem] bg-white/70 backdrop-blur-md border border-white/80 shadow-2xl overflow-hidden"
+        >
+          <div className="p-8 md:p-10">
+            <h2 className="font-serif-title text-3xl text-gray-800 text-center">
+              Enter Password
+            </h2>
+            <p className="mt-3 text-center text-gray-500 font-sans-body text-sm leading-relaxed">
+              This page is locked. Type the password to open the letters.
+            </p>
+
+            <form onSubmit={handleUnlock} className="mt-7 space-y-4">
+              <div className="space-y-2">
+                <label className="block text-sm text-gray-600 font-sans-body">
+                  Password
+                </label>
+                <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  autoFocus
+                  className={[
+                    "w-full rounded-2xl px-4 py-3",
+                    "bg-white/90 border border-white/80 shadow-sm",
+                    "outline-none focus:ring-2 focus:ring-pink-200/70",
+                    "text-gray-700 font-sans-body",
+                  ].join(" ")}
+                  placeholder="Enter password"
+                />
+                {error ? (
+                  <p className="text-sm text-red-600 font-sans-body">{error}</p>
+                ) : null}
               </div>
 
-              <h2 className="font-serif-title text-3xl md:text-4xl text-gray-800 mt-5">
-                Enter password
-              </h2>
+              <button
+                type="submit"
+                className={[
+                  "w-full rounded-2xl py-3",
+                  "bg-pink-200/70 hover:bg-pink-200",
+                  "text-gray-800 font-sans-body font-medium",
+                  "transition-colors shadow-sm border border-white/70",
+                ].join(" ")}
+              >
+                Unlock
+              </button>
 
-              <p className="text-gray-500 font-sans-body font-light tracking-wide text-base mt-3 leading-relaxed">
-                This page is locked. Type the password to open the letters.
+              <p className="text-xs text-gray-500 font-sans-body text-center leading-relaxed">
+                Tip: You will only be asked once per tab session.
               </p>
-
-              <form onSubmit={handleUnlock} className="mt-7">
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    if (error) setError('');
-                  }}
-                  autoFocus
-                  className="w-full rounded-2xl px-5 py-4 bg-white/85 border border-white/80 shadow-sm outline-none focus:ring-2 focus:ring-pink-200/70 text-gray-800 font-sans-body"
-                  placeholder="Password"
-                />
-
-                <button
-                  type="submit"
-                  className="mt-4 w-full rounded-2xl px-5 py-4 bg-pink-100 hover:bg-pink-200/70 transition-colors text-gray-800 font-sans-body font-medium shadow-sm border border-white/70"
-                >
-                  Unlock
-                </button>
-
-                <AnimatePresence>
-                  {error && (
-                    <motion.p
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 6 }}
-                      className="mt-3 text-sm text-rose-600 font-sans-body"
-                    >
-                      {error}
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-              </form>
-            </div>
-          </motion.div>
-        </div>
+            </form>
+          </div>
+        </motion.div>
       </div>
     );
   }
 
-  // Unlocked: your original UI below (unchanged)
   return (
     <div className="min-h-dvh bg-aesthetic p-6 relative overflow-hidden">
       {/* Overall page aesthetic */}
@@ -541,7 +543,7 @@ const Surprise: React.FC = () => {
                 "border border-white/80 shadow-sm hover:shadow-md",
                 "transition-all duration-300",
                 "overflow-hidden",
-                env.color
+                env.color,
               ].join(" ")}
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -610,11 +612,9 @@ const Surprise: React.FC = () => {
                 <div className="pointer-events-none absolute inset-0">
                   <div className={`absolute -top-20 -left-20 w-72 h-72 rounded-full blur-3xl ${letterTheme.blobA}`} />
                   <div className={`absolute -bottom-24 -right-24 w-80 h-80 rounded-full blur-3xl ${letterTheme.blobB}`} />
-
                   <div className="absolute inset-0 opacity-[0.75]">
                     <FloatingSparkles />
                   </div>
-
                   <div className={`absolute top-0 left-0 right-0 h-10 ${letterTheme.ribbon} opacity-55`} />
 
                   <div className="absolute top-14 left-10 opacity-[0.16] rotate-[-10deg]">
@@ -640,16 +640,50 @@ const Surprise: React.FC = () => {
                   </div>
                 </div>
 
-                                 <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-white/70 ring-1 ring-white/80 shadow-md text-gray-700">
-                        <div className="scale-110">
-                          {selectedEnvelope.icon}
-                        </div>
+                <div className="relative flex items-center justify-between px-7 md:px-10 py-7 border-b border-white/60 bg-white/50 backdrop-blur-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 bg-white/85 rounded-full shadow-sm ring-1 ring-white/70 text-gray-700">
+                      {selectedEnvelope.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-serif-title text-2xl md:text-3xl text-gray-800 leading-tight">
+                        {selectedEnvelope.label}
+                      </h3>
+                      <p className="font-sans-body text-sm text-gray-500 mt-0.5">
+                        A tiny note, just for you.
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => setSelectedId(null)}
+                    className="p-2 rounded-full text-gray-500 hover:text-gray-900 hover:bg-white/75 transition-colors"
+                    aria-label="Close"
+                  >
+                    <X size={22} />
+                  </button>
+                </div>
+
+                <div className="relative px-7 md:px-10 py-8 overflow-y-auto h-[calc(82vh-92px)]">
+                  <div className="space-y-5 text-gray-700 font-sans-body leading-relaxed text-[15px] md:text-[16px]">
+                    {selectedEnvelope.content.map((paragraph, i) => (
+                      <p key={i} className="whitespace-pre-line">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+
+                  <div className="mt-12 flex items-center justify-center">
+                    <div className="relative">
+                      <div className={`absolute inset-0 rounded-full blur-xl ${letterTheme.wax}`} />
+                      <div className={`absolute -top-2 -left-2 w-20 h-20 rounded-full ${letterTheme.wax} opacity-55`} />
+
+                      <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-white/70 ring-1 ring-white/80 shadow-md text-gray-700">
+                        <div className="scale-110">{selectedEnvelope.icon}</div>
                       </div>
 
-                      {/* ribbon tails */}
                       <div className={`absolute -bottom-5 left-1/2 -translate-x-1/2 w-14 h-6 ${letterTheme.ribbon} opacity-45 rounded-b-2xl`} />
 
-                      {/* tiny accents */}
                       <div className="absolute -right-10 top-2 opacity-[0.14]">
                         <Sparkles size={18} className="text-gray-700" />
                       </div>
@@ -669,5 +703,3 @@ const Surprise: React.FC = () => {
     </div>
   );
 };
-
-export default Surprise;
