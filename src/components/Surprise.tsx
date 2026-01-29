@@ -268,6 +268,44 @@ const FloatingSparkles: React.FC = () => {
 
 const Surprise: React.FC = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
+type ThemeMode = "girlyDark" | "pinkPastel" | "whitePastel";
+
+const pageThemes: Record<ThemeMode, {
+  base: string;
+  cloud1: string;
+  cloud2: string;
+  cloud3: string;
+  cloud4: string;
+  grain: string;
+}> = {
+  girlyDark: {
+    base: "bg-[#1b1320]",
+    cloud1: "bg-pink-500/10",
+    cloud2: "bg-purple-500/10",
+    cloud3: "bg-rose-500/10",
+    cloud4: "bg-fuchsia-500/10",
+    grain: "rgba(255,255,255,0.04)"
+  },
+  pinkPastel: {
+    base: "bg-[#fff0f6]",
+    cloud1: "bg-pink-200/30",
+    cloud2: "bg-rose-200/25",
+    cloud3: "bg-fuchsia-200/20",
+    cloud4: "bg-purple-200/20",
+    grain: "rgba(0,0,0,0.04)"
+  },
+  whitePastel: {
+    base: "bg-[#fafafa]",
+    cloud1: "bg-rose-100/35",
+    cloud2: "bg-purple-100/30",
+    cloud3: "bg-amber-100/25",
+    cloud4: "bg-pink-100/30",
+    grain: "rgba(0,0,0,0.05)"
+  }
+};
+
+  const [theme, setTheme] = useState<ThemeMode>("pinkPastel");
+const currentTheme = pageThemes[theme];
 
   const selectedEnvelope = useMemo(
     () => envelopes.find(e => e.id === selectedId),
@@ -277,21 +315,46 @@ const Surprise: React.FC = () => {
   const letterTheme = selectedEnvelope ? getLetterTheme(selectedEnvelope.id) : null;
 
   return (
-    <div className="min-h-dvh bg-aesthetic p-6 relative overflow-hidden">
+<div className={`min-h-dvh ${currentTheme.base} p-6 relative overflow-hidden transition-colors duration-500`}>
       {/* Overall page aesthetic */}
+  <div className="fixed top-5 right-5 z-[60] flex gap-2">
+  <button
+    onClick={() => setTheme("girlyDark")}
+    className={`w-9 h-9 rounded-full border ring-1 transition ${
+      theme === "girlyDark" ? "ring-pink-400 scale-110" : "ring-white/40"
+    } bg-[#1b1320]`}
+    title="Girly Dark"
+  />
+  <button
+    onClick={() => setTheme("pinkPastel")}
+    className={`w-9 h-9 rounded-full border ring-1 transition ${
+      theme === "pinkPastel" ? "ring-pink-400 scale-110" : "ring-white/40"
+    } bg-pink-200`}
+    title="Pink Pastel"
+  />
+  <button
+    onClick={() => setTheme("whitePastel")}
+    className={`w-9 h-9 rounded-full border ring-1 transition ${
+      theme === "whitePastel" ? "ring-pink-400 scale-110" : "ring-white/40"
+    } bg-white`}
+    title="White Pastel"
+  />
+</div>
+
       <div className="pointer-events-none absolute inset-0">
         {/* dreamy pastel clouds */}
-        <div className="absolute -top-28 -left-28 w-[30rem] h-[30rem] rounded-full bg-pink-200/22 blur-3xl" />
-        <div className="absolute top-10 -right-32 w-[36rem] h-[36rem] rounded-full bg-purple-200/16 blur-3xl" />
-        <div className="absolute -bottom-36 left-1/4 w-[38rem] h-[38rem] rounded-full bg-amber-200/14 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-[28rem] h-[28rem] rounded-full bg-rose-200/12 blur-3xl" />
+       <div className={`absolute -top-28 -left-28 w-[30rem] h-[30rem] rounded-full ${currentTheme.cloud1} blur-3xl`} />
+<div className={`absolute top-10 -right-32 w-[36rem] h-[36rem] rounded-full ${currentTheme.cloud2} blur-3xl`} />
+<div className={`absolute -bottom-36 left-1/4 w-[38rem] h-[38rem] rounded-full ${currentTheme.cloud3} blur-3xl`} />
+<div className={`absolute bottom-0 right-1/4 w-[28rem] h-[28rem] rounded-full ${currentTheme.cloud4} blur-3xl`} />
+
 
         {/* subtle paper grain */}
         <div
           className="absolute inset-0 opacity-[0.22]"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)",
+  `radial-gradient(circle at 1px 1px, ${currentTheme.grain} 1px, transparent 0)`,
             backgroundSize: "18px 18px",
           }}
         />
