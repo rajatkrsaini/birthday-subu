@@ -380,7 +380,7 @@ const Surprise: React.FC = () => {
               </button>
 
               <p className="text-xs text-gray-500 font-sans-body text-center leading-relaxed">
-                Tip: You will only be asked once per tab session.
+                Tip: Ask me bsdk.
               </p>
             </form>
           </div>
