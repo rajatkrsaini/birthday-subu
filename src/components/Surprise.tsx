@@ -1,3 +1,4 @@
+
 import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -6,7 +7,7 @@ import {
   Camera, BookOpen, Mail,
   Crown, Sparkles, Gem,
   PenLine, Feather, Paperclip, Bookmark,
-  Cake, PartyPopper
+  Cake, PartyPopper, Lock, Key
 } from 'lucide-react';
 
 interface EnvelopeData {
@@ -15,6 +16,7 @@ interface EnvelopeData {
   icon: React.ReactNode;
   content: string[];
   color: string;
+  locked?: boolean; // New property for the password feature
 }
 
 const envelopes: EnvelopeData[] = [
@@ -207,6 +209,20 @@ const envelopes: EnvelopeData[] = [
       "I don't need a reason to write to you. I just wanted to do something unique for you (not for the sake of being your friend or anything. also not because of your birthday) It's just for 'YOU'",
       "I want to remind you that you are cared. In the busyness of life, we forget to tell people that they matter and what could be the best possible day than this lol",
     ]
+  },
+  // The New Password Protected Envelope
+  {
+    id: 21,
+    label: "Top Secret",
+    icon: <Lock className="text-gray-700" size={20} />,
+    color: "bg-rose-100",
+    locked: true,
+    content: [
+      "One last wish...",
+      "I hope you remember after even 5 years how I wished you on your 21st bday.",
+      "I just want to spoil you with happy memories and it's okay, I can make this little efforts when you call me your best friend.",
+      "Always here for you. 🔒💖"
+    ]
   }
 ];
 
@@ -229,6 +245,7 @@ function getLetterTheme(id: number) {
     18:{ paper: "from-stone-50 via-white to-neutral-50", blobA: "bg-stone-200/35", blobB: "bg-neutral-200/30", ribbon: "bg-stone-200/35", wax: "bg-stone-300/20" },
     19:{ paper: "from-orange-50 via-white to-yellow-50", blobA: "bg-orange-200/35", blobB: "bg-yellow-200/30", ribbon: "bg-orange-200/40", wax: "bg-yellow-300/25" },
     20:{ paper: "from-neutral-50 via-white to-rose-50", blobA: "bg-neutral-200/35", blobB: "bg-rose-200/30", ribbon: "bg-rose-200/35", wax: "bg-rose-300/20" },
+    21:{ paper: "from-pink-50 via-white to-rose-50", blobA: "bg-pink-200/35", blobB: "bg-rose-200/30", ribbon: "bg-pink-200/45", wax: "bg-rose-400/30" },
   } as Record<number, { paper: string; blobA: string; blobB: string; ribbon: string; wax: string }>;
 
   return themes[id] ?? { paper: "from-neutral-50 via-white to-neutral-50", blobA: "bg-neutral-200/30", blobB: "bg-neutral-200/20", ribbon: "bg-neutral-200/30", wax: "bg-neutral-300/20" };
@@ -268,6 +285,11 @@ const FloatingSparkles: React.FC = () => {
 
 const Surprise: React.FC = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  
+  // Password Modal State
+  const [pendingEnvelope, setPendingEnvelope] = useState<number | null>(null);
+  const [passwordInput, setPasswordInput] = useState("");
+  const [errorShake, setErrorShake] = useState(0);
 
   const selectedEnvelope = useMemo(
     () => envelopes.find(e => e.id === selectedId),
@@ -275,6 +297,26 @@ const Surprise: React.FC = () => {
   );
 
   const letterTheme = selectedEnvelope ? getLetterTheme(selectedEnvelope.id) : null;
+
+  const handleEnvelopeClick = (env: EnvelopeData) => {
+    if (env.locked) {
+      setPendingEnvelope(env.id);
+      setPasswordInput("");
+      setErrorShake(0);
+    } else {
+      setSelectedId(env.id);
+    }
+  };
+
+  const handleUnlock = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    if (passwordInput.toLowerCase().trim() === "myqt") {
+      setSelectedId(pendingEnvelope);
+      setPendingEnvelope(null);
+    } else {
+      setErrorShake(prev => prev + 1);
+    }
+  };
 
   return (
     <div className="min-h-dvh bg-aesthetic p-6 relative overflow-hidden">
@@ -335,7 +377,7 @@ const Surprise: React.FC = () => {
               transition={{ delay: index * 0.03 }}
               whileHover={{ y: -6, scale: 1.012 }}
               whileTap={{ scale: 0.99 }}
-              onClick={() => setSelectedId(env.id)}
+              onClick={() => handleEnvelopeClick(env)}
               className={[
                 "group relative text-left",
                 "cursor-pointer aspect-square rounded-3xl",
@@ -387,6 +429,69 @@ const Surprise: React.FC = () => {
         </div>
       </div>
 
+      {/* Password Modal */}
+      <AnimatePresence>
+        {pendingEnvelope !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-white/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
+            onClick={() => setPendingEnvelope(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1, 
+                y: 0,
+                x: errorShake % 2 === 0 ? 0 : [0, -10, 10, -10, 10, 0] 
+              }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ type: "spring", duration: 0.4 }}
+              className="w-full max-w-sm bg-white/90 backdrop-blur-xl rounded-[2rem] shadow-2xl p-8 border border-pink-100 relative text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                 onClick={() => setPendingEnvelope(null)}
+                 className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X size={20} />
+              </button>
+
+              <div className="mb-6 flex justify-center">
+                 <div className="w-16 h-16 rounded-full bg-pink-50 flex items-center justify-center shadow-inner text-pink-400">
+                    <Key size={30} />
+                 </div>
+              </div>
+
+              <h3 className="text-2xl font-serif-title text-gray-800 mb-2">Shhh! Top Secret</h3>
+              <p className="text-gray-500 text-sm mb-6 font-sans-body">
+                This one is locked for a reason. Do you know the magic word?
+              </p>
+
+              <form onSubmit={handleUnlock} className="space-y-4">
+                <input 
+                  type="password"
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  placeholder="Enter password..."
+                  className="w-full px-5 py-3 rounded-xl bg-pink-50/50 border border-pink-100 text-center text-gray-700 placeholder:text-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all font-sans-body"
+                  autoFocus
+                />
+                <button 
+                  type="submit"
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-300 to-rose-300 text-white font-medium shadow-md shadow-pink-200/50 hover:shadow-lg hover:shadow-pink-200/60 active:scale-95 transition-all duration-200"
+                >
+                  Unlock Memories
+                </button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Existing Letter Modal */}
       <AnimatePresence>
         {selectedId && selectedEnvelope && letterTheme && (
           <motion.div
