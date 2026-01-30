@@ -213,22 +213,17 @@ const envelopes: EnvelopeData[] = [
   // The New Password Protected Envelope
 {
     id: 21,
-    label: "Top Secret",
+    label: "LOL",
     icon: <Lock className="text-gray-700" size={20} />,
     color: "bg-rose-100",
     locked: true,
     content: [
-      "You unlocked it YAYYY, sorry for the cringe password.",
-      "I wanted to write this specific note not just for the Subu of today, turning 21, but for the Subu of the future. I hope you remember after even 5 years—when you are 26 - how I wished you on your 21st birthday, perhaps you will be busy with a job, or god knows if you get married, or stressed about adulthood.",
+      "sorry for the cringe password.",
       "I want this digital memory to stay forever in time for you. Someday, if we drift apart (which I don't want, obviously) or if life just gets too loud, I want you to come back here, open this letter, and remember that someone in this big world cared about you this much. I just care for you in quiet way (purely and sincerely), not anything like to impress you.",
       "You know, people often say online friends aren't 'real' friends. But they are wrong. Because who else knows your problems that you can never tell others? Who else listens to your rants about random inconveniences? I sometimes feel I know you better than people who see you every day. And that’s why I wanted to make this effort. Not because I had to, but because I wanted to spoil you with happy memories.",
-      "I know I am just an online friend but I can do anything for you if you just say. I also know a lot of people care for you cause you are that type of person everyone will love but even if it sounds cringe to you (cause these are big words and corny), know that I am your biggest supporter and I'll care for you the most in this world.",
-      "Now let me tell you what I see in you.",
-      "I see a girl who is kind even when she's tired. I see a girl who tries her best, even when her brain is being mean to her. I see someone who deserves the entire world. Please, for the love of God, dont let people hurt you.",
       "!!!",
       "If you are reading this on any of your next birthdays from now: Hello! I hope we are still best friends. I hope I still get to call you 'bsdk' and tease you. But if life has taken us on different paths, just know that at this moment in time, on your 21st birthday, you were my favorite person to talk to.",
       ".",
-      "Happy 21st Birthday, My Bestie. Thank you for existing 💖"
     ]
   }
 ];
@@ -317,7 +312,7 @@ const Surprise: React.FC = () => {
 
   const handleUnlock = (e?: React.FormEvent) => {
     e?.preventDefault();
-    if (passwordInput.toLowerCase().trim() === "myqt") {
+    if (passwordInput.toLowerCase().trim() === "qtchan") {
       setSelectedId(pendingEnvelope);
       setPendingEnvelope(null);
     } else {
