@@ -182,7 +182,7 @@ const envelopes: EnvelopeData[] = [
     color: "bg-stone-50",
     content: [
       "I dont know why we first talked?",
-      "Its been years ago, yet just like yesterday.",
+      "Its been years ago, yet it feels just like yesterday.",
       "You and I have shared a lot of random, funny, and unexpectedly deep conversations including misunderstandings.",
       "I'm glad our timelines crossed. Of all the billions of people on earth, I'm glad I found you as my best friend."
     ]
@@ -218,7 +218,7 @@ const envelopes: EnvelopeData[] = [
     color: "bg-rose-100",
     locked: true,
     content: [
-      "You unlocked it YAYYY, sorry for the cringe cringe password.",
+      "You unlocked it YAYYY, sorry for the cringe password.",
       "I wanted to write this specific note not just for the Subu of today, turning 21, but for the Subu of the future. I hope you remember after even 5 years—when you are 26 - how I wished you on your 21st birthday, perhaps you will be busy with a job, or god knows if you get married, or stressed about adulthood.",
       "I want this digital memory to stay forever in time for you. Someday, if we drift apart (which I don't want, obviously) or if life just gets too loud, I want you to come back here, open this letter, and remember that someone in this big world cared about you this much. I just care for you in quiet way (purely and sincerely), not anything like to impress you.",
       "You know, people often say online friends aren't 'real' friends. But they are wrong. Because who else knows your problems that you can never tell others? Who else listens to your rants about random inconveniences? I sometimes feel I know you better than people who see you every day. And that’s why I wanted to make this effort. Not because I had to, but because I wanted to spoil you with happy memories.",
