@@ -57,17 +57,16 @@ const FloatingCuteLayer: React.FC = () => {
 
         const texts = [
           'bsdk',
-          'best girl',
+          'silly chan',
           'qt',
           'cutest',
-          'prettiest',
+          'lazy ass',
           'no stress pls',
           'my hg',
-          'queen vibes',
-          'lysm',
+          'queen',
           'smile',
           'why so cute',
-          'hbd legend',
+          'happy birthday',
           'slay',
           'happy',
           'okay wow',
@@ -191,7 +190,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
 
               <div className="px-4 py-2 rounded-full bg-white/65 border border-white/70 shadow-sm">
                 <p className="text-[11px] md:text-xs tracking-[0.35em] uppercase text-gray-600 font-sans-body">
-                  For my HG lol
+                  For my HG
                 </p>
               </div>
 
@@ -284,7 +283,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                     overflow: 'hidden',
                   }}
                 >
-                  If you smile even once while scrolling, pls tell me. I just wish your days to be filled with as much joy as you bring to everyone around you.
+                  If you smile even once while scrolling, pls tell me.
                 </p>
               </div>
             </div>
