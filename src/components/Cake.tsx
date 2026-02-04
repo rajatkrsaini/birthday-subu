@@ -97,35 +97,28 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
   const [candlesLit, setCandlesLit] = useState(true);
   const [isCut, setIsCut] = useState(false);
 
-  // Smooth, reliable blowing progress
-  const [blowProgress, setBlowProgress] = useState(0); // 0..100
+  const [started, setStarted] = useState(false);
+  const [blowProgress, setBlowProgress] = useState(0);
 
-  // uses improved hook that returns `level`
   const { isBlowing, level, startListening, hasPermission } = useBlowDetection(candlesLit, 0.12);
 
   const [showConfetti, setShowConfetti] = useState(false);
 
-  // Auto start listening once permission exists
+  // Progress from loudness (works even if isBlowing toggles slowly)
   useEffect(() => {
-    if (candlesLit && hasPermission) startListening();
-  }, [candlesLit, hasPermission, startListening]);
-
-  // Drive progress from actual mic loudness above noise floor
-  useEffect(() => {
-    if (!candlesLit) return;
+    if (!candlesLit || !started) return;
 
     const t = setInterval(() => {
       setBlowProgress((p) => {
-        const blowingNow = level > 0.1 || isBlowing;
-        if (blowingNow) return Math.min(100, p + 7);
+        const blowingNow = level > 0.08 || isBlowing;
+        if (blowingNow) return Math.min(100, p + 6);
         return Math.max(0, p - 2);
       });
     }, 120);
 
     return () => clearInterval(t);
-  }, [candlesLit, level, isBlowing]);
+  }, [candlesLit, started, level, isBlowing]);
 
-  // Extinguish once reached
   useEffect(() => {
     if (candlesLit && blowProgress >= 100) setCandlesLit(false);
   }, [candlesLit, blowProgress]);
@@ -150,6 +143,8 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
       })),
     []
   );
+
+  const micLabel = !started ? 'Allow Microphone' : level > 0.08 ? 'Keep blowing' : 'Blow into your mic';
 
   return (
     <div className="min-h-dvh bg-aesthetic overflow-hidden relative flex flex-col items-center select-none cursor-default">
@@ -176,7 +171,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
         ))}
       </div>
 
-      {/* Content */}
       <div className="relative z-10 flex-grow flex flex-col items-center justify-center w-full max-w-4xl px-4 mb-20">
         {/* Header */}
         <motion.div layout className="text-center mb-10 md:mb-16 relative">
@@ -190,10 +184,9 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
                 className="flex flex-col items-center gap-3"
               >
                 <h2 className="font-serif-title text-4xl md:text-5xl text-gray-800">Make a Wish</h2>
-                <p className="font-sans-body text-gray-500 uppercase tracking-[0.2em] text-sm">Blow into your mic</p>
+                <p className="font-sans-body text-gray-500 uppercase tracking-[0.2em] text-sm">{micLabel}</p>
 
-                {/* Progress bar: stays responsive even if detection toggles slowly */}
-                <div className="h-2.5 w-44 bg-white/70 rounded-full overflow-hidden mt-2 border border-white shadow-inner">
+                <div className="h-2.5 w-48 bg-white/70 rounded-full overflow-hidden mt-2 border border-white shadow-inner">
                   <motion.div
                     className="h-full bg-gradient-to-r from-pink-300 to-purple-300"
                     animate={{ width: `${Math.max(blowProgress, Math.round(level * 100))}%` }}
@@ -202,7 +195,7 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
                 </div>
 
                 <p className="text-gray-400 text-xs font-sans-body tracking-wide">
-                  Keep blowing until the bar fills.
+                  Fill the bar to blow out the candles.
                 </p>
               </motion.div>
             ) : !isCut ? (
@@ -232,9 +225,8 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
           </AnimatePresence>
         </motion.div>
 
-        {/* CAKE */}
+        {/* Cake */}
         <div className="relative mt-6 group cursor-pointer" onClick={handleCut}>
-          {/* Plate glow */}
           <div className="pointer-events-none absolute -bottom-14 left-1/2 -translate-x-1/2 w-[26rem] h-[10rem] bg-pink-300/15 blur-3xl rounded-full" />
 
           {/* Birthday text above cake */}
@@ -259,22 +251,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
             )}
           </AnimatePresence>
 
-          {/* Knife */}
-          <AnimatePresence>
-            {isCut && (
-              <motion.div
-                initial={{ opacity: 0, x: 50, y: -100, rotate: 45 }}
-                animate={{ opacity: [1, 1, 0], x: [50, 0, 0], y: [-100, 20, 50], rotate: [45, 0, -10] }}
-                transition={{ duration: 0.6, ease: 'easeInOut' }}
-                className="absolute top-0 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
-              >
-                <div className="w-2 h-40 bg-gradient-to-b from-gray-300 to-white border border-gray-400 rounded-b-full shadow-xl relative">
-                  <div className="absolute top-0 w-4 h-12 bg-rose-900 -left-1 rounded-sm" />
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
           {/* Cake halves */}
           <div className="relative flex items-end justify-center drop-shadow-2xl">
             {/* LEFT */}
@@ -285,7 +261,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
             >
               <div className="w-28 h-20 bg-gradient-to-b from-white via-[#fff5f5] to-pink-50 rounded-tl-3xl border-l border-t border-white relative overflow-visible shadow-[inset_0_-10px_20px_rgba(251,207,232,0.35)]">
                 <div className="absolute top-0 right-0 w-full h-5 bg-white rounded-bl-2xl shadow-[inset_0_-6px_10px_rgba(0,0,0,0.03)]" />
-                {isCut && <div className="absolute right-0 top-0 h-full w-2 bg-[#fbcfe8] opacity-60" />}
 
                 <div className="absolute -top-5 right-2 flex gap-1 z-20">
                   <Candle lit={candlesLit} delay={0} />
@@ -295,8 +270,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
 
               <div className="w-40 h-24 bg-gradient-to-b from-pink-100 via-pink-100 to-pink-200 rounded-tl-[2.2rem] rounded-bl-3xl border-l border-t border-white relative mt-[-1px] shadow-[inset_0_-16px_26px_rgba(244,114,182,0.12)]">
                 <div className="absolute top-1/2 w-full h-1 bg-white/55" />
-                {isCut && <div className="absolute right-0 top-0 h-full w-2 bg-[#f9a8d4] opacity-60" />}
-
                 <div className="absolute -top-4 right-7 z-20">
                   <CreamDollop />
                 </div>
@@ -311,7 +284,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
             >
               <div className="w-28 h-20 bg-gradient-to-b from-white via-[#fff5f5] to-pink-50 rounded-tr-3xl border-r border-t border-white relative overflow-visible shadow-[inset_0_-10px_20px_rgba(251,207,232,0.35)]">
                 <div className="absolute top-0 left-0 w-full h-6 bg-white rounded-br-2xl shadow-[inset_0_-6px_10px_rgba(0,0,0,0.03)]" />
-                {isCut && <div className="absolute left-0 top-0 h-full w-2 bg-[#fbcfe8] opacity-60" />}
 
                 <div className="absolute -top-5 left-2 flex gap-1 z-20">
                   <Strawberry style={{ transform: 'rotate(10deg) scale(0.9)' }} />
@@ -321,8 +293,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
 
               <div className="w-40 h-24 bg-gradient-to-b from-pink-100 via-pink-100 to-pink-200 rounded-tr-[2.2rem] rounded-br-3xl border-r border-t border-white relative mt-[-1px] shadow-[inset_0_-16px_26px_rgba(244,114,182,0.12)]">
                 <div className="absolute top-1/2 w-full h-1 bg-white/55" />
-                {isCut && <div className="absolute left-0 top-0 h-full w-2 bg-[#f9a8d4] opacity-60" />}
-
                 <div className="absolute -top-4 left-7 z-20">
                   <CreamDollop />
                 </div>
@@ -340,21 +310,35 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
 
         {/* Mic controls */}
         {candlesLit && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.2 } }} className="absolute bottom-10 md:bottom-20">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.0 } }} className="absolute bottom-10 md:bottom-20">
             {!hasPermission ? (
               <button
-                onClick={startListening}
+                onClick={async () => {
+                  await startListening();
+                  setStarted(true);
+                }}
                 className="bg-white/80 backdrop-blur text-pink-500 px-6 py-2 rounded-full shadow-sm text-sm border border-pink-100 hover:bg-white transition-colors flex items-center gap-2"
               >
                 <Mic size={14} /> Allow Microphone
               </button>
             ) : (
-              <button
-                onClick={() => setBlowProgress(100)}
-                className="text-pink-300 text-xs hover:text-pink-500 transition-colors underline decoration-dotted"
-              >
-                (Skip blowing)
-              </button>
+              <div className="flex flex-col items-center gap-2">
+                {!started ? (
+                  <button
+                    onClick={() => setStarted(true)}
+                    className="bg-white/70 backdrop-blur text-gray-600 px-6 py-2 rounded-full shadow-sm text-sm border border-white hover:bg-white transition-colors"
+                  >
+                    Start Listening
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setBlowProgress(100)}
+                    className="text-pink-300 text-xs hover:text-pink-500 transition-colors underline decoration-dotted"
+                  >
+                    (Skip blowing)
+                  </button>
+                )}
+              </div>
             )}
           </motion.div>
         )}
