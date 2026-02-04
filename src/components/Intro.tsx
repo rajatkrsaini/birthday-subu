@@ -300,7 +300,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
             </div>
 
             <p className="mt-6 text-gray-500 text-xs font-sans-body tracking-wide text-center">
-              Warning: may cause random smiling and soft feelings.
+...
             </p>
           </div>
         </div>
