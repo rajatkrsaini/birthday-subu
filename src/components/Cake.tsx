@@ -358,7 +358,7 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
           className="mt-10 text-center"
         >
           <p className="text-gray-500 text-xs tracking-[0.25em] uppercase font-sans-body">
-            Tap the cake to continue
+            ..
           </p>
         </motion.div>
       </div>
