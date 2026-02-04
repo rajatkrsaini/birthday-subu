@@ -56,20 +56,20 @@ const FloatingCuteLayer: React.FC = () => {
         const isText = Math.random() > 0.45;
 
         const texts = [
-          'bsdk energy',
-          'main character',
-          'qt alert',
+          'bsdk',
           'best girl',
-          'smol chaos',
+          'qt',
+          'cutest',
+          'prettiest',
           'no stress pls',
-          'cute overload',
+          'my hg',
           'queen vibes',
-          'ily (lowkey)',
-          'approved',
-          'extra cute',
+          'lysm',
+          'smile',
+          'why so cute',
           'hbd legend',
           'slay',
-          'soft heart',
+          'happy',
           'okay wow',
         ];
 
@@ -188,7 +188,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
 
               <div className="px-4 py-2 rounded-full bg-white/65 border border-white/70 shadow-sm">
                 <p className="text-[11px] md:text-xs tracking-[0.35em] uppercase text-gray-600 font-sans-body">
-                  A tiny birthday website. A lot of feelings.
+                  tiny efforts for my bestie.
                 </p>
               </div>
 
@@ -214,8 +214,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
 
             <h2 className="text-gray-600 font-sans-body text-[12px] md:text-sm leading-relaxed tracking-wide max-w-xl mx-auto">
               I wanted you to open this on your special day, but I couldn't complete it.
-              Still, I made it because you deserve something that stays.
-              No pressure to feel anything. Just read it slowly, whenever it feels right.
+              I know the moment is gone and you will never feel the same.
             </h2>
 
             {/* Title */}
@@ -259,10 +258,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
 
                   <div className="mt-2 flex items-center justify-center gap-2">
                     <div className="px-3 py-1 rounded-full bg-pink-100/70 border border-white/80 text-[11px] tracking-wider uppercase text-gray-700 font-sans-body">
-                      cutest human verified
-                    </div>
-                    <div className="px-3 py-1 rounded-full bg-green-100/70 border border-white/80 text-[11px] tracking-wider uppercase text-gray-700 font-sans-body">
-                      bestie contract pending
+                      cutest human
                     </div>
                   </div>
                 </div>
@@ -273,10 +269,10 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="rounded-2xl bg-white/55 border border-white/80 p-5 text-left shadow-sm">
                 <p className="text-[11px] tracking-[0.32em] uppercase text-gray-500 font-sans-body">
-                  tiny note
+                  ..
                 </p>
                 <p className="mt-2 text-gray-700 font-sans-body text-sm leading-relaxed">
-                  If you smile even once while scrolling, my job is done. If you laugh, I will act cool about it.
+                  If you smile even once while scrolling, pls tell me.
                 </p>
               </div>
 
@@ -285,7 +281,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                   serious note
                 </p>
                 <p className="mt-2 text-gray-700 font-sans-body text-sm leading-relaxed">
-                  You bring calm to people without even trying. I hope this year gives you that same calm back.
+                  May your day be filled with as much joy as you bring to everyone around you.
                 </p>
               </div>
             </div>
