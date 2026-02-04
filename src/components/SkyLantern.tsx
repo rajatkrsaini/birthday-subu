@@ -74,8 +74,8 @@ const SkyLantern: React.FC = () => {
 
   const headline = !released ? 'Make a Wish' : 'Goodnight, Subu.';
   const subline = !released
-    ? 'One last page. One quiet wish. Then we let it go.'
-    : 'If life gets loud later, come back here. This will still feel like home.';
+    ? 'Last page. Make One or More wishes.'
+    : '...';
 
   return (
     <div className="min-h-dvh relative overflow-hidden flex items-center justify-center px-6 py-10">
@@ -203,7 +203,7 @@ const SkyLantern: React.FC = () => {
                   <p className="text-white/85 font-sans-body text-sm leading-relaxed">
                     {wish.trim().length > 0
                       ? wish.trim()
-                      : 'I hope you feel loved, calm, and proud of yourself this year.'}
+                      : 'Stay happy all the time.'}
                   </p>
 
                   <div className="mt-5 flex items-center justify-center lg:justify-start gap-3">
