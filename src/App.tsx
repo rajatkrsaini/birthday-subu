@@ -12,20 +12,31 @@ import { motion, AnimatePresence } from 'framer-motion';
 const App: React.FC = () => {
   const [stage, setStage] = useState<AppStage>('intro');
 
-  const renderStage = () => {
-    switch (stage) {
-      case 'intro':
-        return <Intro onStart={() => setStage('cake')} />;
-      case 'cake':
-        return <Cake onComplete={() => setStage('letter')} />;
-      case 'letter':
-        return <Letter onComplete={() => setStage('surprise')} />;
-      case 'surprise':
-        return <Surprise />;
-      default:
-        return null;
-    }
-  };
+const renderStage = () => {
+  switch (stage) {
+    case 'intro':
+      return <Intro onStart={() => setStage('cake')} />;
+
+    case 'cake':
+      return <Cake onComplete={() => setStage('letter')} />;
+
+    case 'letter':
+      return <Letter onComplete={() => setStage('surprise')} />;
+
+    case 'surprise':
+      return <Surprise onComplete={() => setStage('contract')} />;
+
+    case 'contract':
+      return <Contract onComplete={() => setStage('skylantern')} />;
+
+    case 'skylantern':
+      return <SkyLantern />;
+
+    default:
+      return null;
+  }
+};
+
 
   return (
     <main className="w-full min-h-dvh bg-aesthetic text-gray-700 antialiased selection:bg-pink-100 overflow-x-hidden relative">
@@ -46,4 +57,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
