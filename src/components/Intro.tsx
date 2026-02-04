@@ -91,7 +91,7 @@ const FloatingCuteLayer: React.FC = () => {
           left: `${Math.floor(Math.random() * 92) + 4}%`,
           rotate: Math.floor(Math.random() * 30) - 15,
           scale: 0.75 + Math.random() * 0.9,
-          opacity: 0.10 + Math.random() * 0.12,
+          opacity: 0.18 + Math.random() * 0.10,
           delay: Math.random() * 1.8,
           duration: 3.6 + Math.random() * 3.2,
           kind: isText ? 'text' : 'icon',
@@ -114,16 +114,19 @@ const FloatingCuteLayer: React.FC = () => {
             opacity: it.opacity,
             transform: `rotate(${it.rotate}deg) scale(${it.scale})`,
           }}
-          initial={{ y: 10, opacity: 0 }}
-          animate={{ y: [-10, 10, -10], opacity: [0, it.opacity, 0] }}
+          initial={{ y: 10, opacity: it.opacity * 0.75 }}
+          animate={{
+            y: [-10, 10, -10],
+            opacity: [it.opacity * 0.65, it.opacity, it.opacity * 0.7],
+          }}
           transition={{ delay: it.delay, duration: it.duration, repeat: Infinity, ease: 'easeInOut' }}
         >
           {it.kind === 'text' ? (
-            <div className="px-3 py-1.5 rounded-full bg-white/50 border border-white/70 text-[11px] tracking-wider uppercase text-gray-700 font-sans-body">
+            <div className="px-3 py-1.5 rounded-full bg-white/65 border border-white/80 text-[11px] tracking-wider uppercase text-gray-700 font-sans-body">
               {it.text}
             </div>
           ) : (
-            <div className="p-2 rounded-full bg-white/45 border border-white/65">
+            <div className="p-2 rounded-full bg-white/60 border border-white/75">
               {it.icon}
             </div>
           )}
@@ -265,18 +268,25 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
               </motion.div>
             </div>
 
-            {/* Extra text blocks */}
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="rounded-2xl bg-white/55 border border-white/80 p-5 text-left shadow-sm">
+            {/* Wish block - centered and clamped to 2 lines */}
+            <div className="mt-8 flex justify-center">
+              <div className="w-full max-w-md rounded-2xl bg-white/55 border border-white/80 p-5 text-center shadow-sm">
                 <p className="text-[11px] tracking-[0.32em] uppercase text-gray-500 font-sans-body">
                   ..
                 </p>
-                <p className="mt-2 text-gray-700 font-sans-body text-sm leading-relaxed">
+
+                <p
+                  className="mt-2 text-gray-700 font-sans-body text-sm leading-relaxed mx-auto max-w-sm"
+                  style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                  }}
+                >
                   If you smile even once while scrolling, pls tell me. I just wish your days to be filled with as much joy as you bring to everyone around you.
                 </p>
               </div>
-
-            
             </div>
 
             {/* CTA */}
@@ -300,7 +310,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
             </div>
 
             <p className="mt-6 text-gray-500 text-xs font-sans-body tracking-wide text-center">
-...
+              ...
             </p>
           </div>
         </div>
