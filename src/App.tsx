@@ -23,14 +23,13 @@ const renderStage = () => {
     case 'letter':
       return <Letter onComplete={() => setStage('surprise')} />;
 
-    case 'surprise':
-      return <Surprise onComplete={() => setStage('contract')} />;
+case 'surprise':
+  return <Surprise onComplete={() => setStage('contract')} />;
+case 'contract':
+  return <Contract onComplete={() => setStage('skylantern')} />;
+case 'skylantern':
+  return <SkyLantern />;
 
-    case 'contract':
-      return <Contract onComplete={() => setStage('skylantern')} />;
-
-    case 'skylantern':
-      return <SkyLantern />;
 
     default:
       return null;
@@ -57,5 +56,6 @@ const renderStage = () => {
 };
 
 export default App;
+
 
 
