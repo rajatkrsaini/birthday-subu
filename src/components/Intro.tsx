@@ -272,18 +272,11 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                   ..
                 </p>
                 <p className="mt-2 text-gray-700 font-sans-body text-sm leading-relaxed">
-                  If you smile even once while scrolling, pls tell me.
+                  If you smile even once while scrolling, pls tell me. I just wish your days to be filled with as much joy as you bring to everyone around you.
                 </p>
               </div>
 
-              <div className="rounded-2xl bg-white/55 border border-white/80 p-5 text-left shadow-sm">
-                <p className="text-[11px] tracking-[0.32em] uppercase text-gray-500 font-sans-body">
-                  serious note
-                </p>
-                <p className="mt-2 text-gray-700 font-sans-body text-sm leading-relaxed">
-                  May your day be filled with as much joy as you bring to everyone around you.
-                </p>
-              </div>
+            
             </div>
 
             {/* CTA */}
