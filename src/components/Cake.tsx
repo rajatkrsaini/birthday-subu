@@ -138,13 +138,11 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
 
       {/* Girly Background Layer */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* pastel blobs */}
         <div className="absolute -top-32 -left-32 w-[34rem] h-[34rem] rounded-full bg-pink-200/30 blur-3xl" />
         <div className="absolute top-10 -right-40 w-[36rem] h-[36rem] rounded-full bg-purple-200/20 blur-3xl" />
         <div className="absolute -bottom-44 left-1/3 w-[40rem] h-[40rem] rounded-full bg-amber-200/18 blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-[30rem] h-[30rem] rounded-full bg-rose-200/16 blur-3xl" />
 
-        {/* soft dots */}
         <div
           className="absolute inset-0 opacity-[0.18]"
           style={{
@@ -153,7 +151,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
           }}
         />
 
-        {/* floating hearts + stars */}
         {[...Array(10)].map((_, i) => (
           <motion.div
             key={`float-${i}`}
@@ -174,7 +171,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
           </motion.div>
         ))}
 
-        {/* bows */}
         <div className="absolute top-40 left-10 opacity-[0.18] rotate-12">
           <BowDoodle className="w-16 h-10" />
         </div>
@@ -182,7 +178,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
           <BowDoodle className="w-14 h-9" />
         </div>
 
-        {/* sparkles */}
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={`spark-${i}`}
@@ -200,7 +195,13 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
       {/* Main Content */}
       <div className="relative z-10 flex-grow flex flex-col items-center justify-center w-full max-w-4xl px-4 mb-20">
         {/* Header Text */}
-        <motion.div layout className="text-center mb-10 md:mb-16 relative">
+        <motion.div
+          layout
+          className={[
+            "text-center relative",
+            isCut ? "mb-16 md:mb-24" : "mb-10 md:mb-16"
+          ].join(" ")}
+        >
           <AnimatePresence mode="wait">
             {candlesLit ? (
               <motion.div
@@ -213,7 +214,9 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
                 <h2 className="font-serif-title text-4xl md:text-5xl text-gray-800">Make a Wish</h2>
                 <div className="flex items-center gap-2 text-pink-400 bg-pink-50 px-4 py-1.5 rounded-full border border-pink-100 shadow-sm">
                   <PartyPopper size={18} />
-                  <span className="font-sans-body uppercase tracking-widest text-xs font-bold">Tap the cake to blow candles</span>
+                  <span className="font-sans-body uppercase tracking-widest text-xs font-bold">
+                    Tap the cake to blow candles
+                  </span>
                 </div>
               </motion.div>
             ) : !isCut ? (
@@ -245,22 +248,28 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
 
         {/* CAKE CONTAINER */}
         <div className="relative mt-8 group cursor-pointer" onClick={handleCakeTap}>
-          {/* Hidden Surprise Text Behind Cake */}
-          <div className="absolute left-1/2 -translate-x-1/2 w-full text-center z-0 pointer-events-none">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={isCut ? { opacity: 1, scale: 1, y: -120 } : { opacity: 0, scale: 0.85, y: -110 }}
-              transition={{ delay: 0.15, type: 'spring', stiffness: 120, damping: 16 }}
-              className="relative"
-            >
-              <div className="absolute inset-0 blur-2xl opacity-60 bg-gradient-to-r from-pink-300/35 via-purple-300/35 to-amber-200/35 rounded-full" />
-              <p className="relative font-serif-title text-3xl md:text-4xl text-rose-500 italic drop-shadow-sm">
-                Happy Birthday
-              </p>
-              <p className="relative font-sans-body text-xs md:text-sm text-gray-500 tracking-[0.35em] uppercase mt-2">
-                Subu qt
-              </p>
-            </motion.div>
+          {/* Surprise Text (fixed position above cake, no overlap with header) */}
+          <div className="absolute left-1/2 -translate-x-1/2 -top-20 md:-top-24 w-full text-center z-0 pointer-events-none">
+            <AnimatePresence>
+              {isCut && (
+                <motion.div
+                  key="surprise-text"
+                  initial={{ opacity: 0, scale: 0.92, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.92, y: 10 }}
+                  transition={{ type: 'spring', stiffness: 140, damping: 16 }}
+                  className="relative inline-block px-6"
+                >
+                  <div className="absolute inset-0 -z-10 blur-2xl opacity-70 bg-gradient-to-r from-pink-300/40 via-purple-300/40 to-amber-200/40 rounded-full" />
+                  <p className="font-serif-title text-3xl md:text-4xl text-rose-500 italic drop-shadow-sm leading-tight">
+                    Happy Birthday
+                  </p>
+                  <p className="font-sans-body text-xs md:text-sm text-gray-500 tracking-[0.35em] uppercase mt-2">
+                    Subu qt
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Knife Effect */}
@@ -342,7 +351,6 @@ const Cake: React.FC<CakeProps> = ({ onComplete }) => {
           </div>
         </div>
 
-        {/* Small hint near bottom */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
