@@ -15,17 +15,16 @@ const Contract: React.FC<ContractProps> = ({ onComplete }) => {
   return (
     <div className="min-h-dvh bg-gray-100 flex items-center justify-center p-4">
       <MotionDiv className="bg-[#fcfbf9] max-w-2xl w-full p-10 shadow-2xl">
-        <h1 className="text-4xl font-serif-title mb-6 text-center">Friendship Renewal</h1>
+        <h1 className="text-4xl font-serif-title mb-6 text-center">Visit Again Next Year</h1>
 
         <p className="mb-6">
-          This agreement is between Rajat and Subu for another year of chaos,
-          jokes, and loyalty.
+          LOL.
         </p>
 
         <ul className="list-disc pl-6 mb-10 space-y-2">
-          <li>Unlimited rants</li>
-          <li>Zero judgement</li>
-          <li>Maximum friendship</li>
+          <li>hi</li>
+          <li>ok</li>
+          <li>bye</li>
         </ul>
 
         {!signed ? (
