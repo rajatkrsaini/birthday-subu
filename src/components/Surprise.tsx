@@ -1,4 +1,3 @@
-
 import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -9,6 +8,10 @@ import {
   PenLine, Feather, Paperclip, Bookmark,
   Cake, PartyPopper, Lock, Key
 } from 'lucide-react';
+
+interface SurpriseProps {
+  onComplete: () => void;
+}
 
 interface EnvelopeData {
   id: number;
@@ -210,8 +213,7 @@ const envelopes: EnvelopeData[] = [
       "I want to remind you that you are cared. In the busyness of life, we forget to tell people that they matter and what could be the best possible day than this lol",
     ]
   },
-  // The New Password Protected Envelope
-{
+  {
     id: 21,
     label: "LOL",
     icon: <Lock className="text-gray-700" size={20} />,
@@ -285,10 +287,9 @@ const FloatingSparkles: React.FC = () => {
   );
 };
 
-const Surprise: React.FC = () => {
+const Surprise: React.FC<SurpriseProps> = ({ onComplete }) => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  
-  // Password Modal State
+
   const [pendingEnvelope, setPendingEnvelope] = useState<number | null>(null);
   const [passwordInput, setPasswordInput] = useState("");
   const [errorShake, setErrorShake] = useState(0);
@@ -319,6 +320,8 @@ const Surprise: React.FC = () => {
       setErrorShake(prev => prev + 1);
     }
   };
+
+  const isOverlayOpen = pendingEnvelope !== null || selectedId !== null;
 
   return (
     <div className="min-h-dvh bg-aesthetic p-6 relative overflow-hidden">
@@ -358,7 +361,7 @@ const Surprise: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto pt-10 pb-20 relative">
+      <div className="max-w-6xl mx-auto pt-10 pb-16 relative">
         <div className="text-center mb-14">
           <h2 className="font-serif-title text-4xl md:text-6xl text-gray-800 tracking-tight">
             FOR THE CUTEST GIRL
@@ -369,7 +372,7 @@ const Surprise: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 pb-24">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 pb-10">
           {envelopes.map((env, index) => (
             <motion.button
               key={env.id}
@@ -429,6 +432,24 @@ const Surprise: React.FC = () => {
             </motion.button>
           ))}
         </div>
+
+        {/* Continue button (next stage) */}
+        <div className="flex items-center justify-center pt-4">
+          <button
+            type="button"
+            onClick={onComplete}
+            disabled={isOverlayOpen}
+            className={[
+              "px-10 py-4 rounded-full font-sans-body text-sm tracking-widest uppercase",
+              "transition-all duration-200 shadow-lg",
+              isOverlayOpen
+                ? "bg-gray-400 text-white cursor-not-allowed opacity-70"
+                : "bg-gray-800 text-white hover:bg-gray-700 active:scale-95"
+            ].join(" ")}
+          >
+            Continue
+          </button>
+        </div>
       </div>
 
       {/* Password Modal */}
@@ -443,28 +464,28 @@ const Surprise: React.FC = () => {
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1, 
+              animate={{
+                opacity: 1,
+                scale: 1,
                 y: 0,
-                x: errorShake % 2 === 0 ? 0 : [0, -10, 10, -10, 10, 0] 
+                x: errorShake % 2 === 0 ? 0 : [0, -10, 10, -10, 10, 0]
               }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ type: "spring", duration: 0.4 }}
               className="w-full max-w-sm bg-white/90 backdrop-blur-xl rounded-[2rem] shadow-2xl p-8 border border-pink-100 relative text-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <button 
-                 onClick={() => setPendingEnvelope(null)}
-                 className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              <button
+                onClick={() => setPendingEnvelope(null)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
               >
                 <X size={20} />
               </button>
 
               <div className="mb-6 flex justify-center">
-                 <div className="w-16 h-16 rounded-full bg-pink-50 flex items-center justify-center shadow-inner text-pink-400">
-                    <Key size={30} />
-                 </div>
+                <div className="w-16 h-16 rounded-full bg-pink-50 flex items-center justify-center shadow-inner text-pink-400">
+                  <Key size={30} />
+                </div>
               </div>
 
               <h3 className="text-2xl font-serif-title text-gray-800 mb-2">Shhh! Top Secret</h3>
@@ -473,7 +494,7 @@ const Surprise: React.FC = () => {
               </p>
 
               <form onSubmit={handleUnlock} className="space-y-4">
-                <input 
+                <input
                   type="password"
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
@@ -481,7 +502,7 @@ const Surprise: React.FC = () => {
                   className="w-full px-5 py-3 rounded-xl bg-pink-50/50 border border-pink-100 text-center text-gray-700 placeholder:text-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all font-sans-body"
                   autoFocus
                 />
-                <button 
+                <button
                   type="submit"
                   className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-300 to-rose-300 text-white font-medium shadow-md shadow-pink-200/50 hover:shadow-lg hover:shadow-pink-200/60 active:scale-95 transition-all duration-200"
                 >
@@ -511,29 +532,22 @@ const Surprise: React.FC = () => {
               className="w-full max-w-2xl h-[82vh] rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col border border-white/80 bg-white"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* pink ribbon border */}
               <div className="pointer-events-none absolute inset-0">
                 <div className="absolute inset-0 rounded-[2.5rem] ring-2 ring-pink-200/55" />
                 <div className="absolute inset-[10px] rounded-[2.1rem] ring-1 ring-white/70" />
               </div>
 
-              {/* Letter paper */}
               <div className={`relative flex-1 bg-gradient-to-b ${letterTheme.paper}`}>
-                {/* background decor */}
                 <div className="pointer-events-none absolute inset-0">
-                  {/* blobs */}
                   <div className={`absolute -top-20 -left-20 w-72 h-72 rounded-full blur-3xl ${letterTheme.blobA}`} />
                   <div className={`absolute -bottom-24 -right-24 w-80 h-80 rounded-full blur-3xl ${letterTheme.blobB}`} />
 
-                  {/* floating sparkles inside letter */}
                   <div className="absolute inset-0 opacity-[0.75]">
                     <FloatingSparkles />
                   </div>
 
-                  {/* ribbon strip across the top */}
                   <div className={`absolute top-0 left-0 right-0 h-10 ${letterTheme.ribbon} opacity-55`} />
 
-                  {/* cute birthday corners */}
                   <div className="absolute top-14 left-10 opacity-[0.16] rotate-[-10deg]">
                     <PartyPopper size={28} className="text-gray-700" />
                   </div>
@@ -541,7 +555,6 @@ const Surprise: React.FC = () => {
                     <Cake size={26} className="text-gray-700" />
                   </div>
 
-                  {/* girly stationery doodles */}
                   <div className="absolute bottom-24 left-10 opacity-[0.14] -rotate-12">
                     <PenLine size={26} className="text-gray-700" />
                   </div>
@@ -552,14 +565,12 @@ const Surprise: React.FC = () => {
                     <Paperclip size={26} className="text-gray-700" />
                   </div>
 
-                  {/* subtle frames */}
                   <div className="absolute inset-0 opacity-[0.09]">
                     <div className="absolute top-28 left-16 w-24 h-24 rounded-3xl border border-gray-500/40 rotate-12" />
                     <div className="absolute bottom-28 right-16 w-28 h-28 rounded-3xl border border-gray-500/40 -rotate-12" />
                   </div>
                 </div>
 
-                {/* header */}
                 <div className="relative flex items-center justify-between px-7 md:px-10 py-7 border-b border-white/60 bg-white/50 backdrop-blur-sm">
                   <div className="flex items-center gap-3">
                     <div className="p-2.5 bg-white/85 rounded-full shadow-sm ring-1 ring-white/70 text-gray-700">
@@ -584,7 +595,6 @@ const Surprise: React.FC = () => {
                   </button>
                 </div>
 
-                {/* body */}
                 <div className="relative px-7 md:px-10 py-8 overflow-y-auto h-[calc(82vh-92px)]">
                   <div className="space-y-5 text-gray-700 font-sans-body leading-relaxed text-[15px] md:text-[16px]">
                     {selectedEnvelope.content.map((paragraph, i) => (
@@ -594,24 +604,19 @@ const Surprise: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* footer seal: wax + icon-only */}
                   <div className="mt-12 flex items-center justify-center">
                     <div className="relative">
-                      {/* wax seal base */}
                       <div className={`absolute inset-0 rounded-full blur-xl ${letterTheme.wax}`} />
                       <div className={`absolute -top-2 -left-2 w-20 h-20 rounded-full ${letterTheme.wax} opacity-55`} />
 
-                      {/* stamp ring */}
                       <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-white/70 ring-1 ring-white/80 shadow-md text-gray-700">
                         <div className="scale-110">
                           {selectedEnvelope.icon}
                         </div>
                       </div>
 
-                      {/* ribbon tails */}
                       <div className={`absolute -bottom-5 left-1/2 -translate-x-1/2 w-14 h-6 ${letterTheme.ribbon} opacity-45 rounded-b-2xl`} />
 
-                      {/* tiny accents */}
                       <div className="absolute -right-10 top-2 opacity-[0.14]">
                         <Sparkles size={18} className="text-gray-700" />
                       </div>
