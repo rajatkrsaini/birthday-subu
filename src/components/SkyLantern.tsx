@@ -62,8 +62,8 @@ const SkyLantern: React.FC = () => {
 
   const headline = !released ? 'Make a Wish' : 'Goodnight, Subu.';
   const subline = !released
-    ? "You read the letters. You blew the candles. Now send one quiet wish into the sky."
-    : "If life gets loud, come back here. This page will still be waiting for you.";
+    ? "You blew out the candles. You read the texts. Now send one quiet wish into the sky."
+    : "This webpage will still be waiting for you next year.";
 
   return (
     <div className="min-h-dvh relative overflow-hidden flex flex-col items-center justify-center text-center px-6 py-10">
