@@ -188,7 +188,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
 
               <div className="px-4 py-2 rounded-full bg-white/65 border border-white/70 shadow-sm">
                 <p className="text-[11px] md:text-xs tracking-[0.35em] uppercase text-gray-600 font-sans-body">
-                  tiny efforts for my bestie.
+                  For my HG lol
                 </p>
               </div>
 
