@@ -251,9 +251,61 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                   <Star size={16} className="text-gray-700" />
                 </motion.div>
 
-                <h1 className="relative font-serif-title text-6xl md:text-7xl text-gray-800 leading-[0.95] tracking-tight">
-                  Happy Birthday
-                </h1>
+                <div className="relative inline-block">
+  {/* soft highlight behind text */}
+  <motion.div
+    className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 w-[110%] h-[70%] rounded-full bg-gradient-to-r from-pink-200/45 via-amber-200/25 to-purple-200/35 blur-2xl"
+    animate={{ opacity: [0.35, 0.55, 0.35], scale: [1, 1.03, 1] }}
+    transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
+  />
+
+  {/* sparkly corners */}
+  <motion.div
+    className="absolute -top-6 -left-8 opacity-[0.22]"
+    animate={{ rotate: [0, 8, 0], y: [0, -3, 0] }}
+    transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+  >
+    <Sparkles size={18} className="text-gray-700" />
+  </motion.div>
+
+  <motion.div
+    className="absolute -top-5 -right-8 opacity-[0.18]"
+    animate={{ rotate: [0, -8, 0], y: [0, -3, 0] }}
+    transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut' }}
+  >
+    <Star size={18} className="text-gray-700" />
+  </motion.div>
+
+  {/* decorative title */}
+  <h1 className="relative font-serif-title text-6xl md:text-7xl leading-[0.95] tracking-tight">
+    {/* outline layer */}
+    <span
+      className="absolute inset-0 select-none"
+      style={{
+        WebkitTextStroke: '1px rgba(244, 114, 182, 0.35)',
+        color: 'transparent',
+        filter: 'blur(0.2px)',
+      }}
+      aria-hidden="true"
+    >
+      Happy Birthday
+    </span>
+
+    {/* main layer */}
+    <span
+      className="relative"
+      style={{
+        backgroundImage: 'linear-gradient(90deg, #111827 0%, #111827 55%, rgba(244,114,182,0.95) 100%)',
+        WebkitBackgroundClip: 'text',
+        color: 'transparent',
+        textShadow: '0 12px 30px rgba(244, 114, 182, 0.12)',
+      }}
+    >
+      Happy Birthday
+    </span>
+  </h1>
+</div>
+
 
                 <motion.div
                   className="relative mx-auto mt-4 h-[3px] w-20 rounded-full bg-gradient-to-r from-pink-300/80 via-amber-300/70 to-purple-300/80"
@@ -268,7 +320,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
             <div className="mt-9 flex items-center justify-center">
               <motion.div whileHover={{ scale: 1.04 }} className="relative">
                 <motion.div
-                  className="absolute -inset-4 rounded-[1.8rem] bg-gradient-to-r from-pink-200/45 to-green-200/35 blur-xl"
+className="absolute -inset-6 rounded-[2.2rem] bg-gradient-to-r from-pink-200/50 via-amber-200/25 to-purple-200/35 blur-2xl"
                   animate={{ opacity: [0.35, 0.55, 0.35] }}
                   transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
                 />
@@ -277,13 +329,43 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                     <Crown size={18} className="text-gray-700" />
                   </div>
 
-                  <span className="font-serif-title text-6xl md:text-8xl text-gray-800 tracking-tight">
-                    Subu
-                  </span>
+                  <div className="relative inline-block">
+  {/* subtle shine sweep */}
+  <motion.div
+    className="pointer-events-none absolute -inset-6 opacity-[0.25]"
+    animate={{ x: ['-35%', '35%', '-35%'] }}
+    transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+    style={{
+      background:
+        'linear-gradient(90deg, transparent 0%, rgba(244,114,182,0.18) 35%, rgba(167,139,250,0.16) 55%, transparent 100%)',
+      filter: 'blur(10px)',
+    }}
+  />
+
+  <span
+    className="relative font-serif-title text-6xl md:text-8xl tracking-tight"
+    style={{
+      backgroundImage: 'linear-gradient(90deg, #111827 0%, #111827 60%, rgba(244,114,182,0.95) 100%)',
+      WebkitBackgroundClip: 'text',
+      color: 'transparent',
+      textShadow: '0 14px 34px rgba(244,114,182,0.14)',
+    }}
+  >
+    Subu
+  </span>
+
+  {/* cute underline */}
+  <div className="mt-3 flex items-center justify-center gap-2">
+    <div className="h-[2px] w-10 rounded-full bg-pink-300/70" />
+    <Sparkles size={14} className="text-gray-700 opacity-60" />
+    <div className="h-[2px] w-10 rounded-full bg-purple-300/60" />
+  </div>
+</div>
+
 
                   <div className="mt-2 flex items-center justify-center gap-2">
-                    <div className="px-3 py-1 rounded-full bg-pink-100/70 border border-white/80 text-[11px] tracking-wider uppercase text-gray-700 font-sans-body">
-                      cutest human
+                    <div className="px-3 py-1 rounded-full bg-gradient-to-r from-pink-100/80 to-purple-100/70 border border-white/85 text-[11px] tracking-wider uppercase text-gray-800 font-sans-body shadow-sm">
+            cutest human  
                     </div>
                   </div>
                 </div>
