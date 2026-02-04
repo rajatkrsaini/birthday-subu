@@ -49,7 +49,7 @@ const Balloon = ({
   </motion.div>
 );
 
-const FloatingCuteLayer: React.FC = () => {
+const FloatingCuteLayer: React.FC<{ className?: string }> = ({ className }) => {
   const items = useMemo<FloatItem[]>(
     () =>
       Array.from({ length: 22 }).map((_, i) => {
@@ -61,14 +61,12 @@ const FloatingCuteLayer: React.FC = () => {
           'qt',
           'cutest',
           'lazy ass',
-          'no stress pls',
-          'my hg',
+          'cutie',
+          'op hg',
           'queen',
           'smile',
           'why so cute',
-          'happy birthday',
           'slay',
-          'happy',
           'okay wow',
         ];
 
@@ -102,7 +100,7 @@ const FloatingCuteLayer: React.FC = () => {
   );
 
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className={['pointer-events-none absolute inset-0 overflow-hidden', className ?? ''].join(' ')}>
       {items.map((it) => (
         <motion.div
           key={it.id}
@@ -138,25 +136,15 @@ const FloatingCuteLayer: React.FC = () => {
 const Intro: React.FC<IntroProps> = ({ onStart }) => {
   return (
     <div className="min-h-dvh relative overflow-hidden flex items-center justify-center px-5 py-10">
-      {/* Background */}
+      {/* Simple pink background (outside card) */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-rose-50 via-white to-pink-50" />
-        <div className="absolute -top-28 -left-28 w-[30rem] h-[30rem] rounded-full bg-pink-200/30 blur-3xl" />
-        <div className="absolute top-10 -right-36 w-[36rem] h-[36rem] rounded-full bg-purple-200/22 blur-3xl" />
-        <div className="absolute -bottom-40 left-1/4 w-[38rem] h-[38rem] rounded-full bg-amber-200/16 blur-3xl" />
-
-        <div
-          className="absolute inset-0 opacity-[0.22]"
-          style={{
-            backgroundImage: "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)",
-            backgroundSize: "18px 18px",
-          }}
-        />
-
-        <FloatingCuteLayer />
+        <div className="absolute inset-0 bg-gradient-to-b from-rose-100 via-rose-50 to-pink-100" />
+        <div className="absolute -top-28 -left-28 w-[30rem] h-[30rem] rounded-full bg-pink-200/25 blur-3xl" />
+        <div className="absolute top-10 -right-36 w-[36rem] h-[36rem] rounded-full bg-purple-200/18 blur-3xl" />
+        <div className="absolute -bottom-40 left-1/4 w-[38rem] h-[38rem] rounded-full bg-amber-200/14 blur-3xl" />
       </div>
 
-      {/* Balloons */}
+      {/* Balloons stay outside */}
       <Balloon color="bg-pink-200" delay={0} left="left-[8%]" size={92} />
       <Balloon color="bg-green-100" delay={4} left="left-[22%]" size={60} />
       <Balloon color="bg-rose-100" delay={7} left="left-[78%]" size={74} />
@@ -174,7 +162,27 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
         {/* Outer glow */}
         <div className="absolute -inset-5 rounded-[3.4rem] bg-gradient-to-r from-pink-200/25 via-amber-200/18 to-purple-200/20 blur-2xl" />
 
-        <div className="relative rounded-[3rem] overflow-hidden border border-white/70 bg-white/45 backdrop-blur-md shadow-2xl">
+        <div className="relative rounded-[3rem] overflow-hidden border border-white/70 bg-white/55 backdrop-blur-md shadow-2xl">
+          {/* Floating elements move INSIDE card background */}
+          <div className="absolute inset-0">
+            {/* soft inner gradients */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-rose-50/55 to-white/70" />
+            <div className="absolute -top-32 -left-28 w-[26rem] h-[26rem] rounded-full bg-pink-200/22 blur-3xl" />
+            <div className="absolute -bottom-36 right-[-6rem] w-[30rem] h-[30rem] rounded-full bg-green-200/16 blur-3xl" />
+
+            {/* subtle grain */}
+            <div
+              className="absolute inset-0 opacity-[0.14]"
+              style={{
+                backgroundImage: "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)",
+                backgroundSize: "18px 18px",
+              }}
+            />
+
+            {/* floating chips/icons */}
+            <FloatingCuteLayer className="opacity-[0.95]" />
+          </div>
+
           {/* Top ribbon */}
           <div className="relative px-8 md:px-12 pt-10 pb-7">
             <div className="absolute inset-0 bg-gradient-to-r from-pink-100/55 via-white/40 to-green-100/45" />
@@ -219,14 +227,29 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
               I know the moment is gone and you will never feel the same.
             </h2>
 
-            {/* Title */}
+            {/* Title (decorated, text unchanged) */}
             <div className="mt-8 text-center">
               <div className="relative inline-block">
                 <motion.div
-                  className="absolute -inset-6 rounded-full bg-gradient-to-r from-pink-200/35 via-amber-200/25 to-purple-200/30 blur-2xl"
-                  animate={{ opacity: [0.35, 0.55, 0.35] }}
+                  className="absolute -inset-8 rounded-full bg-gradient-to-r from-pink-200/28 via-amber-200/20 to-purple-200/24 blur-2xl"
+                  animate={{ opacity: [0.28, 0.48, 0.28] }}
                   transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
                 />
+                {/* tiny sparkles around title */}
+                <motion.div
+                  className="absolute -top-6 -left-6 opacity-[0.22]"
+                  animate={{ rotate: [0, 10, 0], scale: [1, 1.1, 1] }}
+                  transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  <Sparkles size={18} className="text-gray-700" />
+                </motion.div>
+                <motion.div
+                  className="absolute -top-4 -right-7 opacity-[0.18]"
+                  animate={{ rotate: [0, -12, 0], scale: [1, 1.08, 1] }}
+                  transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  <Star size={16} className="text-gray-700" />
+                </motion.div>
 
                 <h1 className="relative font-serif-title text-6xl md:text-7xl text-gray-800 leading-[0.95] tracking-tight">
                   Happy Birthday
@@ -235,13 +258,13 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                 <motion.div
                   className="relative mx-auto mt-4 h-[3px] w-20 rounded-full bg-gradient-to-r from-pink-300/80 via-amber-300/70 to-purple-300/80"
                   initial={{ width: 40, opacity: 0 }}
-                  animate={{ width: 160, opacity: 1 }}
+                  animate={{ width: 180, opacity: 1 }}
                   transition={{ duration: 0.9, ease: 'easeOut' }}
                 />
               </div>
             </div>
 
-            {/* Name - big standout */}
+            {/* Name */}
             <div className="mt-9 flex items-center justify-center">
               <motion.div whileHover={{ scale: 1.04 }} className="relative">
                 <motion.div
@@ -249,7 +272,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                   animate={{ opacity: [0.35, 0.55, 0.35] }}
                   transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
                 />
-                <div className="relative px-6 py-3 rounded-[1.6rem] bg-white/70 border border-white/80 shadow-md">
+                <div className="relative px-6 py-3 rounded-[1.6rem] bg-white/75 border border-white/85 shadow-md">
                   <div className="absolute -top-3 -right-3 w-9 h-9 rounded-full bg-yellow-100/70 border border-white/70 flex items-center justify-center shadow-sm">
                     <Crown size={18} className="text-gray-700" />
                   </div>
@@ -267,9 +290,9 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
               </motion.div>
             </div>
 
-            {/* Wish block - centered and clamped to 2 lines */}
+            {/* Wish block */}
             <div className="mt-8 flex justify-center">
-              <div className="w-full max-w-md rounded-2xl bg-white/55 border border-white/80 p-5 text-center shadow-sm">
+              <div className="w-full max-w-md rounded-2xl bg-white/60 border border-white/85 p-5 text-center shadow-sm">
                 <p className="text-[11px] tracking-[0.32em] uppercase text-gray-500 font-sans-body">
                   ..
                 </p>
