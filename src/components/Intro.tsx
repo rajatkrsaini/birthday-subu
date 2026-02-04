@@ -294,7 +294,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                 />
                 <div className="absolute inset-0 bg-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="relative z-10 flex items-center justify-center gap-2 font-sans-body text-sm tracking-widest uppercase">
-                  Open the pages <Sparkles size={16} className="text-yellow-200" />
+                  Click Here Pretty Human <Sparkles size={16} className="text-yellow-200" />
                 </span>
               </motion.button>
             </div>
