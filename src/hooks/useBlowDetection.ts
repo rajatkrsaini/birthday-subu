@@ -18,13 +18,11 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
   const streamRef = useRef<MediaStream | null>(null);
   const rafRef = useRef<number | null>(null);
 
-  // Noise floor calibration
   const noiseFloorRef = useRef<number>(0.02);
   const calibratingRef = useRef<boolean>(false);
   const calibrationSamplesRef = useRef<number>(0);
   const calibrationSumRef = useRef<number>(0);
 
-  // Hysteresis (avoid flicker)
   const blowingRef = useRef<boolean>(false);
 
   const hardStop = useCallback(() => {
@@ -52,7 +50,6 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
 
   const startListening = useCallback(async () => {
     try {
-      // If already started, do nothing
       if (audioContext) return;
 
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -85,7 +82,6 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
       streamRef.current = stream;
       setAudioContext(context);
 
-      // reset calibration
       noiseFloorRef.current = 0.02;
       calibratingRef.current = true;
       calibrationSamplesRef.current = 0;
@@ -99,13 +95,11 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
     }
   }, [audioContext]);
 
-  // Stop when stage deactivates
   useEffect(() => {
     if (isActive) return;
     hardStop();
   }, [isActive, hardStop]);
 
-  // Main analyzer loop
   useEffect(() => {
     if (!isActive || !audioContext || !analyserRef.current || !dataArrayRef.current) {
       setIsBlowing(false);
@@ -120,16 +114,16 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
     const check = () => {
       if (!analyser || !dataArray) return;
 
-      analyser.getByteTimeDomainData(dataArray);
+      // Vercel/TS DOM lib mismatch fix:
+      analyser.getByteTimeDomainData(dataArray as any);
 
       let sumSquares = 0;
       for (let i = 0; i < dataArray.length; i++) {
-        const v = (dataArray[i] - 128) / 128; // -1..1
+        const v = (dataArray[i] - 128) / 128;
         sumSquares += v * v;
       }
       const rms = Math.sqrt(sumSquares / dataArray.length);
 
-      // Calibrate noise floor ~700ms (about 40 frames)
       if (calibratingRef.current) {
         calibrationSumRef.current += rms;
         calibrationSamplesRef.current += 1;
@@ -145,10 +139,8 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
       const normalized = Math.max(0, (rms - nf) / (0.6 - nf));
       const clamped = Math.min(1, normalized);
 
-      // Smooth UI level
       setLevel((prev) => prev * 0.75 + clamped * 0.25);
 
-      // Hysteresis
       const ON = threshold;
       const OFF = Math.max(0.04, threshold * 0.55);
 
@@ -171,7 +163,6 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
     };
   }, [isActive, audioContext, threshold]);
 
-  // Unmount cleanup
   useEffect(() => {
     return () => hardStop();
   }, [hardStop]);
