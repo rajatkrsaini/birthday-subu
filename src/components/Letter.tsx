@@ -60,13 +60,13 @@ const Letter: React.FC<LetterProps> = ({ onComplete }) => {
           
           <div className="font-serif-title italic text-lg md:text-xl text-gray-600 leading-loose mb-10 text-justify">
             <p className="mb-4">
-              "Happy Birthday Subu! 🎉"
+              Happy Birthday Subu! 🎉
             </p>
             <p className="mb-4">
               To the person who is closest to me -- thank you for being YOU with me. 
             </p>
             <p>
-              I hope this year brings you everything you've been working for and more. You deserve the world."
+              I hope this year brings you everything you've been working for and more. You deserve the world.
             </p>
           </div>
           
@@ -74,7 +74,7 @@ const Letter: React.FC<LetterProps> = ({ onComplete }) => {
             onClick={onComplete}
             className="bg-gray-800 text-white py-4 px-10 rounded-full shadow-lg flex items-center gap-3 mx-auto hover:bg-gray-700 transition-colors font-sans-body text-sm tracking-widest uppercase"
           >
-            See Something <ArrowRight size={16} />
+            There's More <ArrowRight size={16} />
           </button>
         </motion.div>
       )}
