@@ -24,11 +24,37 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
   const calibrationSamplesRef = useRef<number>(0);
   const calibrationSumRef = useRef<number>(0);
 
-  // Hysteresis so it doesn’t flicker
+  // Hysteresis (avoid flicker)
   const blowingRef = useRef<boolean>(false);
+
+  const hardStop = useCallback(() => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = null;
+
+    try {
+      streamRef.current?.getTracks().forEach((t) => t.stop());
+    } catch {}
+
+    streamRef.current = null;
+    analyserRef.current = null;
+    dataArrayRef.current = null;
+    sourceRef.current = null;
+
+    setIsBlowing(false);
+    setLevel(0);
+    blowingRef.current = false;
+
+    if (audioContext && audioContext.state !== 'closed') {
+      audioContext.close();
+    }
+    setAudioContext(null);
+  }, [audioContext]);
 
   const startListening = useCallback(async () => {
     try {
+      // If already started, do nothing
+      if (audioContext) return;
+
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: {
           echoCancellation: true,
@@ -40,15 +66,18 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
       const ContextCtor = (window.AudioContext || (window as any).webkitAudioContext) as typeof AudioContext;
       const context = new ContextCtor();
 
+      if (context.state === 'suspended') {
+        await context.resume();
+      }
+
       const analyser = context.createAnalyser();
-      analyser.fftSize = 1024; // better resolution for RMS
+      analyser.fftSize = 1024;
       analyser.smoothingTimeConstant = 0.85;
 
       const source = context.createMediaStreamSource(stream);
       source.connect(analyser);
 
-      const bufferLength = analyser.fftSize;
-      const dataArray = new Uint8Array(bufferLength);
+      const dataArray = new Uint8Array(analyser.fftSize);
 
       analyserRef.current = analyser;
       dataArrayRef.current = dataArray;
@@ -61,36 +90,24 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
       calibratingRef.current = true;
       calibrationSamplesRef.current = 0;
       calibrationSumRef.current = 0;
+
       setLevel(0);
       setIsBlowing(false);
       blowingRef.current = false;
     } catch (err) {
       console.error('Microphone access denied or error:', err);
     }
-  }, []);
-
-  useEffect(() => {
-    // Cleanup on unmount or deactivation
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-
-      try {
-        streamRef.current?.getTracks().forEach((t) => t.stop());
-      } catch {}
-
-      if (audioContext && audioContext.state !== 'closed') {
-        audioContext.close();
-      }
-
-      analyserRef.current = null;
-      dataArrayRef.current = null;
-      sourceRef.current = null;
-      streamRef.current = null;
-    };
   }, [audioContext]);
 
+  // Stop when stage deactivates
   useEffect(() => {
-    if (!isActive || !analyserRef.current || !dataArrayRef.current) {
+    if (isActive) return;
+    hardStop();
+  }, [isActive, hardStop]);
+
+  // Main analyzer loop
+  useEffect(() => {
+    if (!isActive || !audioContext || !analyserRef.current || !dataArrayRef.current) {
       setIsBlowing(false);
       setLevel(0);
       blowingRef.current = false;
@@ -103,7 +120,6 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
     const check = () => {
       if (!analyser || !dataArray) return;
 
-      // Use time-domain data for loudness (RMS)
       analyser.getByteTimeDomainData(dataArray);
 
       let sumSquares = 0;
@@ -111,31 +127,29 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
         const v = (dataArray[i] - 128) / 128; // -1..1
         sumSquares += v * v;
       }
-      const rms = Math.sqrt(sumSquares / dataArray.length); // 0..~1
+      const rms = Math.sqrt(sumSquares / dataArray.length);
 
-      // Calibrate noise floor for first ~700ms (about 40 frames)
+      // Calibrate noise floor ~700ms (about 40 frames)
       if (calibratingRef.current) {
         calibrationSumRef.current += rms;
         calibrationSamplesRef.current += 1;
 
         if (calibrationSamplesRef.current >= 40) {
           const avg = calibrationSumRef.current / calibrationSamplesRef.current;
-          // add a small cushion so normal room noise doesn’t trigger
           noiseFloorRef.current = Math.min(0.15, Math.max(0.01, avg + 0.02));
           calibratingRef.current = false;
         }
       }
 
-      // Normalize above noise floor
       const nf = noiseFloorRef.current;
-      const normalized = Math.max(0, (rms - nf) / (0.6 - nf)); // clamp later
+      const normalized = Math.max(0, (rms - nf) / (0.6 - nf));
       const clamped = Math.min(1, normalized);
 
-      // Smooth the reported level (UI-friendly)
+      // Smooth UI level
       setLevel((prev) => prev * 0.75 + clamped * 0.25);
 
-      // Hysteresis thresholds
-      const ON = threshold; // default 0.12
+      // Hysteresis
+      const ON = threshold;
       const OFF = Math.max(0.04, threshold * 0.55);
 
       if (!blowingRef.current && clamped > ON) {
@@ -153,8 +167,14 @@ export const useBlowDetection = (isActive: boolean, threshold: number = 0.12): B
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
     };
-  }, [isActive, threshold]);
+  }, [isActive, audioContext, threshold]);
+
+  // Unmount cleanup
+  useEffect(() => {
+    return () => hardStop();
+  }, [hardStop]);
 
   return { isBlowing, level, startListening, hasPermission: !!audioContext };
 };
