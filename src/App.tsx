@@ -4,6 +4,9 @@ import Intro from './components/Intro';
 import Cake from './components/Cake';
 import Letter from './components/Letter';
 import Surprise from './components/Surprise';
+import Contract from './components/Contract';
+import SkyLantern from './components/SkyLantern';
+
 import { motion, AnimatePresence } from 'framer-motion';
 
 const App: React.FC = () => {
@@ -43,3 +46,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
