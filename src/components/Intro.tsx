@@ -370,32 +370,22 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                     />
 
                     {/* outlined name + gentle pastel tint */}
-                    <span className="relative font-serif-title text-6xl md:text-8xl tracking-tight">
-                      <span
-                        className="absolute inset-0 select-none"
-                        style={{
-                          WebkitTextStroke: '1px rgba(167,139,250,0.22)',
-                          color: 'transparent',
-                        }}
-                        aria-hidden="true"
-                      >
-                        Subu
-                      </span>
-
-                      <span
-                        className="relative"
-                        style={{
-                          color: '#111827',
-                          textShadow: '0 14px 34px rgba(244,114,182,0.10)',
-                        }}
-                      >
-                        Subu
-                      </span>
+<span className="relative font-serif-title text-5xl md:text-7xl tracking-[0.02em]">
+<span
+  className="relative bg-clip-text text-transparent"
+  style={{
+    backgroundImage:
+      'linear-gradient(135deg, #f472b6 0%, #fb7185 35%, #c084fc 70%)',
+    textShadow: '0 6px 18px rgba(244,114,182,0.18)',
+  }}
+>
+  Subu
+</span>
                     </span>
 
                     {/* pastel underline with mini icon */}
-                    <div className="mt-3 flex items-center justify-center gap-2">
-                      <div className="h-[2px] w-12 rounded-full bg-pink-300/55" />
+<div className="mt-3 mx-auto h-[3px] w-20 rounded-full bg-gradient-to-r from-pink-300 via-rose-300 to-purple-300 opacity-70" />
+                    <div className="h-[2px] w-12 rounded-full bg-pink-300/55" />
                       <Sparkles size={14} className="text-gray-700 opacity-55" />
                       <div className="h-[2px] w-12 rounded-full bg-purple-300/45" />
                     </div>
