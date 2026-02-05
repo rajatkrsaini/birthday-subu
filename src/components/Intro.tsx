@@ -350,8 +350,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                   transition={{ duration: 3.0, repeat: Infinity, ease: 'easeInOut' }}
                 />
 
-                <div className="relative px-7 py-5 rounded-[2rem] bg-white/78 border border-white/90 shadow-lg">
-                  {/* crown badge: pastel */}
+<div className="relative px-7 py-5 rounded-[2rem] bg-white/80 border border-white/90 shadow-lg ring-1 ring-pink-200/30">                  {/* crown badge: pastel */}
                   <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-amber-100/70 border border-white/80 flex items-center justify-center shadow-md">
                     <Crown size={18} className="text-gray-700" />
                   </div>
@@ -370,28 +369,88 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                     />
 
                     {/* outlined name + gentle pastel tint */}
-                    <span className="relative font-serif-title text-6xl md:text-8xl tracking-tight">
-                      <span
-                        className="absolute inset-0 select-none"
-                        style={{
-                          WebkitTextStroke: '1px rgba(167,139,250,0.22)',
-                          color: 'transparent',
-                        }}
-                        aria-hidden="true"
-                      >
-                        Subu
-                      </span>
+                 <span className="relative font-serif-title text-6xl md:text-8xl tracking-tight leading-none">
+  {/* OUTLINE LAYER */}
+  <span
+    className="absolute inset-0 select-none"
+    style={{
+      WebkitTextStroke: '1px rgba(167,139,250,0.28)',
+      color: 'transparent',
+      filter: 'blur(0.15px)',
+    }}
+    aria-hidden="true"
+  >
+    <span>Sub</span>
+    <span className="relative inline-block">
+      u
+      {/* outline ribbon */}
+      <span
+        className="absolute -top-5 left-1/2 -translate-x-1/2 rotate-[-10deg] opacity-90"
+        aria-hidden="true"
+      >
+        <svg width="58" height="24" viewBox="0 0 58 24" fill="none">
+          <path d="M6 10 C14 2, 44 2, 52 10 C44 18, 14 18, 6 10Z" fill="rgba(244,114,182,0.26)" />
+          <path d="M6 10 C14 2, 44 2, 52 10" stroke="rgba(255,255,255,0.75)" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M6 10 C14 18, 44 18, 52 10" stroke="rgba(167,139,250,0.35)" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M22 10 L16 18" stroke="rgba(244,114,182,0.35)" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M36 10 L42 18" stroke="rgba(244,114,182,0.35)" strokeWidth="1.2" strokeLinecap="round"/>
+          <circle cx="29" cy="10" r="2.2" fill="rgba(255,255,255,0.7)"/>
+        </svg>
+      </span>
+    </span>
+  </span>
 
-                      <span
-                        className="relative"
-                        style={{
-                          color: '#111827',
-                          textShadow: '0 14px 34px rgba(244,114,182,0.10)',
-                        }}
-                      >
-                        Subu
-                      </span>
-                    </span>
+  {/* MAIN LAYER */}
+  <span
+    className="relative"
+    style={{
+      color: '#111827',
+      textShadow: '0 14px 34px rgba(244,114,182,0.14), 0 22px 50px rgba(167,139,250,0.10)',
+    }}
+  >
+    {/* “girly” tint overlay: gradient via background-clip */}
+    <span
+      className="bg-clip-text text-transparent"
+      style={{
+        backgroundImage:
+          'linear-gradient(90deg, rgba(17,24,39,1) 0%, rgba(17,24,39,1) 55%, rgba(244,114,182,0.95) 100%)',
+      }}
+    >
+      <span>Sub</span>
+
+      <span className="relative inline-block">
+        u
+
+        {/* main ribbon */}
+        <motion.span
+          className="absolute -top-5 left-1/2 -translate-x-1/2 rotate-[-10deg]"
+          animate={{ y: [0, -1.5, 0], rotate: [-10, -8, -10] }}
+          transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <svg width="58" height="24" viewBox="0 0 58 24" fill="none">
+            <defs>
+              <linearGradient id="ribbonFill" x1="0" y1="0" x2="58" y2="24">
+                <stop stopColor="rgba(244,114,182,0.55)" />
+                <stop offset="1" stopColor="rgba(167,139,250,0.40)" />
+              </linearGradient>
+            </defs>
+
+            <path d="M6 10 C14 2, 44 2, 52 10 C44 18, 14 18, 6 10Z" fill="url(#ribbonFill)" />
+            <path d="M6 10 C14 2, 44 2, 52 10" stroke="rgba(255,255,255,0.85)" strokeWidth="1.2" strokeLinecap="round"/>
+            <path d="M6 10 C14 18, 44 18, 52 10" stroke="rgba(255,255,255,0.55)" strokeWidth="1.2" strokeLinecap="round"/>
+
+            {/* tails */}
+            <path d="M20 11 L14 20 L21 17" fill="rgba(244,114,182,0.22)"/>
+            <path d="M38 11 L44 20 L37 17" fill="rgba(167,139,250,0.18)"/>
+
+            {/* knot */}
+            <circle cx="29" cy="10" r="2.5" fill="rgba(255,255,255,0.75)"/>
+          </svg>
+        </motion.span>
+      </span>
+    </span>
+  </span>
+</span>
 
                     {/* pastel underline with mini icon */}
                     <div className="mt-3 flex items-center justify-center gap-2">
