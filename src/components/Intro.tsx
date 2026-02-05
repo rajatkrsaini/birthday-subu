@@ -294,12 +294,13 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                   </svg>
                 </div>
 
-                {/* Happy Birthday: pastel gradient + outline + glow */}
+                {/* Happy Birthday: muted pastel gradient + outline + glow */}
                 <h1 className="relative font-serif-title text-6xl md:text-7xl leading-[0.95] tracking-tight">
+                  {/* soft pastel outline */}
                   <span
                     className="absolute inset-0 select-none"
                     style={{
-                      WebkitTextStroke: '1.4px rgba(244,114,182,0.30)',
+                      WebkitTextStroke: '1.2px rgba(244,114,182,0.22)',
                       color: 'transparent',
                       filter: 'blur(0.2px)',
                     }}
@@ -308,6 +309,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                     Happy Birthday
                   </span>
 
+                  {/* glow layer */}
                   <span
                     className="absolute inset-0 select-none"
                     style={{
@@ -321,13 +323,13 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                     Happy Birthday
                   </span>
 
+                  {/* main muted pastel gradient text */}
                   <span
                     className="relative text-transparent bg-clip-text"
                     style={{
                       backgroundImage:
-                        'linear-gradient(90deg, rgba(244,114,182,0.95), rgba(251,191,36,0.85), rgba(167,139,250,0.95))',
-                      textShadow:
-                        '0 12px 34px rgba(244,114,182,0.10), 0 18px 44px rgba(167,139,250,0.08)',
+                        'linear-gradient(90deg, rgba(244,114,182,0.75), rgba(236,180,215,0.65), rgba(190,178,230,0.75))',
+                      textShadow: '0 10px 28px rgba(244,114,182,0.08), 0 16px 36px rgba(167,139,250,0.06)',
                     }}
                   >
                     Happy Birthday
@@ -383,12 +385,13 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                       }}
                     />
 
-                    {/* Subu: pastel gradient + outline + glow */}
+                    {/* Subu: muted pastel gradient + outline + glow */}
                     <span className="relative font-serif-title text-6xl md:text-8xl tracking-tight">
+                      {/* pastel outline */}
                       <span
                         className="absolute inset-0 select-none"
                         style={{
-                          WebkitTextStroke: '1.2px rgba(167,139,250,0.28)',
+                          WebkitTextStroke: '1.1px rgba(167,139,250,0.22)',
                           color: 'transparent',
                           filter: 'blur(0.15px)',
                         }}
@@ -397,6 +400,7 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                         Subu
                       </span>
 
+                      {/* glow layer */}
                       <span
                         className="absolute inset-0 select-none"
                         style={{
@@ -410,12 +414,13 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                         Subu
                       </span>
 
+                      {/* main muted pastel gradient text */}
                       <span
                         className="relative text-transparent bg-clip-text"
                         style={{
                           backgroundImage:
-                            'linear-gradient(90deg, rgba(244,114,182,0.95), rgba(167,139,250,0.95), rgba(110,231,183,0.80))',
-                          textShadow: '0 16px 44px rgba(244,114,182,0.10)',
+                            'linear-gradient(90deg, rgba(244,114,182,0.78), rgba(214,190,230,0.70), rgba(167,139,250,0.78))',
+                          textShadow: '0 12px 32px rgba(244,114,182,0.08)',
                         }}
                       >
                         Subu
