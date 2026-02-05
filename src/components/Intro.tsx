@@ -370,12 +370,12 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
                     />
 
                     {/* outlined name + gentle pastel tint */}
-                   <span className="relative text-6xl md:text-7xl tracking-[0.01em] font-[cursive]">
+                    <span className="relative text-5xl md:text-7xl tracking-[0.01em] font-[ui-rounded]">
   <span
     className="relative bg-clip-text text-transparent"
     style={{
-      backgroundImage: 'linear-gradient(135deg, #fb7185 0%, #f472b6 45%, #c084fc 100%)',
-      textShadow: '0 8px 22px rgba(244,114,182,0.18)',
+      backgroundImage: 'linear-gradient(135deg, #f472b6 0%, #fb7185 35%, #a78bfa 100%)',
+      textShadow: '0 10px 26px rgba(244,114,182,0.22)',
     }}
   >
     Subu
