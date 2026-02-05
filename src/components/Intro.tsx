@@ -20,6 +20,7 @@ type FloatItem = {
   icon?: React.ReactNode;
 };
 
+// ... (Balloon and FloatingCuteLayer components remain exactly the same)
 const Balloon = ({
   color,
   delay,
@@ -232,197 +233,113 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
               I know the moment is gone and you will never feel the same.
             </h2>
 
-            {/* Title: prettier, pastel accents, more decorative */}
+            {/* --- UPDATED: Happy Birthday Block --- */}
             <div className="mt-8 text-center">
               <div className="relative inline-block">
-                {/* pastel halo */}
-                <motion.div
-                  className="absolute -inset-10 rounded-full bg-gradient-to-r from-pink-200/18 via-amber-200/10 to-purple-200/14 blur-3xl"
-                  animate={{ opacity: [0.35, 0.55, 0.35], scale: [1, 1.02, 1] }}
-                  transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
-                />
+                
+                {/* Decorative Swirls behind */}
+                <div className="pointer-events-none absolute left-1/2 -top-6 -translate-x-1/2 w-48 h-20 opacity-30">
+                   <div className="absolute inset-0 bg-pink-300 blur-2xl rounded-full opacity-20" />
+                </div>
 
-                {/* tiny pastel sparkles */}
-                <motion.div
-                  className="absolute -top-7 -left-9 opacity-[0.20]"
-                  animate={{ rotate: [0, 8, 0], y: [0, -3, 0] }}
-                  transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+                <div className="relative z-10">
+                    <motion.div
+                        animate={{ y: [0, -3, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                        <h1 className="font-serif-title flex flex-col items-center justify-center">
+                            {/* "Happy" in a gentle script style */}
+                            <span 
+                                className="text-3xl md:text-4xl text-gray-400 font-light italic tracking-wider mb-[-5px]"
+                                style={{ fontFamily: 'Times New Roman, serif' }} // Fallback purely for the italic feel
+                            >
+                                happy
+                            </span>
+                            
+                            {/* "Birthday" in a bold, aesthetic gradient serif */}
+                            <span 
+                                className="text-5xl md:text-7xl font-medium tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-rose-400 via-pink-500 to-purple-400 drop-shadow-sm"
+                                style={{ 
+                                    filter: 'drop-shadow(0px 2px 3px rgba(255, 182, 193, 0.3))' 
+                                }}
+                            >
+                                BIRTHDAY
+                            </span>
+                        </h1>
+                    </motion.div>
+                </div>
+
+                {/* Decorative stars next to text */}
+                <motion.div 
+                    className="absolute -right-4 top-4 text-yellow-300 opacity-60"
+                    animate={{ scale: [1, 1.3, 1], rotate: [0, 15, 0] }}
+                    transition={{ duration: 3, repeat: Infinity }}
                 >
-                  <Sparkles size={18} className="text-gray-700" />
+                    <Sparkles size={20} fill="currentColor" />
+                </motion.div>
+                
+                <motion.div 
+                    className="absolute -left-4 bottom-2 text-pink-300 opacity-60"
+                    animate={{ scale: [1, 1.2, 1], rotate: [0, -15, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+                >
+                    <Star size={16} fill="currentColor" />
                 </motion.div>
 
-                <motion.div
-                  className="absolute -top-6 -right-10 opacity-[0.18]"
-                  animate={{ rotate: [0, -8, 0], y: [0, -3, 0] }}
-                  transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  <Star size={18} className="text-gray-700" />
-                </motion.div>
-
-                {/* decorative swirls */}
-                <div className="pointer-events-none absolute -left-14 top-6 opacity-[0.14]">
-                  <svg width="64" height="40" viewBox="0 0 64 40" fill="none">
-                    <path
-                      d="M4 26c10-14 22-20 36-14 9 4 14 12 20 18"
-                      stroke="rgba(244,114,182,0.35)"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M10 30c7-10 16-14 26-10 6 2 10 7 14 11"
-                      stroke="rgba(167,139,250,0.25)"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </div>
-
-                <div className="pointer-events-none absolute -right-14 top-7 opacity-[0.14] rotate-180">
-                  <svg width="64" height="40" viewBox="0 0 64 40" fill="none">
-                    <path
-                      d="M4 26c10-14 22-20 36-14 9 4 14 12 20 18"
-                      stroke="rgba(244,114,182,0.35)"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M10 30c7-10 16-14 26-10 6 2 10 7 14 11"
-                      stroke="rgba(167,139,250,0.25)"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </div>
-
-                {/* text: outlined + soft blush shadow */}
-                <h1 className="relative font-serif-title text-6xl md:text-7xl leading-[0.95] tracking-tight">
-                  <span
-                    className="absolute inset-0 select-none"
-                    style={{
-                      WebkitTextStroke: '1.2px rgba(244,114,182,0.28)',
-                      color: 'transparent',
-                      filter: 'blur(0.15px)',
-                    }}
-                    aria-hidden="true"
-                  >
-                    Happy Birthday
-                  </span>
-
-                  <span
-                    className="relative"
-                    style={{
-                      color: '#111827',
-                      textShadow:
-                        '0 10px 26px rgba(244,114,182,0.10), 0 18px 40px rgba(167,139,250,0.06)',
-                    }}
-                  >
-                    Happy Birthday
-                  </span>
-                </h1>
-
-                {/* underline: pastel ribbon + dot */}
-                <div className="relative mx-auto mt-4 w-[12.5rem] h-[10px]">
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background:
-                        'linear-gradient(90deg, rgba(244,114,182,0.45), rgba(251,191,36,0.22), rgba(167,139,250,0.35))',
-                    }}
-                    initial={{ opacity: 0, scaleX: 0.65 }}
-                    animate={{ opacity: 1, scaleX: 1 }}
-                    transition={{ duration: 0.8, ease: 'easeOut' }}
-                  />
-                  <motion.div
-                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white/80 border border-white/90 shadow-sm"
-                    animate={{ y: [0, -2, 0] }}
-                    transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-                  />
-                </div>
+                {/* underline */}
+                <div className="relative mx-auto mt-3 w-32 h-[1px] bg-gradient-to-r from-transparent via-pink-300 to-transparent opacity-60" />
               </div>
             </div>
 
-            {/* Name: softer, more girly, pastel frame */}
-            <div className="mt-9 flex items-center justify-center">
-              <motion.div whileHover={{ scale: 1.03 }} className="relative">
+            {/* --- UPDATED: SUBU Name Block --- */}
+            <div className="mt-8 flex items-center justify-center pb-4">
+              <motion.div whileHover={{ scale: 1.02 }} className="relative group">
+                
+                {/* Glow behind the name */}
                 <motion.div
-                  className="absolute -inset-7 rounded-[2.4rem] bg-gradient-to-r from-pink-200/30 via-amber-200/12 to-purple-200/22 blur-2xl"
-                  animate={{ opacity: [0.32, 0.52, 0.32], scale: [1, 1.02, 1] }}
-                  transition={{ duration: 3.0, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -inset-6 rounded-full bg-gradient-to-r from-pink-200/40 via-purple-200/30 to-rose-200/40 blur-2xl"
+                  animate={{ opacity: [0.4, 0.7, 0.4], scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                 />
 
-                <div className="relative px-7 py-5 rounded-[2rem] bg-white/78 border border-white/90 shadow-lg">
-                  {/* crown badge: pastel */}
-                  <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-amber-100/70 border border-white/80 flex items-center justify-center shadow-md">
-                    <Crown size={18} className="text-gray-700" />
+                <div className="relative px-10 py-6 rounded-[2.5rem] bg-gradient-to-br from-white/90 to-white/70 border border-white shadow-xl backdrop-blur-sm">
+                  
+                  {/* Floating Crown Icon */}
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-yellow-100 border border-white flex items-center justify-center shadow-md z-20">
+                    <Crown size={14} className="text-yellow-600" fill="#fde047" />
                   </div>
 
-                  <div className="relative inline-block">
-                    {/* super soft shimmer */}
-                    <motion.div
-                      className="pointer-events-none absolute -inset-8 opacity-[0.22]"
-                      animate={{ x: ['-30%', '30%', '-30%'] }}
-                      transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                      style={{
-                        background:
-                          'linear-gradient(90deg, transparent 0%, rgba(244,114,182,0.14) 35%, rgba(167,139,250,0.12) 55%, transparent 100%)',
-                        filter: 'blur(12px)',
-                      }}
-                    />
-
-                    {/* outlined name + gentle pastel tint */}
-                    <span className="relative font-serif-title text-6xl md:text-8xl tracking-tight">
-                      <span
-                        className="absolute inset-0 select-none"
+                  {/* Main Name Text */}
+                  <div className="relative z-10 text-center">
+                    <span 
+                        className="font-serif-title text-6xl md:text-8xl leading-none block bg-clip-text text-transparent bg-gradient-to-b from-rose-400 to-rose-600"
                         style={{
-                          WebkitTextStroke: '1px rgba(167,139,250,0.22)',
-                          color: 'transparent',
+                            textShadow: '2px 4px 12px rgba(244, 63, 94, 0.15)',
+                            // If you have a specific cursive font imported, add it here like: fontFamily: 'Great Vibes, cursive'
                         }}
-                        aria-hidden="true"
-                      >
+                    >
                         Subu
-                      </span>
-
-                      <span
-                        className="relative"
-                        style={{
-                          color: '#111827',
-                          textShadow: '0 14px 34px rgba(244,114,182,0.10)',
-                        }}
-                      >
-                        Subu
-                      </span>
                     </span>
-
-                    {/* pastel underline with mini icon */}
-                    <div className="mt-3 flex items-center justify-center gap-2">
-                      <div className="h-[2px] w-12 rounded-full bg-pink-300/55" />
-                      <Sparkles size={14} className="text-gray-700 opacity-55" />
-                      <div className="h-[2px] w-12 rounded-full bg-purple-300/45" />
+                    
+                    {/* Decorative "wings" lines */}
+                    <div className="flex items-center justify-center gap-2 mt-2 opacity-50">
+                        <div className="w-8 h-[1px] bg-rose-400 rounded-full" />
+                        <Heart size={10} className="text-rose-400" fill="currentColor" />
+                        <div className="w-8 h-[1px] bg-rose-400 rounded-full" />
                     </div>
                   </div>
 
-                  <div className="mt-2 flex items-center justify-center gap-2">
-                    <div className="px-3 py-1 rounded-full bg-gradient-to-r from-pink-100/80 to-purple-100/70 border border-white/90 text-[11px] tracking-wider uppercase text-gray-800 font-sans-body shadow-sm">
-                      cutest human
+                  {/* Badge */}
+                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                    <div className="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 shadow-sm flex items-center gap-1.5">
+                        <Sparkles size={10} className="text-rose-400" />
+                        <span className="text-[10px] uppercase tracking-widest text-rose-800 font-medium">
+                            Cutest Human
+                        </span>
+                        <Sparkles size={10} className="text-rose-400" />
                     </div>
                   </div>
 
-                  {/* tiny hearts in corners (pastel, subtle) */}
-                  <motion.div
-                    className="pointer-events-none absolute -left-3 -bottom-3 opacity-[0.14]"
-                    animate={{ scale: [1, 1.12, 1] }}
-                    transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    <Heart size={18} className="text-gray-700" />
-                  </motion.div>
-
-                  <motion.div
-                    className="pointer-events-none absolute -right-4 -bottom-4 opacity-[0.12]"
-                    animate={{ scale: [1, 1.10, 1], rotate: [0, 6, 0] }}
-                    transition={{ duration: 3.0, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    <Star size={18} className="text-gray-700" />
-                  </motion.div>
                 </div>
               </motion.div>
             </div>
