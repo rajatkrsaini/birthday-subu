@@ -227,133 +227,106 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
               <Gift size={24} className="text-gray-700" />
             </div>
 
-            <h2 className="text-gray-600 font-sans-body text-[12px] md:text-sm leading-relaxed tracking-wide max-w-xl mx-auto text-center">
+            <h2 className="text-gray-600 font-sans-body text-[12px] md:text-sm leading-relaxed tracking-wide max-w-xl mx-auto">
               I wanted you to open this on your special day, but I couldn't complete it.
               I know the moment is gone and you will never feel the same.
             </h2>
 
-            {/* --- REVISED AESTHETIC HEADER START --- */}
-            <div className="mt-10 text-center relative z-10">
-              {/* Happy Birthday Section */}
-              <div className="relative inline-block mb-8">
-                {/* Decorative floating icons */}
+            {/* Title: Aesthetic & Minimal Update */}
+            <div className="mt-8 text-center">
+              <div className="relative inline-block">
+                
+                {/* Decorative floating elements */}
                 <motion.div 
-                  className="absolute -top-8 -left-8 text-pink-300"
-                  animate={{ y: [0, -5, 0], rotate: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                   className="absolute -top-5 -left-6 text-pink-300 opacity-80"
+                   animate={{ y: [0, -5, 0], rotate: [0, 10, 0] }}
+                   transition={{ duration: 4, repeat: Infinity }}
                 >
-                  <Sparkles size={24} strokeWidth={1.5} />
-                </motion.div>
-                <motion.div 
-                  className="absolute -top-6 -right-8 text-yellow-300"
-                  animate={{ y: [0, -8, 0], rotate: [0, 10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                >
-                  <PartyPopper size={22} strokeWidth={1.5} />
+                   <Sparkles size={20} fill="#fbcfe8" />
                 </motion.div>
 
-                {/* Main Text */}
-                <h1 className="font-serif-title italic text-5xl md:text-6xl tracking-wide leading-tight">
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-400 via-pink-500 to-purple-400 drop-shadow-sm">
+                <motion.div 
+                   className="absolute -bottom-2 -right-6 text-purple-300 opacity-80"
+                   animate={{ scale: [1, 1.15, 1], rotate: [0, -10, 0] }}
+                   transition={{ duration: 3, repeat: Infinity }}
+                >
+                   <Smile size={22} />
+                </motion.div>
+
+                {/* Main Text: Minimal Gradient */}
+                <h1 className="relative font-serif-title text-5xl md:text-7xl leading-[1.0] tracking-tight">
+                  <span className="block text-[0.25em] tracking-[0.4em] uppercase text-gray-400 font-sans-body mb-2">It's your day</span>
+                  <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent drop-shadow-sm">
                     Happy Birthday
                   </span>
                 </h1>
-                
-                {/* Decorative Underline */}
-                <div className="relative h-4 mt-1 w-full flex justify-center items-center opacity-60">
-                   <svg width="100%" height="10" viewBox="0 0 200 10" preserveAspectRatio="none" className="overflow-visible">
-                     <motion.path 
-                       d="M0 5 Q 50 10 100 5 T 200 5" 
-                       fill="none" 
-                       stroke="url(#gradient-line)" 
-                       strokeWidth="2"
-                       initial={{ pathLength: 0 }}
-                       animate={{ pathLength: 1 }}
-                       transition={{ duration: 2, ease: "easeInOut" }}
-                     />
-                     <defs>
-                       <linearGradient id="gradient-line" x1="0%" y1="0%" x2="100%" y2="0%">
-                         <stop offset="0%" stopColor="#f472b6" stopOpacity="0" />
-                         <stop offset="50%" stopColor="#f472b6" />
-                         <stop offset="100%" stopColor="#c084fc" stopOpacity="0" />
-                       </linearGradient>
-                     </defs>
-                   </svg>
+
+                {/* Minimal Underline */}
+                <div className="relative mx-auto mt-3 w-24 h-1 rounded-full bg-gradient-to-r from-pink-200/80 to-purple-200/80">
+                  <motion.div
+                    className="absolute top-0 left-0 h-full w-full rounded-full bg-white/40"
+                    animate={{ x: ['-100%', '100%'] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+                    style={{ overflow: 'hidden' }}
+                  />
                 </div>
               </div>
-
-              {/* Subu Name Section - The Centerpiece */}
-              <div className="relative mt-4 mb-2 flex items-center justify-center">
-                 <motion.div 
-                    whileHover={{ scale: 1.02 }}
-                    className="relative px-12 py-8 rounded-[3rem]"
-                 >
-                    {/* Glassy Background Container */}
-                    <div className="absolute inset-0 bg-white/40 border border-white/80 rounded-[3rem] shadow-xl shadow-pink-100/50 backdrop-blur-sm" />
-                    <div className="absolute inset-1 border border-pink-100/30 rounded-[2.8rem]" />
-
-                    {/* Background Bloom */}
-                    <motion.div 
-                      className="absolute inset-0 bg-gradient-to-br from-pink-200/20 via-purple-200/20 to-transparent blur-xl rounded-[3rem]"
-                      animate={{ opacity: [0.5, 0.8, 0.5] }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                    />
-
-                    <div className="relative flex flex-col items-center">
-                      {/* Floating Crown on top */}
-                      <motion.div 
-                        className="mb-[-10px] text-amber-300 drop-shadow-sm z-20"
-                        animate={{ rotate: [0, 5, -5, 0], y: [0, -2, 0] }}
-                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                      >
-                         <Crown size={28} fill="#fde68a" strokeWidth={1.5} />
-                      </motion.div>
-
-                      {/* The Name */}
-                      <div className="relative z-10">
-                        <span className="font-serif-title text-7xl md:text-8xl tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-pink-500 via-rose-500 to-violet-500 filter drop-shadow-md">
-                          Subu
-                        </span>
-                        
-                        {/* Soft white gloss overlay on text */}
-                        <span className="absolute inset-0 font-serif-title text-7xl md:text-8xl tracking-tight text-white/20 blur-[0.5px] pointer-events-none" aria-hidden="true">
-                           Subu
-                        </span>
-                      </div>
-
-                      {/* Bottom Decoration */}
-                      <div className="mt-4 flex items-center gap-3 opacity-70">
-                        <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }}>
-                           <Heart size={14} className="text-rose-400" fill="#fb7185" />
-                        </motion.div>
-                        <span className="text-[10px] uppercase tracking-[0.2em] text-rose-800/60 font-medium">
-                          Lovely Girl
-                        </span>
-                         <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, delay: 0.5, repeat: Infinity }}>
-                           <Heart size={14} className="text-rose-400" fill="#fb7185" />
-                        </motion.div>
-                      </div>
-                    </div>
-
-                    {/* Floating hearts around container */}
-                    <motion.div 
-                      className="absolute top-4 left-4 text-pink-200/80"
-                      animate={{ y: [0, -10, 0] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      <Heart size={18} fill="currentColor" />
-                    </motion.div>
-                    <motion.div 
-                      className="absolute bottom-6 right-5 text-purple-200/80"
-                      animate={{ y: [0, -8, 0] }}
-                      transition={{ duration: 3.5, delay: 1, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      <Heart size={16} fill="currentColor" />
-                    </motion.div>
-                 </motion.div>
-              </div>
             </div>
-            {/* --- REVISED AESTHETIC HEADER END --- */}
+
+            {/* Name: Visually Lovely & Pretty Update */}
+            <div className="mt-10 flex items-center justify-center">
+              <motion.div whileHover={{ scale: 1.02 }} className="relative group">
+                {/* Soft glow backing */}
+                <motion.div
+                  className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-tr from-pink-100 via-purple-50 to-rose-100 blur-2xl opacity-70"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                />
+
+                <div className="relative px-12 py-7 rounded-[2.5rem] bg-white/60 border border-white/80 shadow-xl shadow-pink-100/40 backdrop-blur-sm flex flex-col items-center">
+                  
+                  {/* Floating Crown - Cute */}
+                  <motion.div 
+                    className="absolute -top-5"
+                    animate={{ y: [0, -3, 0], rotate: [0, 5, -5, 0] }}
+                    transition={{ duration: 5, repeat: Infinity }}
+                  >
+                     <div className="p-2.5 bg-yellow-50 rounded-full border border-white shadow-sm">
+                        <Crown size={22} className="text-yellow-500" fill="#fde047" />
+                     </div>
+                  </motion.div>
+
+                  {/* SUBU - Lovely Gradient Text */}
+                  <div className="relative">
+                     <h2 className="font-serif-title text-7xl md:text-8xl tracking-tighter leading-none">
+                       {/* Soft shadow layer */}
+                       <span className="absolute top-1 left-1 text-pink-200 blur-[1px] select-none">Subu</span>
+                       {/* Main beautiful text */}
+                       <span className="relative z-10 bg-gradient-to-br from-rose-400 via-pink-500 to-purple-500 bg-clip-text text-transparent drop-shadow-sm">
+                         Subu
+                       </span>
+                     </h2>
+                     
+                     {/* Tiny heart decorations attached to name */}
+                     <motion.div 
+                       className="absolute top-2 -right-5 text-rose-300" 
+                       animate={{ scale: [1, 1.25, 1] }} 
+                       transition={{ duration: 2, repeat: Infinity }}
+                     >
+                        <Heart size={16} fill="currentColor" />
+                     </motion.div>
+                  </div>
+
+                  {/* Cutest Human - EXACTLY AS REQUESTED */}
+                  <div className="mt-4 flex items-center justify-center gap-2">
+                    <div className="px-3 py-1 rounded-full bg-gradient-to-r from-pink-100/80 to-purple-100/70 border border-white/90 text-[11px] tracking-wider uppercase text-gray-800 font-sans-body shadow-sm">
+                      cutest human
+                    </div>
+                  </div>
+
+                </div>
+              </motion.div>
+            </div>
 
             {/* Wish block */}
             <div className="mt-8 flex justify-center">
