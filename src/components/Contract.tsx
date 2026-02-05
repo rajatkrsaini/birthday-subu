@@ -33,7 +33,7 @@ const Contract: React.FC<ContractProps> = ({ onComplete }) => {
             whileTap={{ scale: 0.95 }}
             className="border-b-2 border-blue-600 text-blue-600 text-xl px-4"
           >
-            <PenTool size={18} /> Sign Here
+            <PenTool size={18} /> Tap
           </MotionButton>
         ) : (
           <MotionButton
