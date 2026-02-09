@@ -228,8 +228,8 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
             </div>
 
             <h2 className="text-gray-600 font-sans-body text-[12px] md:text-sm leading-relaxed tracking-wide max-w-xl mx-auto">
-              I wanted you to open this on your special day, but I couldn't complete it.
-              I know the moment is gone and you will never feel the same.
+
+              
             </h2>
 
             {/* Title: prettier, pastel accents, more decorative */}
@@ -420,7 +420,6 @@ const Intro: React.FC<IntroProps> = ({ onStart }) => {
             <div className="mt-8 flex justify-center">
               <div className="w-full max-w-md rounded-2xl bg-white/60 border border-white/85 p-5 text-center shadow-sm">
                 <p className="text-[11px] tracking-[0.32em] uppercase text-gray-500 font-sans-body">
-                  ..
                 </p>
 
                 <p
