@@ -72,7 +72,7 @@ const SkyLantern: React.FC = () => {
     setStarted(false);
   };
 
-  const headline = !released ? 'Make a Wish' : 'Goodnight, Subu.';
+  const headline = !released ? 'Make a Wish' : 'Good night qt chan';
   const subline = !released
     ? 'Last page. Make One or More wishes.'
     : '...';
