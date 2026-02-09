@@ -221,10 +221,10 @@ const envelopes: EnvelopeData[] = [
     locked: true,
     content: [
       "sorry for the cringe password.",
-      "I want this digital memory to stay forever in time for you. Someday, if we drift apart (which I don't want, obviously) or if life just gets too loud, I want you to come back here, open this letter, and remember that someone in this big world cared about you this much. I just care for you in quiet way (purely and sincerely), not anything like to impress you.",
+      "I want this digital memory to stay forever in time for you. Someday, if we drift apart (which I don't want, obviously) or if life just gets too loud, I want you to come back here, open this again, and remember that someone in this big world cared about you. I just care for you in quiet way (purely and sincerely), not anything like to impress you.",
       "You know, people often say online friends aren't 'real' friends. But they are wrong. Because who else knows your problems that you can never tell others? Who else listens to your rants about random inconveniences? I sometimes feel I know you better than people who see you every day. And that’s why I wanted to make this effort. Not because I had to, but because I wanted to spoil you with happy memories.",
       "!!!",
-      "If you are reading this on any of your next birthdays from now: Hello! I hope we are still best friends. I hope I still get to call you 'bsdk' and tease you. But if life has taken us on different paths, just know that at this moment in time, on your 21st birthday, you were my favorite person to talk to.",
+      "If you are reading this on any of your next birthdays from now: Hello! I hope we are still best friends. I hope I still get to tease you. But if life has taken us on different paths, just know that at this moment in time, on your 21st birthday, you were my favorite person to talk to.",
       ".",
     ]
   }
